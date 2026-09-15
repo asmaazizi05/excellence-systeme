@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
     initMobileNav();
     initHeroCanvas();
-    initHeroSlider();
+    initHeroImageSlideshow();
     initStatsCounter();
     initProductFilters();
     initPortfolioFilters();
@@ -214,23 +214,41 @@ function initPortfolioFilters() {
 
     if (tabs.length === 0 || cards.length === 0) return;
 
+    function applyFilter(category) {
+        tabs.forEach(t => {
+            if (t.getAttribute('data-category') === category) {
+                t.classList.add('active');
+            } else {
+                t.classList.remove('active');
+            }
+        });
+
+        cards.forEach(card => {
+            const cardCat = card.getAttribute('data-category');
+            if (category === 'all' || category === cardCat) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-
             const category = tab.getAttribute('data-category');
-
-            cards.forEach(card => {
-                const cardCat = card.getAttribute('data-category');
-                if (category === 'all' || category === cardCat) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+            applyFilter(category);
         });
     });
+
+    function handleHash() {
+        const hash = window.location.hash.replace('#', '');
+        if (hash) {
+            applyFilter(hash);
+        }
+    }
+
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
 }
 
 /* 7. Testimonial Carousel Slider */
@@ -683,70 +701,18 @@ function initAboutSlider() {
     });
 }
 
-/* 14. Interactive Hero Slider */
-function initHeroSlider() {
-    const heroWrapper = document.querySelector('.hero-slider-wrapper');
-    if (!heroWrapper) return;
-
-    const bgSlides = heroWrapper.querySelectorAll('.hero-slide-bg');
-    const contentSlides = heroWrapper.querySelectorAll('.hero-slide-content');
-    const dots = heroWrapper.querySelectorAll('.hero-dot');
-    const prevBtn = heroWrapper.querySelector('.prev-slide');
-    const nextBtn = heroWrapper.querySelector('.next-slide');
-
-    if (!bgSlides.length || !contentSlides.length) return;
+/* 14. Automatic Right-Side Hero Image Slideshow */
+function initHeroImageSlideshow() {
+    const images = document.querySelectorAll('.hero-slideshow-img');
+    if (images.length < 2) return;
 
     let currentIndex = 0;
-    let timer = null;
 
-    function goToSlide(index) {
-        bgSlides.forEach(s => s.classList.remove('active'));
-        contentSlides.forEach(c => c.classList.remove('active'));
-        dots.forEach(d => d.classList.remove('active'));
-
-        currentIndex = (index + bgSlides.length) % bgSlides.length;
-
-        bgSlides[currentIndex].classList.add('active');
-        contentSlides[currentIndex].classList.add('active');
-        if (dots[currentIndex]) dots[currentIndex].classList.add('active');
-    }
-
-    function startAutoPlay() {
-        stopAutoPlay();
-        timer = setInterval(() => {
-            goToSlide(currentIndex + 1);
-        }, 5000);
-    }
-
-    function stopAutoPlay() {
-        if (timer) clearInterval(timer);
-    }
-
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            goToSlide(currentIndex + 1);
-            startAutoPlay();
-        });
-    }
-
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            goToSlide(currentIndex - 1);
-            startAutoPlay();
-        });
-    }
-
-    dots.forEach((dot, idx) => {
-        dot.addEventListener('click', () => {
-            goToSlide(idx);
-            startAutoPlay();
-        });
-    });
-
-    heroWrapper.addEventListener('mouseenter', stopAutoPlay);
-    heroWrapper.addEventListener('mouseleave', startAutoPlay);
-
-    startAutoPlay();
+    setInterval(() => {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+    }, 3500);
 }
 
 /* 15. Activity Brands 3D Tilt Effect */
