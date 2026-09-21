@@ -65,8 +65,16 @@
         </div>
     </header>
 
-    <!-- ORIGINAL HERO SECTION WITH AUTOMATIC RIGHT-SIDE IMAGE SLIDESHOW -->
+    <!-- ORIGINAL HERO SECTION WITH AUTOMATIC IMAGE BACKGROUND & VISUAL SLIDESHOW -->
     <section class="hero" id="hero">
+        <div class="hero-bg-slideshow">
+            <div class="hero-bg-slide active" style="background-image: url('assets/hero_slideshow/hero-slide-1.jpeg');"></div>
+            <div class="hero-bg-slide" style="background-image: url('assets/hero_slideshow/hero-slide-2.jpeg');"></div>
+            <div class="hero-bg-slide" style="background-image: url('assets/hero_slideshow/hero-slide-3.jpeg');"></div>
+            <div class="hero-bg-slide" style="background-image: url('assets/hero_slideshow/hero-slide-4.jpeg');"></div>
+            <div class="hero-bg-overlay"></div>
+        </div>
+
         <canvas id="hero-canvas"></canvas>
 
         <div class="container">
@@ -97,7 +105,7 @@
                     </div>
                 </div>
 
-                <!-- Right Side: 3D Illustration Showcase with Automatic Image Slideshow -->
+                <!-- Right Side: 3D Illustration Showcase with Automatic Image Slideshow & Controls -->
                 <div class="hero-visual">
                     <div class="hero-image-wrapper glass-card-3d">
                         
@@ -106,6 +114,17 @@
                             <img src="assets/hero_slideshow/hero-slide-2.jpeg" alt="Excellence Système - Sécurité & Contrôle" class="hero-slideshow-img">
                             <img src="assets/hero_slideshow/hero-slide-3.jpeg" alt="Excellence Système - Installation & Équipement" class="hero-slideshow-img">
                             <img src="assets/hero_slideshow/hero-slide-4.jpeg" alt="Excellence Système - Maintenance & Support" class="hero-slideshow-img">
+                        </div>
+
+                        <!-- Slideshow Navigation Controls -->
+                        <button type="button" class="hero-slideshow-nav prev" aria-label="Slide précédent"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button type="button" class="hero-slideshow-nav next" aria-label="Slide suivant"><i class="fa-solid fa-chevron-right"></i></button>
+
+                        <div class="hero-slideshow-dots">
+                            <span class="dot active" data-index="0"></span>
+                            <span class="dot" data-index="1"></span>
+                            <span class="dot" data-index="2"></span>
+                            <span class="dot" data-index="3"></span>
                         </div>
                         
                         <div class="status-badge top-right glow-badge">
@@ -160,182 +179,332 @@
     </section>
 
     <!-- CORE VISUAL ACTIVITIES SHOWCASE SECTION (GLASSMORPHISM CARDS WITH REAL PROJECT PHOTOS) -->
+    
+    
+    
     <section class="solutions" id="activites-section">
         <div class="container">
             <div class="text-center section-header-center">
                 <div class="section-tag">
-                    <i class="fa-solid fa-layer-group"></i> <span>NOS ACTIVITÉS &rarr; NOS SOLUTIONS IT</span>
+                    <i class="fa-solid fa-layer-group"></i> <span>DOMAINES D'EXPERTISE</span>
                 </div>
-                <h2 class="section-title">Nos Solutions IT & Activités</h2>
+                <h2 class="section-title">Infrastructures & Solutions Réseaux</h2>
                 <p class="section-subtitle">
                     Architecture complète d'ingénierie et d'intégration organisée par piliers d'excellence technologique.
                 </p>
             </div>
 
-            <div class="activities-visual-grid">
-                <!-- Activity Card 1: Détection Incendie -->
-                <div class="activity-glass-card">
-                    <div class="card-bg-image" style="background-image: url('assets/img/incendie-hero.jpg');"></div>
-                    <div class="card-gradient-overlay"></div>
-                    <div class="card-content">
-                        <div class="card-badge" data-i18n="card1Badge"><i class="fa-solid fa-fire-flame-curved"></i> Certifié S.S.I.</div>
-                        <h3 class="card-title" data-i18n="card1Title">Détection Incendie</h3>
-                        <p class="card-description" data-i18n="card1Desc">Centrales ECS/CMSI conventionnelles et adressables conformes aux normes ERP.</p>
-                        <div class="card-features">
-                            <span><i class="fa-solid fa-check"></i> Détecteurs Optiques</span>
-                            <span><i class="fa-solid fa-check"></i> Sirènes Flash</span>
-                        </div>
-                        <a href="activites/detection-incendie.html" class="card-action-btn" data-i18n="btnLearnMore">
-                            En savoir plus <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+            <div class="activities-top3-grid">
 
-                <!-- Activity Card 2: Vidéosurveillance IP -->
-                <div class="activity-glass-card">
-                    <div class="card-bg-image" style="background-image: url('assets/img/video-hero.jpg');"></div>
-                    <div class="card-gradient-overlay"></div>
-                    <div class="card-content">
-                        <div class="card-badge" data-i18n="card2Badge"><i class="fa-solid fa-video"></i> Ultra HD 4K</div>
-                        <h3 class="card-title" data-i18n="card2Title">Vidéosurveillance IP</h3>
-                        <p class="card-description" data-i18n="card2Desc">Caméras motorisées PTZ, reconnaissance de plaques LPR et serveurs NVR réseau.</p>
-                        <div class="card-features">
-                            <span><i class="fa-solid fa-check"></i> Vision Nocturne IR</span>
-                            <span><i class="fa-solid fa-check"></i> Détection IA</span>
-                        </div>
-                        <a href="activites/videosurveillance.html" class="card-action-btn" data-i18n="btnLearnMore">
-                            En savoir plus <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
+            <div class="card-v2-container">
+                <div class="card-v2-img-wrap">
+                    <img src="assets/img/incendie-hero.jpg" alt="Système de Détection Incendie" loading="lazy">
                 </div>
-
-                <!-- Activity Card 3: Réseau Informatique -->
-                <div class="activity-glass-card">
-                    <div class="card-bg-image" style="background-image: url('assets/img/reseau-datacenter.jpg');"></div>
-                    <div class="card-gradient-overlay"></div>
-                    <div class="card-content">
-                        <div class="card-badge" data-i18n="card3Badge"><i class="fa-solid fa-network-wired"></i> Cat6 / Cat7 / Fibre</div>
-                        <h3 class="card-title" data-i18n="card3Title">Réseau Informatique</h3>
-                        <p class="card-description" data-i18n="card3Desc">Câblage structuré, baies de brassage serveur et switching PoE administrable.</p>
-                        <div class="card-features">
-                            <span><i class="fa-solid fa-check"></i> Baies Datacenter</span>
-                            <span><i class="fa-solid fa-check"></i> Wi-Fi 6 Professionnel</span>
-                        </div>
-                        <a href="activites/reseau-informatique.html" class="card-action-btn" data-i18n="btnLearnMore">
-                            En savoir plus <i class="fa-solid fa-arrow-right"></i>
-                        </a>
+                <div class="card-v2-body">
+                    <div class="card-v2-title-row">
+                        <div class="title-icon-box"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                        <h3 class="card-title-text">Système de Détection Incendie</h3>
                     </div>
-                </div>
-
-                <!-- Activity Card 4: Contrôle d'accès -->
-                <div class="activity-glass-card">
-                    <div class="card-bg-image" style="background-image: url('assets/img/access-biometric.jpg');"></div>
-                    <div class="card-gradient-overlay"></div>
-                    <div class="card-content">
-                        <div class="card-badge" data-i18n="card4Badge"><i class="fa-solid fa-fingerprint"></i> Biométrie & RFID</div>
-                        <h3 class="card-title" data-i18n="card4Title">Contrôle d'Accès</h3>
-                        <p class="card-description" data-i18n="card4Desc">Reconnaissance faciale, tourniquets piétons, badges RFID et pointeuses horaires.</p>
-                        <div class="card-features">
-                            <span><i class="fa-solid fa-check"></i> Pointage Horaire</span>
-                            <span><i class="fa-solid fa-check"></i> Serrures Réseau</span>
-                        </div>
-                        <a href="activites/controle-acces.html" class="card-action-btn" data-i18n="btnLearnMore">
-                            En savoir plus <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Activity Card 5: Domotique & GTB -->
-                <div class="activity-glass-card">
-                    <div class="card-bg-image" style="background-image: url('assets/img/domotique-smart.jpg');"></div>
-                    <div class="card-gradient-overlay"></div>
-                    <div class="card-content">
-                        <div class="card-badge" data-i18n="card5Badge"><i class="fa-solid fa-house-signal"></i> iNELS & KNX</div>
-                        <h3 class="card-title" data-i18n="card5Title">Domotique & GTB</h3>
-                        <p class="card-description" data-i18n="card5Desc">Gestion technique des bâtiments, automatisation d'éclairage et régulation HVAC.</p>
-                        <div class="card-features">
-                            <span><i class="fa-solid fa-check"></i> Écran Tactile Wall</span>
-                            <span><i class="fa-solid fa-check"></i> App Smartphone</span>
-                        </div>
-                        <a href="activites/domotique.html" class="card-action-btn" data-i18n="btnLearnMore">
-                            En savoir plus <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Activity Card 6: Anti-intrusion -->
-                <div class="activity-glass-card">
-                    <div class="card-bg-image" style="background-image: url('assets/img/anti-intrusion-ajax.jpg');"></div>
-                    <div class="card-gradient-overlay"></div>
-                    <div class="card-content">
-                        <div class="card-badge" data-i18n="card6Badge"><i class="fa-solid fa-shield-cat"></i> Alarme Connectée</div>
-                        <h3 class="card-title" data-i18n="card6Title">Système Anti-intrusion</h3>
-                        <p class="card-description" data-i18n="card6Desc">Protection périmétrique extérieure, détecteurs double technologie et sirènes.</p>
-                        <div class="card-features">
-                            <span><i class="fa-solid fa-check"></i> Barrières Infrarouges</span>
-                            <span><i class="fa-solid fa-check"></i> Télésurveillance 24h</span>
-                        </div>
-                        <a href="activites/anti-intrusion.html" class="card-action-btn" data-i18n="btnLearnMore">
-                            En savoir plus <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
+                    <p class="card-v2-desc">La solution de détection incendie permet d’assurer une surveillance continue et fiable contre les risques d’incendie.</p>
+                    <a href="activites/detection-incendie.html" class="card-v2-link" data-solution-title="Système de Détection Incendie" data-solution-desc="La solution de détection incendie permet d’assurer une surveillance continue et fiable contre les risques d’incendie. Elle comprend des systèmes adressables et conventionnels adaptés aux différentes configurations des bâtiments. La technologie adressable identifie précisément le détecteur ou l’équipement à l’origine de l’alarme. La technologie conventionnelle organise les équipements par zones afin de localiser rapidement la zone concernée. Les installations peuvent intégrer des détecteurs de fumée, de chaleur, des déclencheurs manuels et des sirènes. La centrale assure la supervision permanente des équipements et signale les éventuels défauts du système. Des modules spécifiques permettent également de commander certains équipements de sécurité en cas d’alarme. Le choix de la technologie dépend de la taille, de la structure et des exigences du bâtiment. Ces solutions conviennent aux hôtels, villas, bureaux, commerces, établissements publics et sites industriels. Elles garantissent une détection rapide, une alerte efficace et une gestion adaptée aux exigences de sécurité incendie." data-solution-img="assets/img/incendie-hero.jpg" data-solution-link="activites/detection-incendie.html">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
+            <div class="card-v2-container">
+                <div class="card-v2-img-wrap">
+                    <img src="assets/img/anti-intrusion-ajax.jpg" alt="Système Anti-Intrusion" loading="lazy">
+                </div>
+                <div class="card-v2-body">
+                    <div class="card-v2-title-row">
+                        <div class="title-icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3 class="card-title-text">Système Anti-Intrusion</h3>
+                    </div>
+                    <p class="card-v2-desc">La solution de détection incendie permet d’assurer une surveillance continue et fiable contre les risques d’incendie.</p>
+                    <a href="activites/anti-intrusion.html" class="card-v2-link" data-solution-title="Système Anti-Intrusion" data-solution-desc="La solution de détection incendie permet d’assurer une surveillance continue et fiable contre les risques d’incendie. Elle comprend des systèmes adressables et conventionnels adaptés aux différentes configurations des bâtiments. La technologie adressable identifie précisément le détecteur ou l’équipement à l’origine de l’alarme. La technologie conventionnelle organise les équipements par zones afin de localiser rapidement la zone concernée. Les installations peuvent intégrer des détecteurs de fumée, de chaleur, des déclencheurs manuels et des sirènes. La centrale assure la supervision permanente des équipements et signale les éventuels défauts du système. Des modules spécifiques permettent également de commander certains équipements de sécurité en cas d’alarme. Le choix de la technologie dépend de la taille, de la structure et des exigences du bâtiment. Ces solutions conviennent aux hôtels, villas, bureaux, commerces, établissements publics et sites industriels. Elles garantissent une détection rapide, une alerte efficace et une gestion adaptée aux exigences de sécurité incendie." data-solution-img="assets/img/anti-intrusion-ajax.jpg" data-solution-link="activites/anti-intrusion.html">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-v2-container">
+                <div class="card-v2-img-wrap">
+                    <img src="assets/img/video-hero.jpg" alt="Vidéoprotection" loading="lazy">
+                </div>
+                <div class="card-v2-body">
+                    <div class="card-v2-title-row">
+                        <div class="title-icon-box"><i class="fa-solid fa-video"></i></div>
+                        <h3 class="card-title-text">Vidéoprotection</h3>
+                    </div>
+                    <p class="card-v2-desc">La solution de vidéoprotection assure une surveillance continue des espaces afin de prévenir, détecter et analyser les situations à risque.</p>
+                    <a href="activites/videosurveillance.html" class="card-v2-link" data-solution-title="Vidéoprotection" data-solution-desc="La solution de vidéoprotection assure une surveillance continue des espaces afin de prévenir, détecter et analyser les situations à risque. Elle repose sur des caméras IP ou analogiques adaptées aux différents environnements intérieurs et extérieurs. Les images sont centralisées sur un enregistreur permettant leur consultation en direct et la recherche des événements enregistrés. Des fonctions intelligentes peuvent faciliter la détection des mouvements, franchissements de zones et comportements inhabituels. La vision nocturne permet d’assurer une surveillance efficace même dans des conditions de faible luminosité. Le système peut être consulté à distance depuis un ordinateur, une tablette ou un smartphone. Il peut également être intégré au contrôle d’accès et au système d’alarme pour renforcer la sécurité globale. Le stockage des enregistrements peut être dimensionné selon le nombre de caméras et la durée de conservation souhaitée. La solution convient aux entreprises, hôtels, commerces, villas, parkings, sites industriels et établissements publics. Elle offre ainsi une surveillance fiable, une meilleure prévention des risques et une gestion centralisée de la sécurité." data-solution-img="assets/img/video-hero.jpg" data-solution-link="activites/videosurveillance.html">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+</div>
 
-            <div class="text-center" style="margin-top: 50px;">
-                <a href="activites.html" class="btn btn-outline btn-lg">
-                    <span data-i18n="btnSeeAllActivities">Explorer nos 11 activités intégrales <i class="fa-solid fa-arrow-right"></i></span>
+            <div class="circular-activities-container">
+                <div class="text-center" style="margin-bottom: 25px;">
+                    <div class="section-tag" style="justify-content:center;"><i class="fa-solid fa-layer-group"></i> <span>AUTRES ACTIVITÉS</span></div>
+                    <h2 class="section-title" style="font-size: 2rem;">Autres Domaines & Équipements Spécialisés</h2>
+                    <p class="section-subtitle" style="margin-bottom: 0;">Cliquez sur une activité pour accéder à sa vue détaillée.</p>
+                </div>
+
+                <div class="circular-activities-grid">
+                    
+            <div class="circular-activity-item" data-solution-title="Contrôle d'Accès & Pointage" data-solution-desc="Le système de contrôle d’accès permet de sécuriser les entrées et sorties d’un bâtiment en autorisant uniquement les personnes habilitées. Il permet de gérer et de contrôler les accès aux différentes zones selon les profils et les niveaux d’autorisation. La solution peut intégrer des lecteurs de badges, cartes, codes PIN, biométrie ou reconnaissance faciale. Les portes sont équipées de dispositifs de verrouillage adaptés, tels que ventouses, gâches électriques ou serrures motorisées. Une centrale de contrôle assure la gestion et la communication avec les différents équipements du système. Les droits d’accès peuvent être configurés selon les utilisateurs, les zones et les horaires autorisés. Le système permet également d’enregistrer les événements afin d’assurer une traçabilité des accès. Il peut être intégré à la vidéosurveillance, à l’alarme anti-intrusion et aux systèmes de gestion du bâtiment. La solution convient aux entreprises, hôtels, bureaux, résidences, sites industriels et établissements publics. Elle garantit ainsi une gestion centralisée, une meilleure sécurité et un contrôle précis des accès." data-solution-img="assets/img/access-biometric.jpg" data-solution-link="activites/controle-acces.html">
+                <a href="activites/controle-acces.html" class="circle-icon-btn" aria-label="Contrôle d'Accès & Pointage">
+                    <i class="fa-solid fa-fingerprint"></i>
                 </a>
+                <span class="circular-activity-label">Contrôle d'Accès & Pointage</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Téléphonie IP & Standard PABX" data-solution-desc="La solution de téléphonie IP permet de gérer les communications professionnelles via le réseau informatique. Elle utilise la technologie VoIP pour transmettre les appels sous forme de données numériques. Le système peut intégrer un IPBX, des téléphones IP, des postes Wi-Fi et des applications de communication. Il permet de créer plusieurs extensions et de gérer les appels internes et externes de manière centralisée. Des fonctionnalités telles que le transfert d’appels, la conférence, le répondeur et la messagerie vocale peuvent être intégrées. La solution facilite également la gestion des utilisateurs, des groupes et des droits d’appel. Elle peut être connectée au réseau local et aux services téléphoniques existants selon les besoins. La téléphonie IP permet de réduire les coûts de communication tout en offrant une infrastructure évolutive. Elle convient aux entreprises, hôtels, bureaux, centres d’appels, commerces et établissements professionnels. Cette solution garantit ainsi une communication moderne, flexible et adaptée aux besoins des organisations." data-solution-img="assets/img/telephony-ipbx.jpg" data-solution-link="activites/telephonie-ip.html">
+                <a href="activites/telephonie-ip.html" class="circle-icon-btn" aria-label="Téléphonie IP & Standard PABX">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </a>
+                <span class="circular-activity-label">Téléphonie IP & Standard PABX</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Domotique & Smart Home" data-solution-desc="La solution Domotique & Smart Building permet de centraliser, automatiser et superviser intelligemment les équipements d’un bâtiment. Elle assure la gestion de l’éclairage, de la climatisation, des volets, de l’énergie et des différents équipements techniques. Les capteurs permettent d’adapter automatiquement le fonctionnement du bâtiment selon la présence, la température et les conditions ambiantes. La plateforme de supervision offre une vision globale des installations et facilite leur contrôle depuis une interface centralisée. Des scénarios intelligents peuvent être programmés pour optimiser le confort, la sécurité et la consommation énergétique. La solution peut également communiquer avec les systèmes de vidéosurveillance, contrôle d’accès, alarme et détection incendie. Elle permet de détecter certaines anomalies et d’automatiser les actions nécessaires selon les événements. La gestion intelligente des équipements contribue à réduire les consommations et les coûts d’exploitation. Elle s’adapte aux hôtels, bureaux, villas, résidences, bâtiments administratifs et complexes professionnels. Cette solution transforme ainsi le bâtiment en un environnement connecté, intelligent, sécurisé et économe en énergie." data-solution-img="assets/img/domotique-smart.jpg" data-solution-link="activites/domotique.html">
+                <a href="activites/domotique.html" class="circle-icon-btn" aria-label="Domotique & Smart Home">
+                    <i class="fa-solid fa-house-signal"></i>
+                </a>
+                <span class="circular-activity-label">Domotique & Smart Home</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Réseau Informatique & Datacenter" data-solution-desc="La solution de réseau informatique assure une infrastructure fiable, performante et sécurisée pour la communication des données. Elle permet de connecter les ordinateurs, serveurs, imprimantes, téléphones IP, points d’accès Wi-Fi et équipements réseau. L’infrastructure peut être réalisée en cuivre, en fibre optique ou en combinant les deux technologies. Les switches assurent la distribution des connexions et peuvent intégrer la technologie PoE pour alimenter certains équipements. Le réseau peut être organisé en VLAN afin de séparer les différents services et renforcer la sécurité. Une architecture correctement dimensionnée garantit une connexion stable, rapide et évolutive. Le câblage structuré facilite l’installation, la maintenance et l’évolution future de l’infrastructure. Des solutions de routage, pare-feu et sécurité réseau permettent de protéger les communications et les données. Cette solution s’adapte aux entreprises, hôtels, villas, commerces, établissements publics et sites industriels. Elle constitue ainsi une base essentielle pour assurer la connectivité, la performance et la continuité des services numériques." data-solution-img="assets/img/reseau-datacenter.jpg" data-solution-link="activites/reseau-informatique.html">
+                <a href="activites/reseau-informatique.html" class="circle-icon-btn" aria-label="Réseau Informatique & Datacenter">
+                    <i class="fa-solid fa-network-wired"></i>
+                </a>
+                <span class="circular-activity-label">Réseau Informatique & Datacenter</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Audiovisuel & Sonorisation" data-solution-desc="La solution de sonorisation permet de diffuser une musique et des messages audio avec une qualité sonore adaptée à chaque espace. Elle peut intégrer des amplificateurs, haut-parleurs, microphones, mélangeurs et sources audio professionnelles. Le système permet de gérer plusieurs zones sonores selon les besoins du bâtiment. Il peut être utilisé pour la diffusion de musique d’ambiance, d’annonces, de messages et d’informations. La sonorisation peut être centralisée et contrôlée depuis une interface de gestion simple et intuitive. Elle s’adapte aux différents environnements intérieurs et extérieurs grâce à des équipements adaptés. Cette solution convient aux hôtels, restaurants, commerces, bureaux, résidences, salles de réunion et espaces publics." data-solution-img="assets/img/av-conference.jpg" data-solution-link="activites/audiovisuel.html">
+                <a href="activites/audiovisuel.html" class="circle-icon-btn" aria-label="Audiovisuel & Sonorisation">
+                    <i class="fa-solid fa-tv"></i>
+                </a>
+                <span class="circular-activity-label">Audiovisuel & Sonorisation</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Réseau Optique & Fibre" data-solution-desc="La solution de réseau informatique assure une infrastructure fiable, performante et sécurisée pour la communication des données. Elle permet de connecter les ordinateurs, serveurs, imprimantes, téléphones IP, points d’accès Wi-Fi et équipements réseau. L’infrastructure peut être réalisée en cuivre, en fibre optique ou en combinant les deux technologies. Les switches assurent la distribution des connexions et peuvent intégrer la technologie PoE pour alimenter certains équipements. Le réseau peut être organisé en VLAN afin de séparer les différents services et renforcer la sécurité. Une architecture correctement dimensionnée garantit une connexion stable, rapide et évolutive. Le câblage structuré facilite l’installation, la maintenance et l’évolution future de l’infrastructure. Des solutions de routage, pare-feu et sécurité réseau permettent de protéger les communications et les données. Cette solution s’adapte aux entreprises, hôtels, villas, commerces, établissements publics et sites industriels. Elle constitue ainsi une base essentielle pour assurer la connectivité, la performance et la continuité des services numériques." data-solution-img="assets/img/reseau-optique-soudure.jpg" data-solution-link="activites/reseau-optique.html">
+                <a href="activites/reseau-optique.html" class="circle-icon-btn" aria-label="Réseau Optique & Fibre">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                </a>
+                <span class="circular-activity-label">Réseau Optique & Fibre</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Motorisation Portail & Garage" data-solution-desc="Infrastructure technique certifiée et sécurisée pour la protection des personnes et des biens." data-solution-img="assets/img/motorisation-portail.jpg" data-solution-link="activites/motorisation.html">
+                <a href="activites/motorisation.html" class="circle-icon-btn" aria-label="Motorisation Portail & Garage">
+                    <i class="fa-solid fa-warehouse"></i>
+                </a>
+                <span class="circular-activity-label">Motorisation Portail & Garage</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Télédistribution Collective" data-solution-desc="La solution de télédistribution permet de distribuer les signaux TV et radio vers plusieurs points d’un bâtiment. Elle assure une réception stable et une diffusion de qualité des chaînes terrestres, satellites ou câblées. L’installation repose sur des antennes, amplificateurs, répartiteurs, dérivateurs et prises TV adaptées. Le réseau peut être dimensionné pour desservir plusieurs pièces, appartements, chambres ou espaces communs. La distribution centralisée facilite la maintenance et garantit une qualité de signal homogène. Elle est particulièrement adaptée aux hôtels, résidences, immeubles, villas et établissements professionnels. Cette solution offre ainsi une infrastructure TV fiable, organisée et évolutive." data-solution-img="assets/img/teledist-hero.jpg" data-solution-link="activites/teledistribution.html">
+                <a href="activites/teledistribution.html" class="circle-icon-btn" aria-label="Télédistribution Collective">
+                    <i class="fa-solid fa-satellite-dish"></i>
+                </a>
+                <span class="circular-activity-label">Télédistribution Collective</span>
+            </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- BRIEF COMPANY OVERVIEW TEASER (CONCISE & NON-REDUNDANT) -->
-    <section class="about" style="background:#131517; border-top:1px solid var(--charcoal-border); border-bottom:1px solid var(--charcoal-border); padding: 80px 0;">
+
+
+    <!-- SECTION: POURQUOI NOUS CHOISIR & AVIS CLIENTS -->
+    <section style="padding: 80px 0; background: var(--bg-dark); border-bottom: 1px solid var(--charcoal-border);">
         <div class="container">
-            <div class="about-grid" style="align-items: center;">
-                <div class="about-image-column">
-                    <div class="about-image-wrapper" style="position:relative; border-radius:var(--radius-lg); overflow:hidden; border:1px solid rgba(99,196,196,0.25); box-shadow: 0 15px 35px rgba(0,0,0,0.5);">
-                        <img src="assets/img/reseau-datacenter.jpg" alt="Excellence Système Infrastructure Réseau & Datacenter" style="width:100%; height:360px; object-fit:cover; display:block;">
-                        
-                        <div class="experience-card-chic">
-                            <span class="exp-num">+10</span>
-                            <span class="exp-txt">Ans d'Expertise au Maroc</span>
-                        </div>
+            <div class="text-center" style="margin-bottom: 50px;">
+                <div class="section-tag" style="justify-content: center;">
+                    <i class="fa-solid fa-star" style="color:var(--primary-turquoise);"></i> <span>NOS ENGAGEMENTS</span>
+                </div>
+                <h2 class="section-title">POURQUOI NOUS CHOISIR ?</h2>
+                <p class="section-subtitle">Découvrez ce qui fait la force et la réputation d'Excellence Système au Maroc.</p>
+            </div>
+
+            <div class="solutions-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 60px;">
+                <!-- Card 1 -->
+                <div class="solution-card" style="padding: 28px; text-center;">
+                    <div class="solution-icon" style="margin: 0 auto 16px auto; width: 56px; height: 56px; font-size: 1.4rem;">
+                        <i class="fa-solid fa-headset"></i>
                     </div>
+                    <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 10px;">SUPPORT INÉGALÉ</h3>
+                    <p class="solution-desc" style="font-size: 0.9rem;">Une assistance technique réactive et un service de maintenance disponible 24h/24 et 7j/7.</p>
                 </div>
 
-                <div class="about-content">
-                    <div class="section-tag">
-                        <i class="fa-solid fa-building-user"></i> <span>À PROPOS</span>
+                <!-- Card 2 -->
+                <div class="solution-card" style="padding: 28px; text-center;">
+                    <div class="solution-icon" style="margin: 0 auto 16px auto; width: 56px; height: 56px; font-size: 1.4rem;">
+                        <i class="fa-solid fa-tag"></i>
                     </div>
-                    <h2 class="section-title">EXCELLENCE SYSTÈME</h2>
-                    <h4 style="color:var(--primary-turquoise); font-size:1.15rem; font-weight:700; margin-bottom:16px;">
-                        Votre partenaire de confiance en courant faible & sécurité électronique
-                    </h4>
-                    
-                    <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:24px; line-height:1.75;">
-                        Acteur marocain de référence, <strong>Excellence Système</strong> accompagne les entreprises grands comptes, les établissements hôteliers, les résidences de standing et les institutions publiques avec des infrastructures clé en main de sécurité électronique, télécommunications et automatisation.
+                    <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 10px;">PRIX COMPÉTITIFS</h3>
+                    <p class="solution-desc" style="font-size: 0.9rem;">Le meilleur rapport qualité/prix garanti pour vos équipements et installations.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="solution-card" style="padding: 28px; text-center;">
+                    <div class="solution-icon" style="margin: 0 auto 16px auto; width: 56px; height: 56px; font-size: 1.4rem;">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 10px;">CONFIANCE ÉTABLIE</h3>
+                    <p class="solution-desc" style="font-size: 0.9rem;">Plus de 10 ans d'expérience au Maroc et des dizaines de projets d'envergure concrétisés.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="solution-card" style="padding: 28px; text-center;">
+                    <div class="solution-icon" style="margin: 0 auto 16px auto; width: 56px; height: 56px; font-size: 1.4rem;">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 10px;">LIVRAISON ET INSTALLATION</h3>
+                    <p class="solution-desc" style="font-size: 0.9rem;">Déploiement rapide, clé en main et rigoureusement conforme aux normes internationales.</p>
+                </div>
+            </div>
+
+            <!-- Avis & Commentaires Section (Seamlessly Integrated with POURQUOI NOUS CHOISIR Design) -->
+            <div id="reviews-section" style="margin-top: 60px;">
+                
+                <!-- Section Header for Avis Clients (Matching POURQUOI NOUS CHOISIR Header Style) -->
+                <div class="text-center" style="margin-bottom: 40px;">
+                    <div class="section-tag" style="justify-content: center;">
+                        <i class="fa-solid fa-comments" style="color:var(--primary-turquoise);"></i> <span>RETROURS D'EXPÉRIENCE</span>
+                    </div>
+                    <h2 class="section-title">AVIS CLIENTS</h2>
+                    <p class="section-subtitle">
+                        Note moyenne : <strong style="color: var(--white); font-weight: 700;">4.9 / 5</strong>
+                        <span style="color: var(--primary-turquoise); margin: 0 8px; font-size: 0.95rem;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </span>
+                        sur plus de 100 projets livrés au Maroc
                     </p>
+                </div>
 
-                    <div style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:28px;">
-                        <div style="background:rgba(99,196,196,0.08); border:1px solid rgba(99,196,196,0.2); padding:8px 16px; border-radius:var(--radius-full); color:var(--white); font-size:0.88rem; font-weight:600; display:flex; align-items:center; gap:8px;">
-                            <i class="fa-solid fa-circle-check" style="color:var(--primary-turquoise);"></i> Études & Ingénierie
+                <!-- Grid of Cards using EXACT solution-card design from "Pourquoi nous choisir" -->
+                <div class="solutions-grid" id="reviewsCardContainer" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 30px;">
+                    
+                    <!-- Review Card 1 -->
+                    <div class="solution-card" style="padding: 28px; text-align: center;">
+                        <div class="solution-icon" style="margin: 0 auto 16px auto; width: 56px; height: 56px; font-size: 1.4rem;">
+                            <i class="fa-solid fa-quote-left"></i>
                         </div>
-                        <div style="background:rgba(99,196,196,0.08); border:1px solid rgba(99,196,196,0.2); padding:8px 16px; border-radius:var(--radius-full); color:var(--white); font-size:0.88rem; font-weight:600; display:flex; align-items:center; gap:8px;">
-                            <i class="fa-solid fa-circle-check" style="color:var(--primary-turquoise);"></i> Équipements Certifiés
+                        <div style="color: var(--primary-turquoise); font-size: 0.9rem; margin-bottom: 12px; display: flex; justify-content: center; gap: 4px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <div style="background:rgba(99,196,196,0.08); border:1px solid rgba(99,196,196,0.2); padding:8px 16px; border-radius:var(--radius-full); color:var(--white); font-size:0.88rem; font-weight:600; display:flex; align-items:center; gap:8px;">
-                            <i class="fa-solid fa-circle-check" style="color:var(--primary-turquoise);"></i> Maintenance & Support 24/7
+                        <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 4px;">M. REDA EL AMRANI</h3>
+                        <div style="color: var(--primary-turquoise); font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px;">Hôtel Riad (Marrakech)</div>
+                        <p class="solution-desc" style="font-size: 0.9rem; line-height: 1.6;">
+                            "Un accompagnement d'exception pour la refonte de notre sécurité incendie SSI et l'installation de la vidéosurveillance IP. Réactivité et professionnalisme au top !"
+                        </p>
+                        <div style="font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border-light); padding-top: 12px; margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--primary-turquoise);"></i> <span>Client Vérifié — Marrakech</span>
                         </div>
                     </div>
 
-                    <div>
-                        <a href="about.html" class="btn btn-primary">
-                            <span>Découvrir notre histoire & nos valeurs <i class="fa-solid fa-arrow-right"></i></span>
-                        </a>
+                    <!-- Review Card 2 -->
+                    <div class="solution-card" style="padding: 28px; text-align: center;">
+                        <div class="solution-icon" style="margin: 0 auto 16px auto; width: 56px; height: 56px; font-size: 1.4rem;">
+                            <i class="fa-solid fa-quote-left"></i>
+                        </div>
+                        <div style="color: var(--primary-turquoise); font-size: 0.9rem; margin-bottom: 12px; display: flex; justify-content: center; gap: 4px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 4px;">MME. SALMA BENJELLOUN</h3>
+                        <div style="color: var(--primary-turquoise); font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px;">Clinique Privée (Casablanca)</div>
+                        <p class="solution-desc" style="font-size: 0.9rem; line-height: 1.6;">
+                            "Excellence Système a déployé nos baies informatiques Datacenter et nos contrôles d'accès biométriques. Équipe très qualifiée et support 24/7 super efficace."
+                        </p>
+                        <div style="font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border-light); padding-top: 12px; margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--primary-turquoise);"></i> <span>Client Vérifié — Casablanca</span>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 3 -->
+                    <div class="solution-card" style="padding: 28px; text-align: center;">
+                        <div class="solution-icon" style="margin: 0 auto 16px auto; width: 56px; height: 56px; font-size: 1.4rem;">
+                            <i class="fa-solid fa-quote-left"></i>
+                        </div>
+                        <div style="color: var(--primary-turquoise); font-size: 0.9rem; margin-bottom: 12px; display: flex; justify-content: center; gap: 4px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 4px;">M. KARIM TAZI</h3>
+                        <div style="color: var(--primary-turquoise); font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px;">Domaine & Villa (Agadir)</div>
+                        <p class="solution-desc" style="font-size: 0.9rem; line-height: 1.6;">
+                            "Installation domotique iNELS remarquable. Contrôle d'éclairage et alarme anti-intrusion entièrement centralisés sur smartphone. Finition haut de gamme."
+                        </p>
+                        <div style="font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border-light); padding-top: 12px; margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--primary-turquoise);"></i> <span>Client Vérifié — Agadir</span>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 4 -->
+                    <div class="solution-card" style="padding: 28px; text-align: center;">
+                        <div class="solution-icon" style="margin: 0 auto 16px auto; width: 56px; height: 56px; font-size: 1.4rem;">
+                            <i class="fa-solid fa-quote-left"></i>
+                        </div>
+                        <div style="color: var(--primary-turquoise); font-size: 0.9rem; margin-bottom: 12px; display: flex; justify-content: center; gap: 4px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 4px;">M. YOUSSEF BERRADA</h3>
+                        <div style="color: var(--primary-turquoise); font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px;">Zone Industrielle (Tanger)</div>
+                        <p class="solution-desc" style="font-size: 0.9rem; line-height: 1.6;">
+                            "Mise en place d'un réseau fibre optique structuré et de caméras thermiques PTZ. Travail rapide, matériel 100% certifié et devis compétitif."
+                        </p>
+                        <div style="font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border-light); padding-top: 12px; margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--primary-turquoise);"></i> <span>Client Vérifié — Tanger</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Clean Single Action Button (Avoids Clutter) -->
+                <div class="text-center" style="margin-top: 28px;">
+                    <button type="button" class="btn btn-outline" id="toggleReviewFormBtn" style="padding: 12px 28px; gap: 8px; font-size: 0.92rem;">
+                        <i class="fa-solid fa-pen-to-square"></i> <span>Rédiger un avis client</span> <i class="fa-solid fa-chevron-down" id="reviewBtnChevron" style="font-size:0.75rem; transition: transform 0.3s ease;"></i>
+                    </button>
+                </div>
+
+                <!-- Collapsible Form Container (Hidden by default, unrolls smoothly when button is clicked) -->
+                <div id="collapsibleReviewForm" class="collapsible-review-wrapper" style="max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; opacity: 0; margin-top: 16px;">
+                    <div class="comment-bar-card" style="margin-top: 10px;">
+                        <form id="inlineCommentForm">
+                            <div class="comment-bar-header">
+                                <h3 class="comment-bar-title">
+                                    <i class="fa-solid fa-pen-to-square" style="color:var(--primary-turquoise);"></i> 
+                                    Publier votre avis client
+                                </h3>
+                                <div class="star-rating-picker-inline" id="inlineStarPicker">
+                                    <span class="label">Votre Note :</span>
+                                    <div class="stars">
+                                        <i class="fa-solid fa-star active" data-val="1"></i>
+                                        <i class="fa-solid fa-star active" data-val="2"></i>
+                                        <i class="fa-solid fa-star active" data-val="3"></i>
+                                        <i class="fa-solid fa-star active" data-val="4"></i>
+                                        <i class="fa-solid fa-star active" data-val="5"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="comment-form-grid">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <input type="text" class="form-control" id="inlineAuthorName" placeholder="Votre Nom & Prénom *" required>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <input type="text" class="form-control" id="inlineAuthorRole" placeholder="Votre Fonction / Établissement & Ville *" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group comment-form-textarea" style="margin-top:14px; margin-bottom:16px;">
+                                <textarea class="form-control" id="inlineCommentText" rows="3" placeholder="Rédigez votre avis sur nos services, installations et accompagnement..." required></textarea>
+                            </div>
+
+                            <div class="comment-form-actions">
+                                <span style="color:var(--text-muted); font-size:0.85rem;">
+                                    <i class="fa-solid fa-shield-halved" style="color:var(--primary-turquoise); margin-right:4px;"></i> 
+                                    Votre avis sera affiché au format carte du site.
+                                </span>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa-solid fa-paper-plane"></i> Publier mon avis
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -466,7 +635,7 @@
                     <span>Vidéosurveillance (Hikvision / Dahua)</span>
                 </div>
                 <div class="activity-logo-item">
-                    <i class="fa-solid fa-shield-cat"></i>
+                    <i class="fa-solid fa-shield-halved"></i>
                     <span>Anti-intrusion (Ajax Systems / Pyronix)</span>
                 </div>
                 <div class="activity-logo-item">
@@ -486,17 +655,20 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="site-footer">
+    
+    <!-- Section NOS MARQUES & PARTENAIRES -->
+    
+
+<footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <img src="assets/logo-3d.png" alt="Excellence Système Logo">
                     <p>Votre partenaire de confiance en courant faible et sécurité électronique au Maroc. Plus de 10 ans d'expertise à votre service.</p>
-                    
                     <div class="social-links" style="margin-top:16px;">
                         <a href="https://web.facebook.com/ste.excellence.systeme.2025" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/ste__excellence_syst?stkn=MXZ0a3pjbzh1NmE2MQ==" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/excellence-systeme-44733a397/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/ste__excellence_systeme?stkn=MXZ0a3pjbzh1NmE2MQ==" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/mohamed-azizi-7a390a77?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://wa.me/212668764271" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -508,19 +680,17 @@
                         <a href="about.html">À propos</a>
                         <a href="activites.html">Solutions IT</a>
                         <a href="realisations.html">Nos réalisations</a>
-                                                <a href="contact.html">Contact</a>
+                        <a href="contact.html">Contact</a>
                     </div>
                 </div>
 
                 <div>
                     <h4 class="footer-heading">Nos Activités</h4>
                     <div class="footer-links">
-                        <a href="activites/detection-incendie.html">Détection incendie</a>
-                        <a href="activites/videosurveillance.html">Vidéosurveillance IP</a>
-                        <a href="activites/controle-acces.html">Contrôle d'accès</a>
-                        <a href="activites/reseau-informatique.html">Réseaux informatiques</a>
-                        <a href="activites/reseau-optique.html">Réseaux optiques</a>
-                        <a href="activites/domotique.html">Domotique & Smart Home</a>
+                        <a href="activites.html">Sécurité Électronique</a>
+                        <a href="activites/motorisation.html">Automatisme</a>
+                        <a href="activites/domotique.html">Gestion Technique (GTB/GTC)</a>
+                        <a href="activites/reseau-informatique.html">Réseaux Informatiques & Fibre</a>
                     </div>
                 </div>
 
@@ -529,7 +699,9 @@
                     <div class="footer-links" style="gap:14px;">
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.4;">
                             <i class="fa-solid fa-location-dot" style="color:#63C4C4; margin-right:8px;"></i>
-                            <strong>Adresse :</strong><br>Marrakech ...<br>Agadir ...
+                            <strong>Adresse :</strong><br>
+                            Marrakech : 1057, Lot Al Housna 2, ASKJOUR<br>
+                            Agadir : IMM 42, APP 166 ADRAR
                         </p>
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.5;">
                             <i class="fa-solid fa-phone" style="color:#63C4C4; margin-right:8px;"></i> <strong>Téléphone :</strong><br>
@@ -540,7 +712,7 @@
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.5;">
                             <i class="fa-solid fa-envelope" style="color:#63C4C4; margin-right:8px;"></i> <strong>Email :</strong><br>
                             <a href="mailto:Excellencesysteme@gmail.com" style="color:var(--text-light);">Excellencesysteme@gmail.com</a><br>
-                            <a href="mailto:commercial.exsys@gamil.com" style="color:var(--text-light);">commercial.exsys@gamil.com</a>
+                            <a href="mailto:commercial.exsys@gmail.com" style="color:var(--text-light);">commercial.exsys@gmail.com</a>
                         </p>
                         <a href="https://maps.app.goo.gl/qGhGEnQhsorKXpJs6" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="margin-top:6px; font-size:0.8rem; padding:8px 14px;">
                             <i class="fa-solid fa-map-location-dot"></i> Localiser sur Google Maps

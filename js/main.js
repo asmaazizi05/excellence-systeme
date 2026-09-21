@@ -18,7 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initLanguageSwitcher();
     initBrandAnimations();
     initAboutSlider();
+    initAboutTabbedVisual();
     initActivityBrandsTilt();
+    initReviewSystem();
 });
 
 /* 0. Highlight Active Navigation Link based on current page URL */
@@ -576,7 +578,7 @@ function initLanguageSwitcher() {
             setLanguage(lang);
             try {
                 localStorage.setItem('preferredLang', lang);
-            } catch (e) {}
+            } catch (e) { }
         });
     });
 
@@ -585,7 +587,7 @@ function initLanguageSwitcher() {
         if (savedLang) {
             setLanguage(savedLang);
         }
-    } catch (e) {}
+    } catch (e) { }
 }
 
 /* 12. Brand Cards Staggered Reveal Animation & Filtering */
@@ -638,7 +640,74 @@ function initBrandAnimations() {
     }
 }
 
-/* 13. Interactive About Image Slider */
+/* 13. Interactive About Image Gallery Showcase with Automatic Cycling */
+function initAboutTabbedVisual() {
+    const items = document.querySelectorAll('.about-thumb-item, .about-tab-btn');
+    const mainImg = document.getElementById('aboutMainFeaturedImg');
+    const mainCaption = document.getElementById('aboutMainCaptionText');
+
+    if (!items.length || !mainImg) return;
+
+    let currentIndex = 0;
+    let timer = null;
+
+    function activateIndex(index) {
+        currentIndex = (index + items.length) % items.length;
+        const item = items[currentIndex];
+
+        items.forEach(t => t.classList.remove('active'));
+        item.classList.add('active');
+
+        const newSrc = item.getAttribute('data-img');
+        const newCaption = item.getAttribute('data-caption');
+
+        mainImg.style.opacity = '0';
+        setTimeout(() => {
+            if (newSrc) mainImg.src = newSrc;
+            if (mainCaption && newCaption) {
+                mainCaption.innerHTML = `<i class="fa-solid fa-compass-drafting" style="color: var(--primary-turquoise);"></i> ${newCaption}`;
+            }
+            mainImg.style.opacity = '1';
+        }, 180);
+    }
+
+    function startAutoPlay() {
+        stopAutoPlay();
+        timer = setInterval(() => {
+            activateIndex(currentIndex + 1);
+        }, 3500);
+    }
+
+    function stopAutoPlay() {
+        if (timer) clearInterval(timer);
+    }
+
+    items.forEach((item, idx) => {
+        item.addEventListener('click', () => {
+            activateIndex(idx);
+            startAutoPlay();
+        });
+
+        item.addEventListener('mouseenter', () => {
+            activateIndex(idx);
+            stopAutoPlay();
+        });
+
+        item.addEventListener('mouseleave', () => {
+            startAutoPlay();
+        });
+    });
+
+    const showcaseWrapper = document.querySelector('.about-image-column');
+    if (showcaseWrapper) {
+        showcaseWrapper.addEventListener('mouseenter', stopAutoPlay);
+        showcaseWrapper.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    startAutoPlay();
+}
+
+/* 13b. Interactive About Image Slider (Fallback) */
 function initAboutSlider() {
     const sliders = document.querySelectorAll('.about-slider-wrapper');
     if (!sliders.length) return;
@@ -701,18 +770,77 @@ function initAboutSlider() {
     });
 }
 
-/* 14. Automatic Right-Side Hero Image Slideshow */
+/* 14. Automatic Hero Background & Visual Image Slideshow */
 function initHeroImageSlideshow() {
-    const images = document.querySelectorAll('.hero-slideshow-img');
-    if (images.length < 2) return;
+    const bgSlides = document.querySelectorAll('.hero-bg-slide');
+    const fgImages = document.querySelectorAll('.hero-slideshow-img');
+    const dots = document.querySelectorAll('.hero-slideshow-dots .dot');
+    const prevBtn = document.querySelector('.hero-slideshow-nav.prev');
+    const nextBtn = document.querySelector('.hero-slideshow-nav.next');
+
+    const total = fgImages.length || bgSlides.length;
+    if (total < 2) return;
 
     let currentIndex = 0;
+    let timer = null;
 
-    setInterval(() => {
-        images[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % images.length;
-        images[currentIndex].classList.add('active');
-    }, 3500);
+    function goToSlide(index) {
+        if (bgSlides.length) {
+            bgSlides[currentIndex]?.classList.remove('active');
+            bgSlides[index]?.classList.add('active');
+        }
+        if (fgImages.length) {
+            fgImages[currentIndex]?.classList.remove('active');
+            fgImages[index]?.classList.add('active');
+        }
+        if (dots.length) {
+            dots[currentIndex]?.classList.remove('active');
+            dots[index]?.classList.add('active');
+        }
+        currentIndex = index;
+    }
+
+    function nextSlide() {
+        const nextIndex = (currentIndex + 1) % total;
+        goToSlide(nextIndex);
+    }
+
+    function prevSlide() {
+        const prevIndex = (currentIndex - 1 + total) % total;
+        goToSlide(prevIndex);
+    }
+
+    function startTimer() {
+        stopTimer();
+        timer = setInterval(nextSlide, 3500);
+    }
+
+    function stopTimer() {
+        if (timer) clearInterval(timer);
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            startTimer();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            startTimer();
+        });
+    }
+
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            goToSlide(idx);
+            startTimer();
+        });
+    });
+
+    startTimer();
 }
 
 /* 15. Activity Brands 3D Tilt Effect */
@@ -771,8 +899,362 @@ function initFaqAccordion() {
     });
 }
 
+/* 17. Interactive Reviews & Comment System */
+function initReviewSystem() {
+    let currentRating = 5;
+
+    // Toggle Collapsible Comment Form Button
+    const toggleBtn = document.getElementById('toggleReviewFormBtn');
+    const collapsibleWrapper = document.getElementById('collapsibleReviewForm');
+    const chevron = document.getElementById('reviewBtnChevron');
+
+    if (toggleBtn && collapsibleWrapper) {
+        toggleBtn.addEventListener('click', function () {
+            const isOpen = collapsibleWrapper.classList.contains('open');
+            if (isOpen) {
+                collapsibleWrapper.classList.remove('open');
+                if (chevron) chevron.classList.remove('rotated');
+            } else {
+                collapsibleWrapper.classList.add('open');
+                if (chevron) chevron.classList.add('rotated');
+                const authorInput = document.getElementById('inlineAuthorName');
+                if (authorInput) {
+                    setTimeout(() => authorInput.focus(), 300);
+                }
+            }
+        });
+    }
+
+    // Star Pickers (Inline & Modal)
+    const pickers = document.querySelectorAll('#inlineStarPicker .stars i, #starRatingPicker i');
+    pickers.forEach(star => {
+        star.addEventListener('click', function () {
+            const val = parseInt(this.getAttribute('data-val') || '5', 10);
+            currentRating = val;
+            const parent = this.parentElement;
+            const stars = parent.querySelectorAll('i');
+            stars.forEach(s => {
+                const sVal = parseInt(s.getAttribute('data-val') || '0', 10);
+                if (sVal <= val) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        });
+    });
+
+    // Helper to generate solution-card review markup
+    function createSolutionStyleCard(name, role, comment, rating) {
+        let starsHtml = '';
+        for (let i = 0; i < 5; i++) {
+            if (i < rating) {
+                starsHtml += '<i class="fa-solid fa-star"></i>';
+            } else {
+                starsHtml += '<i class="fa-regular fa-star" style="color:var(--text-muted);"></i>';
+            }
+        }
+
+        const card = document.createElement('div');
+        card.className = 'solution-card review-card-new';
+        card.style.cssText = 'padding: 28px; text-align: center;';
+        card.innerHTML = `
+            <div class="solution-icon" style="margin: 0 auto 16px auto; width: 56px; height: 56px; font-size: 1.4rem;">
+                <i class="fa-solid fa-quote-left"></i>
+            </div>
+            <div style="color: var(--primary-turquoise); font-size: 0.9rem; margin-bottom: 12px; display: flex; justify-content: center; gap: 4px;">
+                ${starsHtml}
+            </div>
+            <h3 class="solution-title" style="font-size: 1.2rem; margin-bottom: 4px;">${escapeHtml(name)}</h3>
+            <div style="color: var(--primary-turquoise); font-size: 0.85rem; font-weight: 600; margin-bottom: 14px;">${escapeHtml(role)}</div>
+            <p class="solution-desc" style="font-size: 0.9rem; line-height: 1.6; font-style: italic;">
+                "${escapeHtml(comment)}"
+            </p>
+            <div style="font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px; margin-top: auto;">
+                <i class="fa-solid fa-circle-check" style="color: var(--primary-turquoise); margin-right: 4px;"></i> Client Vérifié — Nouveau
+            </div>
+        `;
+        return card;
+    }
+
+    // Inline Comment Form Submission
+    const inlineForm = document.getElementById('inlineCommentForm');
+    if (inlineForm) {
+        inlineForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('inlineAuthorName');
+            const roleInput = document.getElementById('inlineAuthorRole');
+            const commentInput = document.getElementById('inlineCommentText');
+
+            if (!nameInput || !roleInput || !commentInput) return;
+
+            const name = nameInput.value.trim();
+            const role = roleInput.value.trim();
+            const comment = commentInput.value.trim();
+
+            if (!name || !role || !comment) return;
+
+            const card = createSolutionStyleCard(name, role, comment, currentRating);
+            const container = document.getElementById('reviewsCardContainer');
+            if (container) {
+                container.prepend(card);
+            }
+
+            // Show Toast Success
+            showToast(`Merci ${name} ! Votre avis a été publié avec succès.`);
+
+            // Reset form & close collapse
+            inlineForm.reset();
+            currentRating = 5;
+            const parentStars = document.querySelectorAll('#inlineStarPicker .stars i');
+            parentStars.forEach(s => s.classList.add('active'));
+
+            if (collapsibleWrapper) {
+                collapsibleWrapper.classList.remove('open');
+                if (chevron) chevron.classList.remove('rotated');
+            }
+        });
+    }
+
+    // Modal Form Submission (if present)
+    const modalForm = document.getElementById('submitReviewForm');
+    if (modalForm) {
+        modalForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('revAuthorName');
+            const roleInput = document.getElementById('revAuthorRole');
+            const commentInput = document.getElementById('revCommentText');
+
+            if (!nameInput || !roleInput || !commentInput) return;
+
+            const name = nameInput.value.trim();
+            const role = roleInput.value.trim();
+            const comment = commentInput.value.trim();
+
+            if (!name || !role || !comment) return;
+
+            const card = createSolutionStyleCard(name, role, comment, currentRating);
+            const container = document.getElementById('reviewsCardContainer');
+            if (container) {
+                container.prepend(card);
+            }
+
+            showToast(`Merci ${name} ! Votre avis a été publié avec succès.`);
+            modalForm.reset();
+            currentRating = 5;
+            const modal = document.getElementById('writeReviewModal');
+            if (modal) modal.classList.remove('active');
+        });
+    }
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/* Solution & Activity Detail Modal Trigger (Updated with Screenshot 2 Crisp Brand Cards) */
+document.addEventListener('DOMContentLoaded', function() {
+    if (!document.getElementById('solutionDetailModalOverlay')) {
+        const modalHTML = `
+        <div class="solution-detail-modal-overlay" id="solutionDetailModalOverlay">
+            <div class="solution-detail-modal">
+                <button type="button" class="solution-modal-close" id="closeSolutionModal" aria-label="Fermer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <img src="" alt="" class="solution-modal-img" id="solutionModalImg">
+                <div class="solution-modal-body">
+                    <div class="solution-modal-badge" id="solutionModalBadge">
+                        <i class="fa-solid fa-star"></i> Excellence Système
+                    </div>
+                    <h3 class="solution-modal-title" id="solutionModalTitle">Titre Solution</h3>
+                    <p class="solution-modal-desc" id="solutionModalDesc">Description complète de la solution.</p>
+                    
+                    <div class="solution-modal-features" id="solutionModalBrandsBlock" style="margin-bottom: 22px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 14px;">
+                        <div class="text-center">
+                            <h4 class="brands-title-with-line" style="color: #ffffff; font-size: 1.15rem; font-weight: 700; margin: 0 0 15px 0;">
+                                <i class="fa-solid fa-award" style="color:var(--primary-turquoise); margin-right:6px;"></i> Marques & Constructeurs Officiels
+                            </h4>
+                        </div>
+                        <div class="solution-modal-brands-grid" id="solutionModalBrandsList">
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:24px;">
+                        <a href="#" class="btn btn-primary" id="solutionModalLink" style="padding:12px 24px;">
+                            Accéder à la page détaillée <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <button type="button" class="btn btn-outline" data-open-quote style="padding:12px 24px;">
+                            <i class="fa-solid fa-paper-plane"></i> Demander un devis
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+    }
+
+    const overlay = document.getElementById('solutionDetailModalOverlay');
+    const closeBtn = document.getElementById('closeSolutionModal');
+    const modalImg = document.getElementById('solutionModalImg');
+    const modalBadge = document.getElementById('solutionModalBadge');
+    const modalTitle = document.getElementById('solutionModalTitle');
+    const modalDesc = document.getElementById('solutionModalDesc');
+    const modalLink = document.getElementById('solutionModalLink');
+    const modalBrandsList = document.getElementById('solutionModalBrandsList');
+
+    if (closeBtn && overlay) {
+        closeBtn.addEventListener('click', function() {
+            overlay.classList.remove('active');
+        });
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) overlay.classList.remove('active');
+        });
+    }
+
+    const activity_brands_js = {
+        'incendie': [
+            ['Comelit', 'LOGO PNG/SYSTEME DE DETECTION INCENDIE PNG/comelit-large.png'],
+            ['SSI Partenaire', 'LOGO PNG/SYSTEME DE DETECTION INCENDIE PNG/1_h7cz-m7.png'],
+            ['Détecteurs Certifiés', 'LOGO PNG/SYSTEME DE DETECTION INCENDIE PNG/2-1-1024x341.png'],
+            ['Alarme ERP', 'LOGO PNG/SYSTEME DE DETECTION INCENDIE PNG/7-1-1024x341.png']
+        ],
+        'video': [
+            ['Hikvision', 'LOGO PNG/SYSTÈME DE VIDÉOSURVEILLANCE PNG/Hikvision-Logo.wine.png'],
+            ['Dahua', 'LOGO PNG/SYSTÈME DE VIDÉOSURVEILLANCE PNG/dahua_technology-logo-brandlogo.net_.png'],
+            ['Uniview', 'LOGO PNG/SYSTÈME DE VIDÉOSURVEILLANCE PNG/unv-logo-1024x522.png'],
+            ['Bosch', 'LOGO PNG/SYSTÈME DE VIDÉOSURVEILLANCE PNG/Bosch-logo.png'],
+            ['Imou', 'LOGO PNG/SYSTÈME DE VIDÉOSURVEILLANCE PNG/imou-logo_brandlogos.net_i0qhd.png'],
+            ['Ezviz', 'LOGO PNG/SYSTÈME DE VIDÉOSURVEILLANCE PNG/ezviz-logo_brandlogos.net_z9wlt.png']
+        ],
+        'reseau': [
+            ['Cisco Systems', 'LOGO PNG/RESEAU INFORMATIQUE PNG/cisco-logo-transparent.png'],
+            ['Ubiquiti', 'LOGO PNG/RESEAU INFORMATIQUE PNG/Ubiquiti-Logo-2013.png'],
+            ['Grandstream', 'LOGO PNG/RESEAU INFORMATIQUE PNG/grandstream.png'],
+            ['Aruba Networks', 'LOGO PNG/RESEAU INFORMATIQUE PNG/480x220-Aruba-Networks-Partner-Cameo-Global.png'],
+            ['Nexans', 'LOGO PNG/RESEAU INFORMATIQUE PNG/159-1595269_nexans-logo.png']
+        ],
+        'optique': [
+            ['Nexans Telecom', 'LOGO PNG/RESEAU OPTIQUE PNG/159-1595269_nexans-logo.png'],
+            ['Aginode', 'LOGO PNG/RESEAU OPTIQUE PNG/Logo-Aginode.png'],
+            ['Multimedia Connect', 'LOGO PNG/RESEAU OPTIQUE PNG/MMC_MULTIMEDIA_CONNECT_logos.png']
+        ],
+        'wifi': [
+            ['Ubiquiti Networks', 'LOGO PNG/RESEAU INFORMATIQUE PNG/Ubiquiti-Logo-2013.png'],
+            ['Aruba Networks', 'LOGO PNG/RESEAU INFORMATIQUE PNG/480x220-Aruba-Networks-Partner-Cameo-Global.png'],
+            ['Ruijie Reyee', 'LOGO PNG/RESEAU INFORMATIQUE PNG/Ruijie Reyee.png']
+        ],
+        'domotique': [
+            ['Shelly Smart', 'LOGO PNG/DOMOTIQUE & SMART HOME PNG/shelly-logo-png_seeklogo-434027.png'],
+            ['Loxone Building', 'LOGO PNG/DOMOTIQUE & SMART HOME PNG/Logo-Loxone-green-Web.png'],
+            ['EAE Technology', 'LOGO PNG/DOMOTIQUE & SMART HOME PNG/EAE_logo.png']
+        ],
+        'telephonie': [
+            ['Cisco Systems', 'LOGO PNG/TÉLÉPHONIE IP PNG/cisco-logo-transparent.png'],
+            ['Grandstream', 'LOGO PNG/TÉLÉPHONIE IP PNG/grandstream.png'],
+            ['Yealink', 'LOGO PNG/TÉLÉPHONIE IP PNG/Yealink_logo.png'],
+            ['Alcatel-Lucent', 'LOGO PNG/TÉLÉPHONIE IP PNG/ALCATEL.png'],
+            ['Fanvil', 'LOGO PNG/TÉLÉPHONIE IP PNG/Fanvil-Logo-PNG.png']
+        ],
+        'acces': [
+            ['Slinex', 'LOGO PNG/CONTRÔLE D’ACCÈS PNG/SLINEX.png'],
+            ['Suprema Biometrics', 'LOGO PNG/CONTRÔLE D’ACCÈS PNG/suprema.png'],
+            ['CDVI Access', 'LOGO PNG/CONTRÔLE D’ACCÈS PNG/CDVI-Logo-400.png'],
+            ['Dahua Technology', 'LOGO PNG/CONTRÔLE D’ACCÈS PNG/dahua_technology-logo-brandlogo.net_.png']
+        ],
+        'teledist': [
+            ['Televes Corporation', 'LOGO PNG/TELEDESTRIBUTION PNG/televes-logo-actual.png'],
+            ['Alcad Electronics', 'LOGO PNG/CONTRÔLE D’ACCÈS PNG/logo-alcad.png']
+        ],
+        'audio': [
+            ['Bose Professional', 'LOGO PNG/AUDIOVISUEL PNG/bose-logo-png_seeklogo-291380.png'],
+            ['Yamaha Audio', 'LOGO PNG/AUDIOVISUEL PNG/yamaha-logo-png_seeklogo-154895.png'],
+            ['Denon Audio', 'LOGO PNG/AUDIOVISUEL PNG/Denon-Logo.wine.png'],
+            ['Biamp Systems', 'LOGO PNG/AUDIOVISUEL PNG/logo-Biamp-2.png']
+        ],
+        'intrusion': [
+            ['Ajax Systems', 'LOGO PNG/SYSTEME ALARME ANTI - INTRUSION PNG/ajax-logo-png_seeklogo-515756.png'],
+            ['SECOLink', 'LOGO PNG/SYSTEME ALARME ANTI - INTRUSION PNG/SECOLink_logo.png'],
+            ['Somfy Protection', 'LOGO PNG/SYSTEME ALARME ANTI - INTRUSION PNG/somfy-logo-png_seeklogo-296260.png']
+        ],
+        'motorisation': [
+            ['Proteco Automation', 'LOGO PNG/MOTORISATION PORTAIL & GARAGE PNG/Proteco_Logo.png'],
+            ['Nice Automation', 'LOGO PNG/MOTORISATION PORTAIL & GARAGE PNG/logo_Nice.png'],
+            ['Somfy Automation', 'LOGO PNG/MOTORISATION PORTAIL & GARAGE PNG/somfy-logo-png_seeklogo-296260.png'],
+            ['Comunello Automation', 'LOGO PNG/MOTORISATION PORTAIL & GARAGE PNG/COMUNELLO_AUTOMATION_LOGO-300x90.png']
+        ]
+    };
+
+    function getBrandsForModal(title) {
+        const tl = String(title).toLowerCase();
+        if (tl.includes('incendie') || tl.includes('extinction')) return activity_brands_js['incendie'];
+        if (tl.includes('vidéo') || tl.includes('caméra')) return activity_brands_js['video'];
+        if (tl.includes('optique') || tl.includes('fibre')) return activity_brands_js['optique'];
+        if (tl.includes('wifi') || tl.includes('wi-fi')) return activity_brands_js['wifi'];
+        if (tl.includes('réseau') || tl.includes('datacenter')) return activity_brands_js['reseau'];
+        if (tl.includes('téléphonie') || tl.includes('pabx')) return activity_brands_js['telephonie'];
+        if (tl.includes('accès') || tl.includes('intercom')) return activity_brands_js['acces'];
+        if (tl.includes('domotique') || tl.includes('gtb') || tl.includes('gtc')) return activity_brands_js['domotique'];
+        if (tl.includes('sonorisation') || tl.includes('audio') || tl.includes('cinéma')) return activity_brands_js['audio'];
+        if (tl.includes('intrusion') || tl.includes('alarme')) return activity_brands_js['intrusion'];
+        if (tl.includes('télédist') || tl.includes('satellite')) return activity_brands_js['teledist'];
+        if (tl.includes('automatis') || tl.includes('motoris') || tl.includes('portail')) return activity_brands_js['motorisation'];
+        return activity_brands_js['reseau'];
+    }
+
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('[data-solution-title]');
+        if (btn && !e.target.closest('a')) {
+            const title = btn.getAttribute('data-solution-title');
+            const desc = btn.getAttribute('data-solution-desc') || '';
+            const img = btn.getAttribute('data-solution-img') || 'assets/img/incendie-hero.jpg';
+            const badge = btn.getAttribute('data-solution-badge') || 'Excellence Système';
+            const link = btn.getAttribute('data-solution-link') || '';
+
+            if (modalTitle) modalTitle.textContent = title;
+            if (modalDesc) modalDesc.textContent = desc;
+            if (modalImg) modalImg.src = img;
+            if (modalBadge) modalBadge.innerHTML = `<i class="fa-solid fa-star"></i> ${badge}`;
+            
+            if (modalLink) {
+                if (link && link !== '#') {
+                    modalLink.href = link;
+                    modalLink.style.display = 'inline-flex';
+                } else {
+                    modalLink.style.display = 'none';
+                }
+            }
+
+            if (modalBrandsList) {
+                modalBrandsList.innerHTML = '';
+                const brands = getBrandsForModal(title);
+                brands.forEach(([bName, bPath], idx) => {
+                    const card = document.createElement('div');
+                    card.className = 'modal-brand-card';
+                    card.style.animationDelay = `${idx * 0.08}s`;
+                    card.innerHTML = `<img src="${bPath}" alt="${bName}">`;
+                    modalBrandsList.appendChild(card);
+                });
+            }
+
+            if (overlay) overlay.classList.add('active');
+        }
+    });
+});

@@ -83,45 +83,41 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-image-column">
-                    <div class="about-slider-wrapper">
-                        <div class="about-slider">
-                            <div class="about-slide active">
-                                <img src="assets/about-team.png" alt="Supervision et contrôle automatisé des bâtiments Excellence Système">
-                                <div class="slide-caption">Supervision & Contrôle Automatisé des Bâtiments</div>
+                    <!-- Main Featured Image Display -->
+                    <div class="about-gallery-showcase" style="position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-light); background: #181B1E; box-shadow: var(--shadow-lg); margin-bottom: 12px;">
+                        <div style="height: 340px; width: 100%; overflow: hidden; position: relative;">
+                            <img id="aboutMainFeaturedImg" src="assets/img/about-img-2.jpg" alt="Ingénierie & Intégration Sécurité" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease;">
+                            
+                            <!-- Caption Bar Overlay -->
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(16, 20, 24, 0.95), rgba(16, 20, 24, 0.3) 70%, transparent); padding: 18px 18px 14px; color: var(--white);">
+                                <div id="aboutMainCaptionText" style="font-size: 0.95rem; font-weight: 700; color: var(--white); display: flex; align-items: center; gap: 8px;">
+                                    <i class="fa-solid fa-compass-drafting" style="color: var(--primary-turquoise);"></i> Études & Ingénierie d'Intégration
+                                </div>
                             </div>
-                            <div class="about-slide">
-                                <img src="assets/real-corporate.png" alt="Gestion intelligente des équipements courant faible">
-                                <div class="slide-caption">Gestion Intelligente des Équipements Courant Faible</div>
-                            </div>
-                            <div class="about-slide">
-                                <img src="assets/img/services-entreprises.jpg" alt="Salle informatique et baie de brassage Datacenter">
-                                <div class="slide-caption">Datacenter & Baie réseau entreprise</div>
-                            </div>
-                            <div class="about-slide">
-                                <img src="assets/img/services-gtb.jpg" alt="Supervision GTB bâtiment intelligent">
-                                <div class="slide-caption">Supervision technique GTB / GTC</div>
-                            </div>
-                            <div class="about-slide">
-                                <img src="assets/img/incendie-hero.jpg" alt="Ingénierie & Plan de sécurité incendie S.S.I.">
-                                <div class="slide-caption">Ingénierie & Plan de sécurité incendie S.S.I.</div>
-                            </div>
-                        </div>
 
-                        <button type="button" class="about-slider-btn prev" aria-label="Précédent"><i class="fa-solid fa-chevron-left"></i></button>
-                        <button type="button" class="about-slider-btn next" aria-label="Suivant"><i class="fa-solid fa-chevron-right"></i></button>
-
-                        <div class="about-slider-dots">
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
+                            <!-- Experience Pill Badge -->
+                            <div style="position: absolute; top: 14px; right: 14px; background: rgba(18, 22, 26, 0.88); backdrop-filter: blur(12px); border: 1px solid var(--primary-turquoise); padding: 6px 14px; border-radius: 9999px; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-sm);">
+                                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary-turquoise); box-shadow: 0 0 8px var(--primary-turquoise);"></div>
+                                <span style="font-size: 0.9rem; font-weight: 800; color: var(--primary-turquoise);">+10 ANS</span>
+                                <span style="font-size: 0.7rem; font-weight: 700; color: var(--white); text-transform: uppercase;">au Maroc</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="experience-card">
-                        <div class="experience-num">+10</div>
-                        <div class="experience-text">Années d'Excellence<br>au Maroc</div>
+                    <!-- 4 Real Photo Mini Thumbnails (Direct visual access to all 4 images) -->
+                    <div class="about-photo-thumbnails" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                        <div class="about-thumb-item active" data-img="assets/img/about-img-2.jpg" data-caption="Études & Ingénierie d'Intégration">
+                            <img src="assets/img/about-img-2.jpg" alt="Ingénierie & Intégration">
+                        </div>
+                        <div class="about-thumb-item" data-img="assets/img/about-img-1.jpg" data-caption="Baies & Armoires Réseau Courant Faible">
+                            <img src="assets/img/about-img-1.jpg" alt="Baies Réseau">
+                        </div>
+                        <div class="about-thumb-item" data-img="assets/img/about-img-3.jpg" data-caption="Plans d'Évacuation S.S.I. Réglementaires">
+                            <img src="assets/img/about-img-3.jpg" alt="Plans S.S.I.">
+                        </div>
+                        <div class="about-thumb-item" data-img="assets/img/about-img-4.jpg" data-caption="Schémas d'Ingénierie & Audit S.S.I.">
+                            <img src="assets/img/about-img-4.jpg" alt="Schémas d'Audit">
+                        </div>
                     </div>
                 </div>
 
@@ -210,6 +206,89 @@
         </div>
     </section>
 
+    <!-- Dedicated Gallery Section for About Images -->
+    <section style="padding: 80px 0; background: #131517; border-top: 1px solid var(--charcoal-border); border-bottom: 1px solid var(--charcoal-border);">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 50px;">
+                <div class="section-tag" style="justify-content: center;">
+                    <i class="fa-solid fa-camera-retro"></i> <span>NOS ÉTUDES & RÉALISATIONS D'INGÉNIERIE</span>
+                </div>
+                <h2 class="section-title">Aperçu de nos Compétences & Plans S.S.I.</h2>
+                <p class="section-subtitle">
+                    Découvrez nos études de faisabilité, nos plans d'évacuation réglementaires et nos installations d'ingénierie sur mesure.
+                </p>
+            </div>
+
+            <div class="solutions-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+                
+                <!-- Card 1 -->
+                <div class="solution-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                    <div style="height: 220px; width: 100%; overflow: hidden; position: relative;">
+                        <img src="assets/img/about-img-1.jpg" alt="Installation & Baies réseau courant faible" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-normal);">
+                        <div style="position: absolute; top: 12px; left: 12px; background: rgba(16, 24, 26, 0.85); backdrop-filter: blur(8px); padding: 4px 12px; border-radius: var(--radius-full); border: 1px solid var(--border-color); font-size: 0.75rem; font-weight: 700; color: var(--primary-turquoise);">
+                            <i class="fa-solid fa-server"></i> Baies & Armoires
+                        </div>
+                    </div>
+                    <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 8px;">Baies & Équipements Courant Faible</h3>
+                        <p class="solution-desc" style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 16px;">
+                            Câblage structuré, raccordement de baies serveurs et intégration de centrales de sécurité réseau.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="solution-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                    <div style="height: 220px; width: 100%; overflow: hidden; position: relative;">
+                        <img src="assets/img/about-img-2.jpg" alt="Services d'Ingénierie & Intégration Sécurité" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-normal);">
+                        <div style="position: absolute; top: 12px; left: 12px; background: rgba(16, 24, 26, 0.85); backdrop-filter: blur(8px); padding: 4px 12px; border-radius: var(--radius-full); border: 1px solid var(--border-color); font-size: 0.75rem; font-weight: 700; color: var(--primary-turquoise);">
+                            <i class="fa-solid fa-gears"></i> Intégration Technologique
+                        </div>
+                    </div>
+                    <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 8px;">Intégration & Supervision Technique</h3>
+                        <p class="solution-desc" style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 16px;">
+                            Déploiement clé en main de systèmes de contrôle d'accès, caméras IP et télécommunications.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="solution-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                    <div style="height: 220px; width: 100%; overflow: hidden; position: relative;">
+                        <img src="assets/img/about-img-3.jpg" alt="Plans d'évacuation et réglementation incendie" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-normal);">
+                        <div style="position: absolute; top: 12px; left: 12px; background: rgba(16, 24, 26, 0.85); backdrop-filter: blur(8px); padding: 4px 12px; border-radius: var(--radius-full); border: 1px solid var(--border-color); font-size: 0.75rem; font-weight: 700; color: var(--primary-turquoise);">
+                            <i class="fa-solid fa-fire-extinguisher"></i> Sécurité S.S.I.
+                        </div>
+                    </div>
+                    <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 8px;">Plans d'Évacuation Réglementaires</h3>
+                        <p class="solution-desc" style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 16px;">
+                            Conception conforme aux normes ERP de plans d'évacuation et consignes de sécurité incendie.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="solution-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                    <div style="height: 220px; width: 100%; overflow: hidden; position: relative;">
+                        <img src="assets/img/about-img-4.jpg" alt="Schémas d'ingénierie incendie et plans d'évacuation" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-normal);">
+                        <div style="position: absolute; top: 12px; left: 12px; background: rgba(16, 24, 26, 0.85); backdrop-filter: blur(8px); padding: 4px 12px; border-radius: var(--radius-full); border: 1px solid var(--border-color); font-size: 0.75rem; font-weight: 700; color: var(--primary-turquoise);">
+                            <i class="fa-solid fa-compass-drafting"></i> Études S.S.I.
+                        </div>
+                    </div>
+                    <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 8px;">Schémas d'Ingénierie & Audit S.S.I.</h3>
+                        <p class="solution-desc" style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 16px;">
+                            Études de zonage incendie, schémas d'intervention et détection automatique personnalisée.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-banner">
         <div class="container">
@@ -254,13 +333,11 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <img src="assets/logo-3d.png" alt="Excellence Système Logo">
-                    <p>
-                        Votre partenaire de confiance en courant faible et sécurité électronique au Maroc. Plus de 10 ans d'expertise à votre service.
-                    </p>
+                    <p>Votre partenaire de confiance en courant faible et sécurité électronique au Maroc. Plus de 10 ans d'expertise à votre service.</p>
                     <div class="social-links" style="margin-top:16px;">
                         <a href="https://web.facebook.com/ste.excellence.systeme.2025" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/ste__excellence_syst?stkn=MXZ0a3pjbzh1NmE2MQ==" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/excellence-systeme-44733a397/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/ste__excellence_systeme?stkn=MXZ0a3pjbzh1NmE2MQ==" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/mohamed-azizi-7a390a77?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://wa.me/212668764271" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -272,19 +349,17 @@
                         <a href="about.html">À propos</a>
                         <a href="activites.html">Solutions IT</a>
                         <a href="realisations.html">Nos réalisations</a>
-                                                <a href="contact.html">Contact</a>
+                        <a href="contact.html">Contact</a>
                     </div>
                 </div>
 
                 <div>
                     <h4 class="footer-heading">Nos Activités</h4>
                     <div class="footer-links">
-                        <a href="activites/detection-incendie.html">Détection incendie</a>
-                        <a href="activites/videosurveillance.html">Vidéosurveillance IP</a>
-                        <a href="activites/controle-acces.html">Contrôle d'accès</a>
-                        <a href="activites/reseau-informatique.html">Réseaux informatiques</a>
-                        <a href="activites/reseau-optique.html">Réseaux optiques</a>
-                        <a href="activites/domotique.html">Domotique & Smart Home</a>
+                        <a href="activites.html">Sécurité Électronique</a>
+                        <a href="activites/motorisation.html">Automatisme</a>
+                        <a href="activites/domotique.html">Gestion Technique (GTB/GTC)</a>
+                        <a href="activites/reseau-informatique.html">Réseaux Informatiques & Fibre</a>
                     </div>
                 </div>
 
@@ -293,7 +368,9 @@
                     <div class="footer-links" style="gap:14px;">
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.4;">
                             <i class="fa-solid fa-location-dot" style="color:#63C4C4; margin-right:8px;"></i>
-                            <strong>Adresse :</strong><br>Marrakech ...<br>Agadir ...
+                            <strong>Adresse :</strong><br>
+                            Marrakech : 1057, Lot Al Housna 2, ASKJOUR<br>
+                            Agadir : IMM 42, APP 166 ADRAR
                         </p>
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.5;">
                             <i class="fa-solid fa-phone" style="color:#63C4C4; margin-right:8px;"></i> <strong>Téléphone :</strong><br>
@@ -304,7 +381,7 @@
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.5;">
                             <i class="fa-solid fa-envelope" style="color:#63C4C4; margin-right:8px;"></i> <strong>Email :</strong><br>
                             <a href="mailto:Excellencesysteme@gmail.com" style="color:var(--text-light);">Excellencesysteme@gmail.com</a><br>
-                            <a href="mailto:commercial.exsys@gamil.com" style="color:var(--text-light);">commercial.exsys@gamil.com</a>
+                            <a href="mailto:commercial.exsys@gmail.com" style="color:var(--text-light);">commercial.exsys@gmail.com</a>
                         </p>
                         <a href="https://maps.app.goo.gl/qGhGEnQhsorKXpJs6" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="margin-top:6px; font-size:0.8rem; padding:8px 14px;">
                             <i class="fa-solid fa-map-location-dot"></i> Localiser sur Google Maps
@@ -315,7 +392,6 @@
 
             <div class="footer-bottom">
                 <p>&copy; 2026 Excellence Système. Tous droits réservés.</p>
-                <p>Votre partenaire de confiance en courant faible & sécurité électronique.</p>
             </div>
         </div>
     </footer>

@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solutions Innovantes | Excellence Système</title>
-    <meta name="description" content="Solutions Innovantes en sécurité et bâtiment intelligent : les 3 activités principales et les activités rattachées.">
+    <meta name="description" content="Technologies innovantes pour gestion de parking, appel malade, GTB et extinction automatique au Maroc.">
     <link rel="icon" type="image/png" href="assets/logo-3d.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .solution-hero-bg {
+            background: linear-gradient(135deg, rgba(16, 20, 24, 0.82) 0%, rgba(16, 20, 24, 0.60) 60%, rgba(16, 20, 24, 0.82) 100%), url('assets/img/bg-solution-innovante.jpg') center/cover no-repeat;
+            padding: 145px 0 85px 0;
+            min-height: 430px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--charcoal-border);
+        }
+    </style>
 </head>
 <body>
 
@@ -55,106 +65,111 @@
         </div>
     </header>
 
-    <section class="page-hero" style="position:relative;">
-        <canvas id="hero-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; opacity:0.6;"></canvas>
-        <div class="container" style="position:relative; z-index:2;">
+    <section class="solution-hero-bg">
+        <div class="container">
             <div class="breadcrumbs">
                 <a href="index.html">Accueil</a> <i class="fa-solid fa-chevron-right" style="font-size:0.7rem;"></i> <a href="activites.html">Solutions IT</a> <i class="fa-solid fa-chevron-right" style="font-size:0.7rem;"></i> <span>Solutions Innovantes</span>
             </div>
             <h1 class="page-hero-title">SOLUTIONS INNOVANTES</h1>
-            <p class="page-hero-subtitle">
-                Technologies de pointe pour la gestion de parking, l'appel malade, la GTB/GTC et l'automatisation avancée des bâtiments.
+            <p class="page-hero-subtitle" style="max-width:850px;">
+                Technologies de pointe pour la gestion intelligente de parking, l'appel malade hospitalier, la GTB/GTC, l'extinction automatique et les automates programmables industriels.
             </p>
         </div>
     </section>
 
+    
+    <!-- SECTION ACTIVITÉS INNOVANTES (2-TIER CARDS DESIGN) -->
+    
+    
+    
     <section class="solutions" style="padding: 70px 0;">
         <div class="container">
-            
-            <!-- SECTION 1: LES 3 ACTIVITÉS PRINCIPALES (Row 1 - 3 Large Cards with Photos) -->
-            <div style="margin-bottom: 70px;">
-                <div class="text-center" style="margin-bottom: 45px;">
-                    <div class="section-tag"><i class="fa-solid fa-star" style="color:var(--primary-turquoise);"></i> <span>ACTIVITÉS PRINCIPALES</span></div>
-                    <h2 class="section-title">Les 3 Activités Principales</h2>
-                    <p class="section-subtitle">Les piliers majeurs des Solutions Innovantes.</p>
-                </div>
-
-                <div class="solutions-grid">
-                    <!-- Main Activity 1 -->
-                    <div class="solution-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="height: 220px; width: 100%; overflow: hidden; position: relative;">
-                            <img src="assets/img/motorisation-barriere.jpg" alt="Gestion de Parking" style="width: 100%; height: 100%; object-fit: cover;">
-                            <span class="main-activity-badge">Principale</span>
-                        </div>
-                        <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
-                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                <div class="solution-icon" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.2rem;"><i class="fa-solid fa-square-parking"></i></div>
-                                <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 0;">GESTION DE PARKING</h3>
-                            </div>
-                            <p class="solution-desc" style="font-size: 0.9rem;">Lecture automatique de plaques d'immatriculation LPR/ANPR, barrières automatiques et comptage de places.</p>
-                            <a href="activites/controle-acces.html" class="solution-link" style="margin-top: auto;">En savoir plus <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Main Activity 2 -->
-                    <div class="solution-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="height: 220px; width: 100%; overflow: hidden; position: relative;">
-                            <img src="assets/img/telephony-hero.jpg" alt="Appel Malade" style="width: 100%; height: 100%; object-fit: cover;">
-                            <span class="main-activity-badge">Principale</span>
-                        </div>
-                        <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
-                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                <div class="solution-icon" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.2rem;"><i class="fa-solid fa-kit-medical"></i></div>
-                                <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 0;">APPEL MALADE</h3>
-                            </div>
-                            <p class="solution-desc" style="font-size: 0.9rem;">Systèmes d'appel et d'alerte médicale pour hôpitaux, cliniques et résidences médicalisées avec traçabilité complète.</p>
-                            <a href="activites/telephonie-ip.html" class="solution-link" style="margin-top: auto;">En savoir plus <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Main Activity 3 -->
-                    <div class="solution-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="height: 220px; width: 100%; overflow: hidden; position: relative;">
-                            <img src="assets/img/services-gtb.jpg" alt="Gestion Technique de Bâtiment (GTB)" style="width: 100%; height: 100%; object-fit: cover;">
-                            <span class="main-activity-badge">Principale</span>
-                        </div>
-                        <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
-                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                <div class="solution-icon" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.2rem;"><i class="fa-solid fa-building-user"></i></div>
-                                <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 0;">GESTION TECHNIQUE (GTB)</h3>
-                            </div>
-                            <p class="solution-desc" style="font-size: 0.9rem;">Supervision centralisée des consommations énergétiques, de l'éclairage, du CVC et de la sécurité du bâtiment.</p>
-                            <a href="activites/domotique.html" class="solution-link" style="margin-top: auto;">En savoir plus <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+            <div class="text-center" style="margin-bottom: 45px;">
+                <div class="section-tag" style="justify-content:center;"><i class="fa-solid fa-lightbulb"></i> <span>SOLUTIONS INNOVANTES</span></div>
+                <h2 class="section-title">Technologies Innovantes & Automation</h2>
+                <p class="section-subtitle">Infrastructures intelligentes de nouvelle génération pour la sécurité et la gestion technique.</p>
             </div>
 
-            <!-- SECTION 2: LES AUTRES ACTIVITÉS (Row 2 - Circular Badges with Logos/Icons) -->
-            <div>
-                <div class="text-center" style="margin-bottom: 40px;">
-                    <div class="section-tag"><i class="fa-solid fa-layer-group"></i> <span>AUTRES ACTIVITÉS</span></div>
-                    <h2 class="section-title">Autres Activités des Solutions Innovantes</h2>
-                    <p class="section-subtitle">Cliquez sur un logo circulaire pour accéder à sa page dédiée.</p>
+            <div class="activities-top3-grid">
+
+            <div class="card-v2-container">
+                <div class="card-v2-img-wrap">
+                    <img src="assets/img/bg-solution-innovante.jpg" alt="Gestion Intelligente du Parking" loading="lazy">
                 </div>
-
-                <div class="circle-badge-row">
-                    <a href="activites/detection-incendie.html" class="circle-badge-item" style="width: 115px;">
-                        <div class="circle-badge-icon"><i class="fa-solid fa-fire-extinguisher"></i></div>
-                        <span class="circle-badge-label">Extinction Automatique</span>
-                    </a>
-
-                    <a href="activites/domotique.html" class="circle-badge-item" style="width: 115px;">
-                        <div class="circle-badge-icon"><i class="fa-solid fa-microchip"></i></div>
-                        <span class="circle-badge-label">Automate Programmable</span>
+                <div class="card-v2-body">
+                    <div class="card-v2-title-row">
+                        <div class="title-icon-box"><i class="fa-solid fa-square-parking"></i></div>
+                        <h3 class="card-title-text">Gestion Intelligente du Parking</h3>
+                    </div>
+                    <p class="card-v2-desc">La solution de gestion intelligente du parking permet d’optimiser, sécuriser et automatiser l’accès aux espaces de stationnement.</p>
+                    <a href="contact.html" class="card-v2-link" data-solution-title="Gestion Intelligente du Parking" data-solution-desc="La solution de gestion intelligente du parking permet d’optimiser, sécuriser et automatiser l’accès aux espaces de stationnement. Elle intègre le contrôle d’accès, la vidéosurveillance, la reconnaissance des plaques et la gestion des entrées et sorties. Les utilisateurs autorisés peuvent accéder au parking automatiquement grâce aux badges, QR codes ou systèmes ANPR. La supervision centralisée permet de suivre en temps réel l’occupation, les accès et les mouvements des véhicules. Des capteurs peuvent également indiquer les places disponibles afin de faciliter le stationnement et réduire le temps de recherche. La solution peut être connectée à une plateforme de gestion pour générer des rapports et analyser l’utilisation du parking." data-solution-img="assets/img/bg-solution-innovante.jpg" data-solution-link="contact.html">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
+            <div class="card-v2-container">
+                <div class="card-v2-img-wrap">
+                    <img src="assets/img/about-smart-city.jpg" alt="Système d’Appel Malade Intelligent" loading="lazy">
+                </div>
+                <div class="card-v2-body">
+                    <div class="card-v2-title-row">
+                        <div class="title-icon-box"><i class="fa-solid fa-user-nurse"></i></div>
+                        <h3 class="card-title-text">Système d’Appel Malade Intelligent</h3>
+                    </div>
+                    <p class="card-v2-desc">La solution d’appel malade permet d’assurer une communication rapide et fiable entre les patients et le personnel soignant.</p>
+                    <a href="contact.html" class="card-v2-link" data-solution-title="Système d’Appel Malade Intelligent" data-solution-desc="La solution d’appel malade permet d’assurer une communication rapide et fiable entre les patients et le personnel soignant. Elle permet au patient de déclencher facilement une demande d’assistance depuis sa chambre ou son espace de soins. Les appels sont transmis instantanément aux postes infirmiers et aux dispositifs mobiles du personnel autorisé. Des indicateurs lumineux et sonores permettent de localiser rapidement la chambre ou la zone concernée. Le système peut intégrer des boutons d’appel, tirettes, voyants de présence et dispositifs d’annulation. La supervision centralisée facilite le suivi des appels, des interventions et des priorités en temps réel." data-solution-img="assets/img/about-smart-city.jpg" data-solution-link="contact.html">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-v2-container">
+                <div class="card-v2-img-wrap">
+                    <img src="assets/img/services-gtb.jpg" alt="Gestion Technique du Bâtiment (GTB)" loading="lazy">
+                </div>
+                <div class="card-v2-body">
+                    <div class="card-v2-title-row">
+                        <div class="title-icon-box"><i class="fa-solid fa-gears"></i></div>
+                        <h3 class="card-title-text">Gestion Technique du Bâtiment (GTB)</h3>
+                    </div>
+                    <p class="card-v2-desc">La Gestion Technique Centralisée (GTC/GTB) permet de superviser et piloter l'ensemble des équipements techniques depuis une plateforme unique.</p>
+                    <a href="activites/domotique.html" class="card-v2-link" data-solution-title="Gestion Technique du Bâtiment (GTB)" data-solution-desc="La Gestion Technique Centralisée (GTC/GTB) permet de superviser et piloter les équipements techniques d’un bâtiment depuis une interface unique. Elle centralise le contrôle de l’éclairage, de la climatisation, de la ventilation, de l’énergie et des installations électriques. Les capteurs remontent en temps réel les informations nécessaires au suivi des différents équipements. Le système permet de détecter les anomalies, générer des alertes et faciliter les interventions techniques. Des scénarios et automatismes peuvent être programmés afin d’optimiser le fonctionnement des installations. La supervision centralisée améliore la performance énergétique, le confort des occupants et la maintenance du bâtiment. Cette solution s’adapte aux hôtels, bureaux, villas, bâtiments administratifs et sites professionnels." data-solution-img="assets/img/services-gtb.jpg" data-solution-link="activites/domotique.html">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+</div>
 
+            <div class="circular-activities-container">
+                <div class="text-center" style="margin-bottom: 25px;">
+                    <div class="section-tag" style="justify-content:center;"><i class="fa-solid fa-layer-group"></i> <span>AUTRES ACTIVITÉS</span></div>
+                    <h2 class="section-title" style="font-size: 2rem;">Autres Domaines & Équipements Spécialisés</h2>
+                    <p class="section-subtitle" style="margin-bottom: 0;">Cliquez sur un logo circulaire pour accéder à sa vue détaillée.</p>
+                </div>
+
+                <div class="circular-activities-grid">
+                    
+            <div class="circular-activity-item" data-solution-title="Système d’Extinction Automatique" data-solution-desc="Le système d’extinction automatique assure une protection rapide et efficace des zones sensibles contre les risques d’incendie. Il détecte automatiquement le départ de feu et déclenche l’extinction sans intervention humaine lorsque les conditions sont réunies. La solution peut être adaptée aux salles serveurs, locaux électriques, cuisines professionnelles, parkings et espaces techniques. Elle utilise des agents d’extinction appropriés selon la nature des équipements et les contraintes du site. L’installation peut être intégrée au système de détection incendie pour assurer une réaction coordonnée et sécurisée." data-solution-img="assets/img/incendie-cmsi.jpg" data-solution-link="activites/detection-incendie.html">
+                <a href="activites/detection-incendie.html" class="circle-icon-btn" aria-label="Système d’Extinction Automatique">
+                    <i class="fa-solid fa-fire-extinguisher"></i>
+                </a>
+                <span class="circular-activity-label">Système d’Extinction Automatique</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Automate Programmable Industriel (API)" data-solution-desc="La solution d’automatisme basée sur un automate programmable permet de piloter et de contrôler efficacement les équipements techniques d’un bâtiment ou d’une installation. Elle me permet d'assurer l’exécution automatique des commandes selon des scénarios, horaires, capteurs et conditions prédéfinies. L’API peut gérer l’éclairage, la ventilation, les pompes, moteurs, portes, équipements électriques et systèmes de production. Il permet de centraliser les informations provenant des différents capteurs et de commander les équipements en temps réel. La supervision facilite le suivi des états, la détection des anomalies et l’analyse du fonctionnement des installations." data-solution-img="assets/img/domotique-network.jpg" data-solution-link="contact.html">
+                <a href="contact.html" class="circle-icon-btn" aria-label="Automate Programmable Industriel (API)">
+                    <i class="fa-solid fa-microchip"></i>
+                </a>
+                <span class="circular-activity-label">Automate Programmable Industriel (API)</span>
+            </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="site-footer">
+    
+    <!-- Section NOS MARQUES & PARTENAIRES -->
+    
+
+<footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -162,8 +177,8 @@
                     <p>Votre partenaire de confiance en courant faible et sécurité électronique au Maroc. Plus de 10 ans d'expertise à votre service.</p>
                     <div class="social-links" style="margin-top:16px;">
                         <a href="https://web.facebook.com/ste.excellence.systeme.2025" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/ste__excellence_syst?stkn=MXZ0a3pjbzh1NmE2MQ==" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/excellence-systeme-44733a397/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/ste__excellence_systeme?stkn=MXZ0a3pjbzh1NmE2MQ==" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/mohamed-azizi-7a390a77?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://wa.me/212668764271" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -180,11 +195,12 @@
                 </div>
 
                 <div>
-                    <h4 class="footer-heading">Nos Solutions</h4>
+                    <h4 class="footer-heading">Nos Activités</h4>
                     <div class="footer-links">
-                        <a href="solutions-hoteliere.html">Solutions Hôtelière</a>
-                        <a href="solutions-riad-villa.html">Solutions Riad & Villa</a>
-                        <a href="solutions-innovantes.html">Solutions Innovantes</a>
+                        <a href="activites.html">Sécurité Électronique</a>
+                        <a href="activites/motorisation.html">Automatisme</a>
+                        <a href="activites/domotique.html">Gestion Technique (GTB/GTC)</a>
+                        <a href="activites/reseau-informatique.html">Réseaux Informatiques & Fibre</a>
                     </div>
                 </div>
 
@@ -193,7 +209,9 @@
                     <div class="footer-links" style="gap:14px;">
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.4;">
                             <i class="fa-solid fa-location-dot" style="color:#63C4C4; margin-right:8px;"></i>
-                            <strong>Adresse :</strong><br>Marrakech ...<br>Agadir ...
+                            <strong>Adresse :</strong><br>
+                            Marrakech : 1057, Lot Al Housna 2, ASKJOUR<br>
+                            Agadir : IMM 42, APP 166 ADRAR
                         </p>
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.5;">
                             <i class="fa-solid fa-phone" style="color:#63C4C4; margin-right:8px;"></i> <strong>Téléphone :</strong><br>
@@ -204,7 +222,7 @@
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.5;">
                             <i class="fa-solid fa-envelope" style="color:#63C4C4; margin-right:8px;"></i> <strong>Email :</strong><br>
                             <a href="mailto:Excellencesysteme@gmail.com" style="color:var(--text-light);">Excellencesysteme@gmail.com</a><br>
-                            <a href="mailto:commercial.exsys@gamil.com" style="color:var(--text-light);">commercial.exsys@gamil.com</a>
+                            <a href="mailto:commercial.exsys@gmail.com" style="color:var(--text-light);">commercial.exsys@gmail.com</a>
                         </p>
                         <a href="https://maps.app.goo.gl/qGhGEnQhsorKXpJs6" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="margin-top:6px; font-size:0.8rem; padding:8px 14px;">
                             <i class="fa-solid fa-map-location-dot"></i> Localiser sur Google Maps

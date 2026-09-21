@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solutions Riad & Villa | Excellence Système</title>
-    <meta name="description" content="Solutions Riad & Villa en domotique et sécurité : les 3 activités principales et les activités rattachées.">
+    <meta name="description" content="Solutions sur mesure de domotique, sécurité, visiophoine et sonorisation pour riads et villas d'exception au Maroc.">
     <link rel="icon" type="image/png" href="assets/logo-3d.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .solution-hero-bg {
+            background: linear-gradient(135deg, rgba(16, 20, 24, 0.82) 0%, rgba(16, 20, 24, 0.60) 60%, rgba(16, 20, 24, 0.82) 100%), url('assets/img/bg-solution-riad-villa.png') center/cover no-repeat;
+            padding: 145px 0 85px 0;
+            min-height: 430px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--charcoal-border);
+        }
+    </style>
 </head>
 <body>
 
@@ -55,141 +65,147 @@
         </div>
     </header>
 
-    <section class="page-hero" style="position:relative;">
-        <canvas id="hero-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; opacity:0.6;"></canvas>
-        <div class="container" style="position:relative; z-index:2;">
+    <section class="solution-hero-bg">
+        <div class="container">
             <div class="breadcrumbs">
                 <a href="index.html">Accueil</a> <i class="fa-solid fa-chevron-right" style="font-size:0.7rem;"></i> <a href="activites.html">Solutions IT</a> <i class="fa-solid fa-chevron-right" style="font-size:0.7rem;"></i> <span>Solutions Riad & Villa</span>
             </div>
             <h1 class="page-hero-title">SOLUTIONS RIAD & VILLA</h1>
-            <p class="page-hero-subtitle">
-                Solutions haut de gamme sur-mesure d'automatisation, de protection anti-intrusion, de vidéosurveillance et de confort multimédia pour résidences d'exception, riads et villas.
+            <p class="page-hero-subtitle" style="max-width:850px;">
+                Solutions haut de gamme sur-mesure d'automatisation domotique, de protection anti-intrusion, de vidéosurveillance et de confort multimédia pour résidences d'exception, riads et villas.
             </p>
         </div>
     </section>
 
+    
+    <!-- SECTION ACTIVITÉS RIAD & VILLA (2-TIER CARDS DESIGN) -->
+    
+    
+    
     <section class="solutions" style="padding: 70px 0;">
         <div class="container">
-            
-            <!-- SECTION 1: LES 3 ACTIVITÉS PRINCIPALES (Row 1 - 3 Large Cards with Photos) -->
-            <div style="margin-bottom: 70px;">
-                <div class="text-center" style="margin-bottom: 45px;">
-                    <div class="section-tag"><i class="fa-solid fa-star" style="color:var(--primary-turquoise);"></i> <span>ACTIVITÉS PRINCIPALES</span></div>
-                    <h2 class="section-title">Les 3 Activités Principales</h2>
-                    <p class="section-subtitle">Les piliers majeurs de la Solution Riad & Villa.</p>
-                </div>
-
-                <div class="solutions-grid">
-                    <!-- Main Activity 1 -->
-                    <div class="solution-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="height: 220px; width: 100%; overflow: hidden; position: relative;">
-                            <img src="assets/img/incendie-adressable.png" alt="Système de Détection Incendie" style="width: 100%; height: 100%; object-fit: cover;">
-                            <span class="main-activity-badge">Principale</span>
-                        </div>
-                        <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
-                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                <div class="solution-icon" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.2rem;"><i class="fa-solid fa-fire-flame-curved"></i></div>
-                                <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 0;">SYSTÈME DE DÉTECTION INCENDIE</h3>
-                            </div>
-                            <p class="solution-desc" style="font-size: 0.9rem;">Détecteurs autonomes et adressables pour la protection précoce de la villa ou du riad contre les risques d'incendie.</p>
-                            <a href="activites/detection-incendie.html" class="solution-link" style="margin-top: auto;">En savoir plus <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Main Activity 2 -->
-                    <div class="solution-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="height: 220px; width: 100%; overflow: hidden; position: relative;">
-                            <img src="assets/img/anti-intrusion-ajax.jpg" alt="Système Anti-intrusion" style="width: 100%; height: 100%; object-fit: cover;">
-                            <span class="main-activity-badge">Principale</span>
-                        </div>
-                        <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
-                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                <div class="solution-icon" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.2rem;"><i class="fa-solid fa-shield-cat"></i></div>
-                                <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 0;">SYSTÈME ANTI-INTRUSION</h3>
-                            </div>
-                            <p class="solution-desc" style="font-size: 0.9rem;">Protection périmétrique extérieure, barrières infrarouges, détecteurs de mouvement et alarme connectée GSM/IP.</p>
-                            <a href="activites/anti-intrusion.html" class="solution-link" style="margin-top: auto;">En savoir plus <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Main Activity 3 -->
-                    <div class="solution-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="height: 220px; width: 100%; overflow: hidden; position: relative;">
-                            <img src="assets/img/video-hero.jpg" alt="Vidéoprotection" style="width: 100%; height: 100%; object-fit: cover;">
-                            <span class="main-activity-badge">Principale</span>
-                        </div>
-                        <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
-                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                <div class="solution-icon" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.2rem;"><i class="fa-solid fa-video"></i></div>
-                                <h3 class="solution-title" style="font-size: 1.15rem; margin-bottom: 0;">VIDÉOPROTECTION</h3>
-                            </div>
-                            <p class="solution-desc" style="font-size: 0.9rem;">Caméras HD/4K esthétiques et discrètes, vision nocturne, analyse intelligente et consultation sur smartphone.</p>
-                            <a href="activites/videosurveillance.html" class="solution-link" style="margin-top: auto;">En savoir plus <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+            <div class="text-center" style="margin-bottom: 45px;">
+                <div class="section-tag" style="justify-content:center;"><i class="fa-solid fa-house-chimney"></i> <span>SOLUTIONS RIAD & VILLA</span></div>
+                <h2 class="section-title">Sécurité & Domotique pour Riad et Villa</h2>
+                <p class="section-subtitle">Infrastructures haute performance alliant l'élégance architecturale aux technologies de pointe.</p>
             </div>
 
-            <!-- SECTION 2: LES AUTRES ACTIVITÉS (Row 2 - Circular Badges with Logos/Icons) -->
-            <div>
-                <div class="text-center" style="margin-bottom: 40px;">
-                    <div class="section-tag"><i class="fa-solid fa-layer-group"></i> <span>AUTRES ACTIVITÉS</span></div>
-                    <h2 class="section-title">Autres Activités de la Solution Riad & Villa</h2>
-                    <p class="section-subtitle">Cliquez sur un logo circulaire pour accéder à sa page dédiée.</p>
+            <div class="activities-top3-grid">
+
+            <div class="card-v2-container">
+                <div class="card-v2-img-wrap">
+                    <img src="assets/img/incendie-hero.jpg" alt="Système de Détection Incendie" loading="lazy">
                 </div>
-
-                <div class="circle-badge-row">
-                    <a href="activites/domotique.html" class="circle-badge-item" style="width: 115px;">
-                        <div class="circle-badge-icon"><i class="fa-solid fa-house-signal"></i></div>
-                        <span class="circle-badge-label">Domotique & Smart Home</span>
-                    </a>
-
-                    <a href="activites/reseau-informatique.html" class="circle-badge-item" style="width: 115px;">
-                        <div class="circle-badge-icon"><i class="fa-solid fa-network-wired"></i></div>
-                        <span class="circle-badge-label">Réseau Info & Optique</span>
-                    </a>
-
-                    <a href="activites/reseau-informatique.html" class="circle-badge-item" style="width: 115px;">
-                        <div class="circle-badge-icon"><i class="fa-solid fa-wifi"></i></div>
-                        <span class="circle-badge-label">Réseau Wifi Smart</span>
-                    </a>
-
-                    <a href="activites/telephonie-ip.html" class="circle-badge-item" style="width: 115px;">
-                        <div class="circle-badge-icon"><i class="fa-solid fa-phone-volume"></i></div>
-                        <span class="circle-badge-label">Intercom IP</span>
-                    </a>
-
-                    <a href="activites/audiovisuel.html" class="circle-badge-item" style="width: 115px;">
-                        <div class="circle-badge-icon"><i class="fa-solid fa-volume-high"></i></div>
-                        <span class="circle-badge-label">Sonorisation</span>
-                    </a>
-
-                    <a href="activites/motorisation.html" class="circle-badge-item" style="width: 115px;">
-                        <div class="circle-badge-icon"><i class="fa-solid fa-torii-gate"></i></div>
-                        <span class="circle-badge-label">Automatisme (Portails)</span>
-                    </a>
-
-                    <a href="activites/audiovisuel.html" class="circle-badge-item" style="width: 115px;">
-                        <div class="circle-badge-icon"><i class="fa-solid fa-sliders"></i></div>
-                        <span class="circle-badge-label">Multi Room</span>
-                    </a>
-
-                    <a href="activites/teledistribution.html" class="circle-badge-item" style="width: 115px;">
-                        <div class="circle-badge-icon"><i class="fa-solid fa-satellite-dish"></i></div>
-                        <span class="circle-badge-label">Télédistribution</span>
-                    </a>
-
-                    <a href="activites/audiovisuel.html" class="circle-badge-item" style="width: 115px;">
-                        <div class="circle-badge-icon"><i class="fa-solid fa-tv"></i></div>
-                        <span class="circle-badge-label">Home Cinéma</span>
+                <div class="card-v2-body">
+                    <div class="card-v2-title-row">
+                        <div class="title-icon-box"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                        <h3 class="card-title-text">Système de Détection Incendie</h3>
+                    </div>
+                    <p class="card-v2-desc">La solution de détection incendie permet d’assurer une surveillance continue et fiable contre les risques d’incendie. Elle comprend des systèmes adressables et conventionnels adaptés aux différentes configurations des bâtiments.</p>
+                    <a href="activites/detection-incendie.html" class="card-v2-link" data-solution-title="Système de Détection Incendie" data-solution-desc="La solution de détection incendie permet d’assurer une surveillance continue et fiable contre les risques d’incendie. Elle comprend des systèmes adressables et conventionnels adaptés aux différentes configurations des bâtiments. La technologie adressable identifie précisément le détecteur ou l’équipement à l’origine de l’alarme. La technologie conventionnelle organise les équipements par zones afin de localiser rapidement la zone concernée. Les installations peuvent intégrer des détecteurs de fumée, de chaleur, des déclencheurs manuels et des sirènes. La centrale assure la supervision permanente des équipements et signale les éventuels défauts du système. Des modules spécifiques permettent également de commander certains équipements de sécurité en cas d’alarme. Le choix de la technologie dépend de la taille, de la structure et des exigences du bâtiment. Ces solutions conviennent aux hôtels, villas, bureaux, commerces, établissements publics et sites industriels. Elles garantissent une détection rapide, une alerte efficace et une gestion adaptée aux exigences de sécurité incendie." data-solution-img="assets/img/incendie-hero.jpg" data-solution-link="activites/detection-incendie.html">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
+            <div class="card-v2-container">
+                <div class="card-v2-img-wrap">
+                    <img src="assets/img/anti-intrusion-ajax.jpg" alt="Système Anti-Intrusion" loading="lazy">
+                </div>
+                <div class="card-v2-body">
+                    <div class="card-v2-title-row">
+                        <div class="title-icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3 class="card-title-text">Système Anti-Intrusion</h3>
+                    </div>
+                    <p class="card-v2-desc">La solution anti-intrusion permet d’assurer la sécurité des personnes et de protéger les biens contre les tentatives d’intrusion.</p>
+                    <a href="activites/anti-intrusion.html" class="card-v2-link" data-solution-title="Système Anti-Intrusion" data-solution-desc="La solution anti-intrusion permet d’assurer la sécurité des personnes et de protéger les biens contre les tentatives d’intrusion. Elle repose sur des équipements de détection adaptés aux espaces intérieurs et extérieurs, tels que détecteurs de mouvement, contacts d’ouverture et barrières infrarouges. En cas de détection d’une présence non autorisée, la centrale déclenche immédiatement les sirènes et transmet une alerte aux utilisateurs ou au centre de télésurveillance. Le système peut être armé, désarmé et supervisé facilement depuis un clavier, une télécommande ou une application mobile. L’intégration de la levée de doute vidéo permet de vérifier rapidement la cause de l’alarme via les caméras associées. Il est également possible d’associer des capteurs de sécurité technique tels que détection de fumée, fuite d’eau ou coupure de courant. La solution offre ainsi une protection continue, une réactivité optimale et une tranquillité d’esprit au quotidien. Elle convient aux résidences, villas, commerces, bureaux et sites professionnels." data-solution-img="assets/img/anti-intrusion-ajax.jpg" data-solution-link="activites/anti-intrusion.html">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-v2-container">
+                <div class="card-v2-img-wrap">
+                    <img src="assets/img/video-hero.jpg" alt="Vidéoprotection" loading="lazy">
+                </div>
+                <div class="card-v2-body">
+                    <div class="card-v2-title-row">
+                        <div class="title-icon-box"><i class="fa-solid fa-video"></i></div>
+                        <h3 class="card-title-text">Vidéoprotection</h3>
+                    </div>
+                    <p class="card-v2-desc">La solution de vidéosurveillance IP assure une surveillance continue des espaces afin de prévenir, détecter et analyser les situations à risque.</p>
+                    <a href="activites/videosurveillance.html" class="card-v2-link" data-solution-title="Vidéoprotection" data-solution-desc="La solution de vidéosurveillance IP permet d’assurer la sécurité des personnes et de protéger les espaces intérieurs et extérieurs. Elle repose sur des caméras haute définition connectées au réseau local, offrant des images claires et détaillées de jour comme de nuit. Les caméras peuvent être consultées en direct ou en replay depuis un smartphone, une tablette ou un écran dédié. Le système permet également de recevoir des alertes en cas de détection d’une activité inhabituelle. Il peut être intégré au système anti-intrusion et au contrôle d’accès pour une protection globale. Cette solution garantit ainsi une surveillance fiable, discrète et adaptée aux besoins des entreprises, hôtels, villas et établissements publics." data-solution-img="assets/img/video-hero.jpg" data-solution-link="activites/videosurveillance.html">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+</div>
 
+            <div class="circular-activities-container">
+                <div class="text-center" style="margin-bottom: 25px;">
+                    <div class="section-tag" style="justify-content:center;"><i class="fa-solid fa-layer-group"></i> <span>AUTRES ACTIVITÉS</span></div>
+                    <h2 class="section-title" style="font-size: 2rem;">Autres Domaines & Équipements Riad & Villa</h2>
+                    <p class="section-subtitle" style="margin-bottom: 0;">Cliquez sur un logo circulaire pour accéder à sa vue détaillée.</p>
+                </div>
+
+                <div class="circular-activities-grid">
+                    
+            <div class="circular-activity-item" data-solution-title="Domotique & Smart Home" data-solution-desc="Transformez votre espace en un lieu d'exception où l'élégance de l'architecture s'allie parfaitement à la pointe de la technologie. Notre expertise en domotique et smart building vous permet de centraliser le contrôle de votre environnement pour un confort absolu et une gestion simplifiée au quotidien. Depuis une interface unique et intuitive sur votre smartphone ou une tablette dédiée, pilotez avec précision l'éclairage d'ambiance, ajustez la climatisation de chaque pièce et gérez vos systèmes audiovisuels en toute fluidité. La protection de votre propriété est également renforcée grâce à une intégration sur mesure du contrôle d'accès intelligent, de la vidéosurveillance et des dispositifs de sécurité, consultables à distance. En automatisant vos routines et en optimisant votre consommation énergétique, nos solutions domotiques redéfinissent l'art de vivre, vous offrant ainsi une tranquillité d'esprit totale et un prestige moderne." data-solution-img="assets/img/domotique-smart.jpg" data-solution-link="activites/domotique.html">
+                <a href="activites/domotique.html" class="circle-icon-btn" aria-label="Domotique & Smart Home">
+                    <i class="fa-solid fa-house-signal"></i>
+                </a>
+                <span class="circular-activity-label">Domotique & Smart Home</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Réseau Informatique & Optique" data-solution-desc="Offrez à votre établissement une connectivité d'exception grâce à nos solutions de réseau de fibre optique conçues sur mesure. Nous garantissons un haut débit stable et une interconnexion haute performance pour l'ensemble de vos équipements. Nos équipes déploient du câblage réseau haute performance et des liaisons en fibre optique pour interconnecter en toute fluidité l'ensemble de vos baies et serveurs. Grâce à nos réseaux évolutifs et sécurisés, vous profitez d'un confort numérique inégalé et d'une performance optimale." data-solution-img="assets/img/reseau-datacenter.jpg" data-solution-link="activites/reseau-informatique.html">
+                <a href="activites/reseau-informatique.html" class="circle-icon-btn" aria-label="Réseau Informatique & Optique">
+                    <i class="fa-solid fa-network-wired"></i>
+                </a>
+                <span class="circular-activity-label">Réseau Informatique & Optique</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Intercom IP pour Villa & Riad" data-solution-desc="L’intercom IP offre une solution moderne et sécurisée pour contrôler les accès des bâtiments et résidences. Il permet la communication audio et vidéo entre l’entrée, les différentes pièces et les postes intérieurs. Grâce à la technologie IP, les appels peuvent être gérés via écran tactile, téléphone ou smartphone. La caméra HD assure une identification claire des visiteurs, de jour comme de nuit. Le système peut intégrer une serrure électrique, un portail automatique et un contrôle d’accès. La gestion à distance permet de répondre aux visiteurs et d’autoriser l’accès depuis n’importe où. Une solution élégante, fiable et évolutive, adaptée aux exigences de confort et de sécurité." data-solution-img="assets/img/access-keypad.jpg" data-solution-link="activites/controle-acces.html">
+                <a href="activites/controle-acces.html" class="circle-icon-btn" aria-label="Intercom IP pour Villa & Riad">
+                    <i class="fa-solid fa-bell"></i>
+                </a>
+                <span class="circular-activity-label">Intercom IP pour Villa & Riad</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Sonorisation pour Villa & Riad" data-solution-desc="La solution de sonorisation permet de diffuser une musique et des messages audio avec une qualité sonore adaptée à chaque espace. Elle peut intégrer des amplificateurs, haut-parleurs, microphones, mélangeurs et sources audio professionnelles. Le système permet de gérer plusieurs zones sonores selon les besoins du bâtiment. Il peut être utilisé pour la diffusion de musique d’ambiance, d’annonces, de messages et d’informations. La sonorisation peut être centralisée et contrôlée depuis une interface de gestion simple et intuitive. Elle s’adapte aux différents environnements intérieurs et extérieurs grâce à des équipements adaptés. Cette solution convient aux hôtels, restaurants, commerces, bureaux, résidences, salles de réunion et espaces publics." data-solution-img="assets/img/av-hifi.jpg" data-solution-link="activites/audiovisuel.html">
+                <a href="activites/audiovisuel.html" class="circle-icon-btn" aria-label="Sonorisation pour Villa & Riad">
+                    <i class="fa-solid fa-music"></i>
+                </a>
+                <span class="circular-activity-label">Sonorisation pour Villa & Riad</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Automatisme pour Villa & Riad" data-solution-desc="La solution d’automatisme permet de motoriser et de piloter facilement les équipements de la propriété. Elle assure la commande des portails, portes, volets roulants, stores, rideaux et autres accès motorisés. Les équipements peuvent être contrôlés localement ou à distance depuis un smartphone ou une tablette. La programmation de scénarios permet d’adapter automatiquement les installations selon les besoins des occupants. L’intégration avec le contrôle d’accès et la domotique renforce la sécurité et le confort au quotidien. Des capteurs et automatismes intelligents permettent d’optimiser le fonctionnement et la consommation énergétique. Une solution fiable, élégante et évolutive pour un habitat moderne, sécurisé et entièrement connecté." data-solution-img="assets/img/automatisme-portail.jpg" data-solution-link="activites/motorisation.html">
+                <a href="activites/motorisation.html" class="circle-icon-btn" aria-label="Automatisme pour Villa & Riad">
+                    <i class="fa-solid fa-torii-gate"></i>
+                </a>
+                <span class="circular-activity-label">Automatisme pour Villa & Riad</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Multiroom Audio pour Villa & Riad" data-solution-desc="La solution Multiroom permet de profiter d’une expérience audio immersive et homogène dans toute la propriété. Elle assure la diffusion de musique dans plusieurs espaces tels que salons, chambres, terrasses, jardins et espaces de réception. Chaque zone peut être contrôlée indépendamment ou synchronisée pour diffuser le même contenu simultanément. Le système s’intègre parfaitement aux enceintes encastrées, murales ou extérieures pour préserver l’esthétique des lieux. La gestion se fait facilement depuis un smartphone, une tablette ou des interfaces de commande dédiées. Il est possible de programmer des ambiances sonores adaptées à chaque espace et à chaque moment de la journée. Une solution élégante, flexible et évolutive." data-solution-img="assets/img/av-conference.jpg" data-solution-link="activites/audiovisuel.html">
+                <a href="activites/audiovisuel.html" class="circle-icon-btn" aria-label="Multiroom Audio pour Villa & Riad">
+                    <i class="fa-solid fa-sliders"></i>
+                </a>
+                <span class="circular-activity-label">Multiroom Audio pour Villa & Riad</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Télédiffusion & Télédistribution" data-solution-desc="La solution de télédistribution assure la réception et la distribution des signaux TV et radio dans l’ensemble du bâtiment. Elle permet de desservir plusieurs téléviseurs à partir d’une installation centralisée, avec une qualité d’image optimale. Le système peut intégrer les signaux TNT, satellite et différentes sources audiovisuelles selon les besoins du projet. Une distribution structurée garantit une réception stable et fiable dans chaque espace. L’installation peut être discrètement intégrée afin de préserver l’esthétique des lieux. Elle offre également une solution évolutive pour accompagner l’ajout de nouveaux points TV ou équipements. Une infrastructure professionnelle conçue pour assurer confort, qualité de réception et simplicité d’utilisation." data-solution-img="assets/img/teledist-hero.jpg" data-solution-link="activites/teledistribution.html">
+                <a href="activites/teledistribution.html" class="circle-icon-btn" aria-label="Télédiffusion & Télédistribution">
+                    <i class="fa-solid fa-satellite-dish"></i>
+                </a>
+                <span class="circular-activity-label">Télédiffusion & Télédistribution</span>
+            </div>
+            <div class="circular-activity-item" data-solution-title="Home Cinéma pour Villa & Riad" data-solution-desc="La solution Home Cinéma transforme un espace dédié en véritable salle de divertissement haut de gamme. Elle combine vidéoprojecteur ou écran haute définition avec un système audio immersif pour une expérience audiovisuelle exceptionnelle. La sonorisation multicanale assure une restitution précise et enveloppante des dialogues, musiques et effets sonores. L’ensemble des équipements peut être centralisé et piloté facilement depuis une télécommande, une tablette ou un smartphone. L’installation s’intègre harmonieusement dans l’architecture grâce aux équipements encastrables et aux solutions sur mesure. Des scénarios automatisés permettent de contrôler simultanément l’éclairage, les rideaux, l’écran et le système audiovisuel." data-solution-img="assets/img/av-projection.jpg" data-solution-link="activites/audiovisuel.html">
+                <a href="activites/audiovisuel.html" class="circle-icon-btn" aria-label="Home Cinéma pour Villa & Riad">
+                    <i class="fa-solid fa-film"></i>
+                </a>
+                <span class="circular-activity-label">Home Cinéma pour Villa & Riad</span>
+            </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="site-footer">
+    
+    <!-- Section NOS MARQUES & PARTENAIRES -->
+    
+
+<footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -197,8 +213,8 @@
                     <p>Votre partenaire de confiance en courant faible et sécurité électronique au Maroc. Plus de 10 ans d'expertise à votre service.</p>
                     <div class="social-links" style="margin-top:16px;">
                         <a href="https://web.facebook.com/ste.excellence.systeme.2025" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/ste__excellence_syst?stkn=MXZ0a3pjbzh1NmE2MQ==" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/excellence-systeme-44733a397/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/ste__excellence_systeme?stkn=MXZ0a3pjbzh1NmE2MQ==" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/mohamed-azizi-7a390a77?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://wa.me/212668764271" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -215,11 +231,12 @@
                 </div>
 
                 <div>
-                    <h4 class="footer-heading">Nos Solutions</h4>
+                    <h4 class="footer-heading">Nos Activités</h4>
                     <div class="footer-links">
-                        <a href="solutions-hoteliere.html">Solutions Hôtelière</a>
-                        <a href="solutions-riad-villa.html">Solutions Riad & Villa</a>
-                        <a href="solutions-innovantes.html">Solutions Innovantes</a>
+                        <a href="activites.html">Sécurité Électronique</a>
+                        <a href="activites/motorisation.html">Automatisme</a>
+                        <a href="activites/domotique.html">Gestion Technique (GTB/GTC)</a>
+                        <a href="activites/reseau-informatique.html">Réseaux Informatiques & Fibre</a>
                     </div>
                 </div>
 
@@ -228,7 +245,9 @@
                     <div class="footer-links" style="gap:14px;">
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.4;">
                             <i class="fa-solid fa-location-dot" style="color:#63C4C4; margin-right:8px;"></i>
-                            <strong>Adresse :</strong><br>Marrakech ...<br>Agadir ...
+                            <strong>Adresse :</strong><br>
+                            Marrakech : 1057, Lot Al Housna 2, ASKJOUR<br>
+                            Agadir : IMM 42, APP 166 ADRAR
                         </p>
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.5;">
                             <i class="fa-solid fa-phone" style="color:#63C4C4; margin-right:8px;"></i> <strong>Téléphone :</strong><br>
@@ -239,7 +258,7 @@
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.5;">
                             <i class="fa-solid fa-envelope" style="color:#63C4C4; margin-right:8px;"></i> <strong>Email :</strong><br>
                             <a href="mailto:Excellencesysteme@gmail.com" style="color:var(--text-light);">Excellencesysteme@gmail.com</a><br>
-                            <a href="mailto:commercial.exsys@gamil.com" style="color:var(--text-light);">commercial.exsys@gamil.com</a>
+                            <a href="mailto:commercial.exsys@gmail.com" style="color:var(--text-light);">commercial.exsys@gmail.com</a>
                         </p>
                         <a href="https://maps.app.goo.gl/qGhGEnQhsorKXpJs6" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="margin-top:6px; font-size:0.8rem; padding:8px 14px;">
                             <i class="fa-solid fa-map-location-dot"></i> Localiser sur Google Maps

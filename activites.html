@@ -89,7 +89,7 @@
             </a>
 
             <a href="activites/anti-intrusion.html" class="circle-badge-item">
-                <div class="circle-badge-icon"><i class="fa-solid fa-shield-cat"></i></div>
+                <div class="circle-badge-icon"><i class="fa-solid fa-shield-halved"></i></div>
                 <span class="circle-badge-label">ANTI-INTRUSION</span>
             </a>
 
@@ -136,47 +136,220 @@
     </section>
 
     <!-- 11 Activities Grid Showcase -->
-    <section class="solutions">
-    <div class="container">
-        <div class="text-center" style="margin-bottom: 50px;">
-            <div class="section-tag"><i class="fa-solid fa-layer-group"></i> <span>NOS 3 SOLUTIONS IT MÉTIERS</span></div>
-            <h2 class="section-title">Découvrez nos Solutions par Secteur</h2>
-            <p class="section-subtitle">Sélectionnez une solution pour consulter l'ensemble des activités et expertises techniques associées.</p>
+    
+    <!-- 11 Activities Showcase (2-TIER CARDS DESIGN) -->
+    <section class="solutions" id="nos-11-activites">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 50px;">
+                <div class="section-tag"><i class="fa-solid fa-layer-group"></i> <span>CATALOGUE DES ACTIVITÉS</span></div>
+                <h2 class="section-title">Catalogue des Solutions & Équipements</h2>
+                <p class="section-subtitle">Retrouvez ci-dessous nos différentes expertises et accédez directement à leurs pages complètes.</p>
+            </div>
+
+            <!-- 1. LES 3 PREMIÈRES ACTIVITÉS (VISUAL IMAGE CARDS) -->
+            <div class="activities-visual-grid">
+                <!-- Activity 1: Détection Incendie -->
+                <div class="activity-glass-card" data-solution-title="Détection Incendie" data-solution-desc="La solution de détection incendie permet d’assurer une surveillance continue et fiable contre les risques d’incendie. Elle comprend des systèmes adressables et conventionnels adaptés aux différentes configurations des bâtiments. La technologie adressable identifie précisément le détecteur ou l’équipement à l’origine de l’alarme. La technologie conventionnelle organise les équipements par zones afin de localiser rapidement la zone concernée. Les installations peuvent intégrer des détecteurs de fumée, de chaleur, des déclencheurs manuels et des sirènes. La centrale assure la supervision permanente des équipements et signale les éventuels défauts du système. Des modules spécifiques permettent également de commander certains équipements de sécurité en cas d’alarme. Le choix de la technologie dépend de la taille, de la structure et des exigences du bâtiment. Ces solutions conviennent aux hôtels, villas, bureaux, commerces, établissements publics et sites industriels. Elles garantissent une détection rapide, une alerte efficace et une gestion adaptée aux exigences de sécurité incendie." data-solution-img="assets/img/incendie-hero.jpg" data-solution-badge="Certifié S.S.I." data-solution-link="activites/detection-incendie.html">
+                    <div class="card-bg-image" style="background-image: url('assets/img/incendie-hero.jpg');"></div>
+                    <div class="card-gradient-overlay"></div>
+                    <div class="card-content">
+                        <div class="card-badge"><i class="fa-solid fa-fire-flame-curved"></i> Certifié S.S.I.</div>
+                        <h3 class="card-title">Détection & Alarme Incendie</h3>
+                        <p class="card-description">Centrales ECS/CMSI conventionnelles et adressables conformes aux normes ERP et sécurité des personnes.</p>
+                        <div class="card-features">
+                            <span><i class="fa-solid fa-check"></i> Détecteurs Optiques</span>
+                            <span><i class="fa-solid fa-check"></i> Sirènes Flash</span>
+                        </div>
+                        <a href="activites/detection-incendie.html" class="card-action-btn">
+                            En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Activity 2: Vidéosurveillance IP -->
+                <div class="activity-glass-card" data-solution-title="Vidéosurveillance IP / HD" data-solution-desc="La solution de vidéosurveillance IP permet d’assurer la sécurité des personnes et de protéger les espaces intérieurs et extérieurs. Elle repose sur des caméras haute définition connectées au réseau local, offrant des images claires et détaillées de jour comme de nuit. Les caméras peuvent être consultées en direct ou en replay depuis un smartphone, une tablette ou un écran dédié. Le système permet également de recevoir des alertes en cas de détection d’une activité inhabituelle. Il peut être intégré au système anti-intrusion et au contrôle d’accès pour une protection globale. Cette solution garantit ainsi une surveillance fiable, discrète et adaptée aux besoins des entreprises, hôtels, villas et établissements publics." data-solution-img="assets/img/video-hero.jpg" data-solution-badge="Ultra HD 4K" data-solution-link="activites/videosurveillance.html">
+                    <div class="card-bg-image" style="background-image: url('assets/img/video-hero.jpg');"></div>
+                    <div class="card-gradient-overlay"></div>
+                    <div class="card-content">
+                        <div class="card-badge"><i class="fa-solid fa-video"></i> Ultra HD 4K</div>
+                        <h3 class="card-title">Vidéosurveillance IP & IA</h3>
+                        <p class="card-description">Caméras motorisées PTZ, reconnaissance de plaques LPR, IA thermique et serveurs NVR réseau.</p>
+                        <div class="card-features">
+                            <span><i class="fa-solid fa-check"></i> Vision Nocturne IR</span>
+                            <span><i class="fa-solid fa-check"></i> Analyse IA & LPR</span>
+                        </div>
+                        <a href="activites/videosurveillance.html" class="card-action-btn">
+                            En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Activity 3: Réseau Informatique -->
+                <div class="activity-glass-card" data-solution-title="Réseau Informatique & Datacenter" data-solution-desc="La solution de réseau informatique assure une infrastructure fiable, performante et sécurisée pour la communication des données. Elle permet de connecter les ordinateurs, serveurs, imprimantes, téléphones IP, points d’accès Wi-Fi et équipements réseau. L’infrastructure peut être réalisée en cuivre, en fibre optique ou en combinant les deux technologies. Les switches assurent la distribution des connexions et peuvent intégrer la technologie PoE pour alimenter certains équipements. Le réseau peut être organisé en VLAN afin de séparer les différents services et renforcer la sécurité. Une architecture correctement dimensionnée garantit une connexion stable, rapide et évolutive. Le câblage structuré facilite l’installation, la maintenance et l’évolution future de l’infrastructure. Des solutions de routage, pare-feu et sécurité réseau permettent de protéger les communications et les données. Cette solution s’adapte aux entreprises, hôtels, villas, commerces, établissements publics et sites industriels. Elle constitue ainsi une base essentielle pour assurer la connectivité, la performance et la continuité des services numériques." data-solution-img="assets/img/reseau-datacenter.jpg" data-solution-badge="Cat6 / Cat7 / Fibre" data-solution-link="activites/reseau-informatique.html">
+                    <div class="card-bg-image" style="background-image: url('assets/img/reseau-datacenter.jpg');"></div>
+                    <div class="card-gradient-overlay"></div>
+                    <div class="card-content">
+                        <div class="card-badge"><i class="fa-solid fa-network-wired"></i> Cat6 / Cat7 / Fibre</div>
+                        <h3 class="card-title">Réseau Informatique</h3>
+                        <p class="card-description">Câblage structuré certifié, baies de brassage serveur Datacenter et switching PoE administrable.</p>
+                        <div class="card-features">
+                            <span><i class="fa-solid fa-check"></i> Baies Server</span>
+                            <span><i class="fa-solid fa-check"></i> Wi-Fi 6 Pro</span>
+                        </div>
+                        <a href="activites/reseau-informatique.html" class="card-action-btn">
+                            En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. LES AUTRES ACTIVITÉS (ICON-ONLY CARDS) -->
+            <div class="text-center" style="margin: 50px 0 30px 0;">
+                <h3 style="color: var(--white); font-size: 1.4rem; font-weight: 700;">
+                    <i class="fa-solid fa-shield-halved" style="color: var(--primary-turquoise); margin-right: 8px;"></i>
+                    Autres Domaines d'Expertise Technique
+                </h3>
+            </div>
+
+            <div class="solutions-grid-remaining">
+                <!-- Activity 4: Contrôle d'Accès -->
+                <div class="solution-card icon-only-card" data-solution-title="Contrôle d'Accès & Pointage" data-solution-desc="Le système de contrôle d’accès permet de sécuriser les entrées et sorties d’un bâtiment en autorisant uniquement les personnes habilitées. Il permet de gérer et de contrôler les accès aux différentes zones selon les profils et les niveaux d’autorisation. La solution peut intégrer des lecteurs de badges, cartes, codes PIN, biométrie ou reconnaissance faciale. Les portes sont équipées de dispositifs de verrouillage adaptés, tels que ventouses, gâches électriques ou serrures motorisées. Une centrale de contrôle assure la gestion et la communication avec les différents équipements du système. Les droits d’accès peuvent être configurés selon les utilisateurs, les zones et les horaires autorisés. Le système permet également d’enregistrer les événements afin d’assurer une traçabilité des accès. Il peut être intégré à la vidéosurveillance, à l’alarme anti-intrusion et aux systèmes de gestion du bâtiment. La solution convient aux entreprises, hôtels, bureaux, résidences, sites industriels et établissements publics. Elle garantit ainsi une gestion centralisée, une meilleure sécurité et un contrôle précis des accès." data-solution-img="assets/img/access-biometric.jpg" data-solution-badge="Biométrie & RFID" data-solution-link="activites/controle-acces.html">
+                    <div class="solution-icon-wrapper"><i class="fa-solid fa-fingerprint"></i></div>
+                    <h4 class="solution-card-title">Contrôle d'Accès & Pointage</h4>
+                    <p class="solution-card-desc">Reconnaissance faciale, tourniquets piétons, badges RFID et pointeuses horaires avec logiciel de gestion.</p>
+                    <a href="activites/controle-acces.html" class="solution-card-btn">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Activity 5: Téléphonie IP -->
+                <div class="solution-card icon-only-card" data-solution-title="Téléphonie IP & Standard PABX" data-solution-desc="La solution de téléphonie IP permet de gérer les communications professionnelles via le réseau informatique. Elle utilise la technologie VoIP pour transmettre les appels sous forme de données numériques. Le système peut intégrer un IPBX, des téléphones IP, des postes Wi-Fi et des applications de communication. Il permet de créer plusieurs extensions et de gérer les appels internes et externes de manière centralisée. Des fonctionnalités telles que le transfert d’appels, la conférence, le répondeur et la messagerie vocale peuvent être intégrées. La solution facilite également la gestion des utilisateurs, des groupes et des droits d’appel. Elle peut être connectée au réseau local et aux services téléphoniques existants selon les besoins. La téléphonie IP permet de réduire les coûts de communication tout en offrant une infrastructure évolutive. Elle convient aux entreprises, hôtels, bureaux, centres d’appels, commerces et établissements professionnels. Cette solution garantit ainsi une communication moderne, flexible et adaptée aux besoins des organisations." data-solution-img="assets/img/telephony-ipbx.jpg" data-solution-badge="IPBX Enterprise" data-solution-link="activites/telephonie-ip.html">
+                    <div class="solution-icon-wrapper"><i class="fa-solid fa-phone-volume"></i></div>
+                    <h4 class="solution-card-title">Téléphonie IP & Standard PABX</h4>
+                    <p class="solution-card-desc">Standards téléphoniques IPBX, communications unifiées et postes IP HD pour entreprises et hôtels.</p>
+                    <a href="activites/telephonie-ip.html" class="solution-card-btn">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Activity 6: Anti-intrusion -->
+                <div class="solution-card icon-only-card" data-solution-title="Alarme Anti-Intrusion" data-solution-desc="La solution anti-intrusion permet d’assurer la sécurité des personnes et de protéger les biens contre les tentatives d’intrusion. Elle repose sur des équipements de détection adaptés aux espaces intérieurs et extérieurs, tels que détecteurs de mouvement, contacts d’ouverture et barrières infrarouges. En cas de détection d’une présence non autorisée, la centrale déclenche immédiatement les sirènes et transmet une alerte aux utilisateurs ou au centre de télésurveillance. Le système peut être armé, désarmé et supervisé facilement depuis un clavier, une télécommande ou une application mobile. L’intégration de la levée de doute vidéo permet de vérifier rapidement la cause de l’alarme via les caméras associées. Il est également possible d’associer des capteurs de sécurité technique tels que détection de fumée, fuite d’eau ou coupure de courant. La solution offre ainsi une protection continue, une réactivité optimale et une tranquillité d’esprit au quotidien. Elle convient aux résidences, villas, commerces, bureaux et sites professionnels." data-solution-img="assets/img/anti-intrusion-ajax.jpg" data-solution-badge="Alarme Connectée" data-solution-link="activites/anti-intrusion.html">
+                    <div class="solution-icon-wrapper"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h4 class="solution-card-title">Alarme Anti-Intrusion</h4>
+                    <p class="solution-card-desc">Protection périmétrique extérieure, détecteurs double technologie et télésurveillance connectée 24/7.</p>
+                    <a href="activites/anti-intrusion.html" class="solution-card-btn">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Activity 7: Domotique -->
+                <div class="solution-card icon-only-card" data-solution-title="Domotique & Smart Home" data-solution-desc="Transformez votre espace en un lieu d'exception où l'élégance de l'architecture s'allie parfaitement à la pointe de la technologie. Notre expertise en domotique et smart building vous permet de centraliser le contrôle de votre environnement pour un confort absolu et une gestion simplifiée au quotidien. Depuis une interface unique et intuitive sur votre smartphone ou une tablette dédiée, pilotez avec précision l'éclairage d'ambiance, ajustez la climatisation de chaque pièce et gérez vos systèmes audiovisuels en toute fluidité. La protection de votre propriété est également renforcée grâce à une intégration sur mesure du contrôle d'accès intelligent, de la vidéosurveillance et des dispositifs de sécurité, consultables à distance. En automatisant vos routines et en optimisant votre consommation énergétique, nos solutions domotiques redéfinissent l'art de vivre, vous offrant ainsi une tranquillité d'esprit totale et un prestige moderne." data-solution-img="assets/img/domotique-smart.jpg" data-solution-badge="iNELS & KNX" data-solution-link="activites/domotique.html">
+                    <div class="solution-icon-wrapper"><i class="fa-solid fa-house-signal"></i></div>
+                    <h4 class="solution-card-title">Domotique & Smart Home / GTB</h4>
+                    <p class="solution-card-desc">Automatisation complète de l'éclairage, climatisation, volets et scénarios intelligents via écran tactile et app.</p>
+                    <a href="activites/domotique.html" class="solution-card-btn">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Activity 8: Audiovisuel -->
+                <div class="solution-card icon-only-card" data-solution-title="Audiovisuel & Sonorisation" data-solution-desc="La solution de sonorisation permet de diffuser une musique et des messages audio avec une qualité sonore adaptée à chaque espace. Elle peut intégrer des amplificateurs, haut-parleurs, microphones, mélangeurs et sources audio professionnelles. Le système permet de gérer plusieurs zones sonores selon les besoins du bâtiment. Il peut être utilisé pour la diffusion de musique d’ambiance, d’annonces, de messages et d’informations. La sonorisation peut être centralisée et contrôlée depuis une interface de gestion simple et intuitive. Elle s’adapte aux différents environnements intérieurs et extérieurs grâce à des équipements adaptés. Cette solution convient aux hôtels, restaurants, commerces, bureaux, résidences, salles de réunion et espaces publics." data-solution-img="assets/img/av-conference.jpg" data-solution-badge="Audiovisuel Pro" data-solution-link="activites/audiovisuel.html">
+                    <div class="solution-icon-wrapper"><i class="fa-solid fa-tv"></i></div>
+                    <h4 class="solution-card-title">Audiovisuel & Sonorisation</h4>
+                    <p class="solution-card-desc">Sonorisation d'ambiance et de sécurité, salles de réunion multimédia et affichage dynamique.</p>
+                    <a href="activites/audiovisuel.html" class="solution-card-btn">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Activity 9: Réseau Optique -->
+                <div class="solution-card icon-only-card" data-solution-title="Réseau Optique (Fibre Optique)" data-solution-desc="Offrez à votre établissement une connectivité d'exception grâce à nos solutions de réseau de fibre optique conçues sur mesure. Nous garantissons un haut débit stable et une interconnexion haute performance pour l'ensemble de vos équipements. Nos équipes déploient du câblage réseau haute performance et des liaisons en fibre optique pour interconnecter en toute fluidité l'ensemble de vos baies et serveurs. Grâce à nos réseaux évolutifs et sécurisés, vous profitez d'un confort numérique inégalé et d'une performance optimale." data-solution-img="assets/img/reseau-optique-soudure.jpg" data-solution-badge="Soudure Optique Pro" data-solution-link="activites/reseau-optique.html">
+                    <div class="solution-icon-wrapper"><i class="fa-solid fa-bolt-lightning"></i></div>
+                    <h4 class="solution-card-title">Réseau Optique & Fibre</h4>
+                    <p class="solution-card-desc">Raccordement par soudure de précision, réflectométrie et rocade fibre optique pour liaisons très haut débit.</p>
+                    <a href="activites/reseau-optique.html" class="solution-card-btn">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Activity 10: Motorisation -->
+                <div class="solution-card icon-only-card" data-solution-title="Motorisation Portail & Garage" data-solution-desc="La solution d’automatisme permet de motoriser et de piloter facilement les équipements de la propriété. Elle assure la commande des portails, portes, volets roulants, stores, rideaux et autres accès motorisés. Les équipements peuvent être contrôlés localement ou à distance depuis un smartphone ou une tablette. La programmation de scénarios permet d’adapter automatiquement les installations selon les besoins des occupants. L’intégration avec le contrôle d’accès et la domotique renforce la sécurité et le confort au quotidien. Des capteurs et automatismes intelligents permettent d’optimiser le fonctionnement et la consommation énergétique. Une solution fiable, élégante et évolutive pour un habitat moderne, sécurisé et entièrement connecté." data-solution-img="assets/img/motorisation-portail.jpg" data-solution-badge="Automatisme Pro" data-solution-link="activites/motorisation.html">
+                    <div class="solution-icon-wrapper"><i class="fa-solid fa-warehouse"></i></div>
+                    <h4 class="solution-card-title">Motorisation Portail & Garage</h4>
+                    <p class="solution-card-desc">Automatisme pour portails coulissants/battants, barrières levantes et contrôle d'accès véhicules.</p>
+                    <a href="activites/motorisation.html" class="solution-card-btn">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Activity 11: Télédistribution -->
+                <div class="solution-card icon-only-card" data-solution-title="Télédistribution Collective" data-solution-desc="La solution de télédistribution assure la réception et la distribution des signaux TV et radio dans l’ensemble du bâtiment. Elle permet de desservir plusieurs téléviseurs à partir d’une installation centralisée, avec une qualité d’image optimale. Le système peut intégrer les signaux TNT, satellite et différentes sources audiovisuelles selon les besoins du projet. Une distribution structurée garantit une réception stable et fiable dans chaque espace. L’installation peut être discrètement intégrée afin de préserver l’esthétique des lieux. Elle offre également une solution évolutive pour accompagner l’ajout de nouveaux points TV ou équipements. Une infrastructure professionnelle conçue pour assurer confort, qualité de réception et simplicité d’utilisation." data-solution-img="assets/img/teledist-hero.jpg" data-solution-badge="IP-TV & SAT" data-solution-link="activites/teledistribution.html">
+                    <div class="solution-icon-wrapper"><i class="fa-solid fa-satellite-dish"></i></div>
+                    <h4 class="solution-card-title">Télédistribution Collective</h4>
+                    <p class="solution-card-desc">Distribution centrale des signaux TV satellite et TNT terrestre pour hôtels et résidences collectives.</p>
+                    <a href="activites/teledistribution.html" class="solution-card-btn">
+                        En savoir plus <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="solutions-grid">
-            <!-- 1. Solutions Hôtelière -->
-            <div class="solution-card">
-                <div class="solution-icon"><i class="fa-solid fa-hotel"></i></div>
-                <h3 class="solution-title">Solutions Hôtelière</h3>
-                <p class="solution-desc">Infrastructures globales de sécurité, de communication et de connectivité haute performance spécialement conçues pour les hôtels, resorts et établissements touristiques (13 activités métier).</p>
-                <a href="solutions-hoteliere.html" class="btn btn-primary" style="margin-top:auto; align-self:flex-start;">
-                    Accéder à la page dédiée <i class="fa-solid fa-arrow-right"></i>
-                </a>
+    <!-- SECTOR SOLUTIONS SHOWCASE (VISUAL IMAGE CARDS) -->
+    <section class="solutions" style="background-color: #16181a; border-top: 1px solid rgba(99,196,196,0.15);">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 45px;">
+                <div class="section-tag"><i class="fa-solid fa-building"></i> <span>SOLUTIONS SECTORIELLES</span></div>
+                <h2 class="section-title">Solutions Sur-Mesure par Secteur</h2>
+                <p class="section-subtitle">Sélectionnez une solution sectorielle pour consulter les activités et expertises spécifiques associées.</p>
             </div>
 
-            <!-- 2. Solutions Riad & Villa -->
-            <div class="solution-card">
-                <div class="solution-icon"><i class="fa-solid fa-house-chimney"></i></div>
-                <h3 class="solution-title">Solutions Riad & Villa</h3>
-                <p class="solution-desc">Solutions haut de gamme sur-mesure d'automatisation, de protection anti-intrusion, de vidéosurveillance et de confort multimédia pour résidences d'exception, riads et villas (12 activités métier).</p>
-                <a href="solutions-riad-villa.html" class="btn btn-primary" style="margin-top:auto; align-self:flex-start;">
-                    Accéder à la page dédiée <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
+            <div class="activities-visual-grid">
+                <!-- 1. Solutions Hôtelière -->
+                <div class="activity-glass-card" data-solution-title="Solutions Hôtelière" data-solution-desc="Infrastructures globales de sécurité, de communication et de connectivité haute performance spécialement conçues pour les hôtels, resorts et établissements touristiques (13 activités métier)." data-solution-img="assets/img/bg-solution-hoteliere.jpg" data-solution-badge="Hôtellerie & Resorts" data-solution-link="solutions-hoteliere.html">
+                    <div class="card-bg-image" style="background-image: url('assets/img/bg-solution-hoteliere.jpg');"></div>
+                    <div class="card-gradient-overlay"></div>
+                    <div class="card-content">
+                        <div class="card-badge"><i class="fa-solid fa-hotel"></i> 13 Activités Métier</div>
+                        <h3 class="card-title">Solutions Hôtelière</h3>
+                        <p class="card-description">Infrastructures globales de sécurité, de communication et de connectivité conçues pour les hôtels & resorts.</p>
+                        <a href="solutions-hoteliere.html" class="card-action-btn">
+                            Accéder à la page dédiée <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
 
-            <!-- 3. Solutions Innovantes -->
-            <div class="solution-card">
-                <div class="solution-icon"><i class="fa-solid fa-lightbulb"></i></div>
-                <h3 class="solution-title">Solutions Innovantes</h3>
-                <p class="solution-desc">Technologies de pointe pour la gestion intelligente des bâtiments, l'automatisation avancée et la sécurité des environnements complexes (5 activités métier).</p>
-                <a href="solutions-innovantes.html" class="btn btn-primary" style="margin-top:auto; align-self:flex-start;">
-                    Accéder à la page dédiée <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <!-- 2. Solutions Riad & Villa -->
+                <div class="activity-glass-card" data-solution-title="Solutions Riad & Villa" data-solution-desc="Solutions haut de gamme sur-mesure d'automatisation, de protection anti-intrusion, de vidéosurveillance et de confort multimédia pour résidences d'exception, riads et villas (12 activités métier)." data-solution-img="assets/img/bg-solution-riad-villa.png" data-solution-badge="Résidences de Luxe" data-solution-link="solutions-riad-villa.html">
+                    <div class="card-bg-image" style="background-image: url('assets/img/bg-solution-riad-villa.png');"></div>
+                    <div class="card-gradient-overlay"></div>
+                    <div class="card-content">
+                        <div class="card-badge"><i class="fa-solid fa-house-chimney"></i> 12 Activités Métier</div>
+                        <h3 class="card-title">Solutions Riad & Villa</h3>
+                        <p class="card-description">Automatisation, alarme anti-intrusion, domotique et confort multimédia pour villas d'exception et riads.</p>
+                        <a href="solutions-riad-villa.html" class="card-action-btn">
+                            Accéder à la page dédiée <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. Solutions Innovantes -->
+                <div class="activity-glass-card" data-solution-title="Solutions Innovantes" data-solution-desc="Technologies de pointe pour la gestion intelligente des bâtiments, l'automatisation avancée et la sécurité des environnements complexes (5 activités métier)." data-solution-img="assets/img/bg-solution-innovante.jpg" data-solution-badge="Smart Tech" data-solution-link="solutions-innovantes.html">
+                    <div class="card-bg-image" style="background-image: url('assets/img/bg-solution-innovante.jpg');"></div>
+                    <div class="card-gradient-overlay"></div>
+                    <div class="card-content">
+                        <div class="card-badge"><i class="fa-solid fa-lightbulb"></i> 5 Activités Métier</div>
+                        <h3 class="card-title">Solutions Innovantes</h3>
+                        <p class="card-description">Technologies de pointe pour la gestion intelligente des bâtiments, parking Smart, GTB et automates.</p>
+                        <a href="solutions-innovantes.html" class="card-action-btn">
+                            Accéder à la page dédiée <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
 
     <!-- FLOATING QUICK CONTACT ACTION WIDGETS (Right Side) -->
     <div class="floating-contact-bar">
@@ -197,7 +370,11 @@
     </div>
 
     <!-- Footer -->
-    <footer class="site-footer">
+    
+    <!-- Section NOS MARQUES & PARTENAIRES -->
+    
+
+<footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -205,8 +382,8 @@
                     <p>Votre partenaire de confiance en courant faible et sécurité électronique au Maroc. Plus de 10 ans d'expertise à votre service.</p>
                     <div class="social-links" style="margin-top:16px;">
                         <a href="https://web.facebook.com/ste.excellence.systeme.2025" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/ste__excellence_syst?stkn=MXZ0a3pjbzh1NmE2MQ==" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/excellence-systeme-44733a397/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/ste__excellence_systeme?stkn=MXZ0a3pjbzh1NmE2MQ==" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/mohamed-azizi-7a390a77?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://wa.me/212668764271" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -218,19 +395,17 @@
                         <a href="about.html">À propos</a>
                         <a href="activites.html">Solutions IT</a>
                         <a href="realisations.html">Nos réalisations</a>
-                                                <a href="contact.html">Contact</a>
+                        <a href="contact.html">Contact</a>
                     </div>
                 </div>
 
                 <div>
                     <h4 class="footer-heading">Nos Activités</h4>
                     <div class="footer-links">
-                        <a href="activites/detection-incendie.html">Détection incendie</a>
-                        <a href="activites/videosurveillance.html">Vidéosurveillance IP</a>
-                        <a href="activites/controle-acces.html">Contrôle d'accès</a>
-                        <a href="activites/reseau-informatique.html">Réseaux informatiques</a>
-                        <a href="activites/reseau-optique.html">Réseaux optiques</a>
-                        <a href="activites/domotique.html">Domotique & Smart Home</a>
+                        <a href="activites.html">Sécurité Électronique</a>
+                        <a href="activites/motorisation.html">Automatisme</a>
+                        <a href="activites/domotique.html">Gestion Technique (GTB/GTC)</a>
+                        <a href="activites/reseau-informatique.html">Réseaux Informatiques & Fibre</a>
                     </div>
                 </div>
 
@@ -239,7 +414,9 @@
                     <div class="footer-links" style="gap:14px;">
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.4;">
                             <i class="fa-solid fa-location-dot" style="color:#63C4C4; margin-right:8px;"></i>
-                            <strong>Adresse :</strong><br>Marrakech ...<br>Agadir ...
+                            <strong>Adresse :</strong><br>
+                            Marrakech : 1057, Lot Al Housna 2, ASKJOUR<br>
+                            Agadir : IMM 42, APP 166 ADRAR
                         </p>
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.5;">
                             <i class="fa-solid fa-phone" style="color:#63C4C4; margin-right:8px;"></i> <strong>Téléphone :</strong><br>
@@ -250,7 +427,7 @@
                         <p style="color:var(--text-light); font-size:0.88rem; line-height:1.5;">
                             <i class="fa-solid fa-envelope" style="color:#63C4C4; margin-right:8px;"></i> <strong>Email :</strong><br>
                             <a href="mailto:Excellencesysteme@gmail.com" style="color:var(--text-light);">Excellencesysteme@gmail.com</a><br>
-                            <a href="mailto:commercial.exsys@gamil.com" style="color:var(--text-light);">commercial.exsys@gamil.com</a>
+                            <a href="mailto:commercial.exsys@gmail.com" style="color:var(--text-light);">commercial.exsys@gmail.com</a>
                         </p>
                         <a href="https://maps.app.goo.gl/qGhGEnQhsorKXpJs6" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="margin-top:6px; font-size:0.8rem; padding:8px 14px;">
                             <i class="fa-solid fa-map-location-dot"></i> Localiser sur Google Maps
