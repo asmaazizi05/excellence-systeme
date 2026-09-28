@@ -387,12 +387,12 @@ const translations = {
 
         heroTag: "EXPERT EN COURANT FAIBLE & SÉCURITÉ ÉLECTRONIQUE",
         heroTitle: "Votre partenaire de confiance en <span class='highlight'>courant faible et sécurité électronique</span>",
-        heroDesc: "Plus de 10 ans d'expérience dans le conseil, la fourniture, l'intégration et la maintenance de solutions de sécurité électronique, réseaux informatiques et domotique au Maroc.",
+        heroDesc: "Plus de 11 ans d'expérience dans le conseil, la fourniture, l'intégration et la maintenance de solutions de sécurité électronique, réseaux informatiques et domotique au Maroc.",
         btnDiscover: "Découvrir nos activités <i class='fa-solid fa-arrow-right'></i>",
-        stat1Label: "Projets & Solutions déployés",
-        stat2Label: "Clients accompagnés au Maroc",
-        stat3Label: "Années d'expertise éprouvée",
-        stat4Label: "Support technique & maintenance",
+        stat1Label: "Projets & Solutions Déployés",
+        stat2Label: "Clients Accompagnés au Maroc",
+        stat3Label: "Années d'Expérience",
+        stat4Label: "Support Technique & Maintenance",
 
         homeExpertiseTag: "NOS DOMAINES D'EXPERTISE ÉPROUVÉS",
         homeExpertiseTitle: "Nos Activités Principales",
@@ -482,11 +482,11 @@ const translations = {
 
         heroTag: "LOW CURRENT & ELECTRONIC SECURITY EXPERT",
         heroTitle: "Your trusted partner in <span class='highlight'>low current & electronic security</span>",
-        heroDesc: "Over 10 years of expertise in consulting, supply, integration, and maintenance of electronic security, IT networking, and smart home solutions in Morocco.",
+        heroDesc: "Over 11 years of experience in consulting, supply, integration, and maintenance of electronic security, IT networking, and smart home solutions in Morocco.",
         btnDiscover: "Explore Our Activities <i class='fa-solid fa-arrow-right'></i>",
         stat1Label: "Deployed Projects",
         stat2Label: "Satisfied Clients in Morocco",
-        stat3Label: "Years of Proven Expertise",
+        stat3Label: "Years of Experience",
         stat4Label: "Technical Support & Maintenance",
 
         homeExpertiseTag: "OUR PROVEN EXPERTISE",

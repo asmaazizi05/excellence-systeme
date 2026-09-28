@@ -534,6 +534,7 @@ textarea {
 .hero-title .highlight {
     background: linear-gradient(135deg, #FFFFFF 0%, var(--primary-turquoise) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -651,13 +652,13 @@ textarea {
 
 .hero-slideshow-dots {
     position: absolute;
-    bottom: 14px;
+    bottom: 58px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
     gap: 8px;
-    z-index: 10;
+    z-index: 12;
 }
 
 .hero-slideshow-dots .dot {
@@ -718,11 +719,6 @@ textarea {
 .status-badge.top-right {
     top: -15px;
     right: -15px;
-}
-
-.status-badge.bottom-left {
-    bottom: -15px;
-    left: -15px;
 }
 
 .status-indicator {
@@ -1000,7 +996,7 @@ textarea {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .about-image-column {
@@ -2175,15 +2171,15 @@ textarea.form-control {
 }
 
 .brand-card {
-    background: rgba(255, 255, 255, 0.96);
+    background: transparent;
     border-radius: 14px;
     padding: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 115px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(99, 196, 196, 0.25);
+    box-shadow: none;
+    border: 1px solid rgba(99, 196, 196, 0.2);
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -2571,25 +2567,135 @@ textarea.form-control {
     box-shadow: 0 0 15px rgba(99, 196, 196, 0.3) !important;
 }
 
+/* Hero Carousel Floating Badges (Unified Flex Container) */
+.hero-bottom-badges,
 .hero-floating-specs {
     position: absolute;
     bottom: -20px;
-    right: 20px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: calc(100% + 40px);
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 12px;
-    z-index: 10;
+    z-index: 15;
+    pointer-events: auto;
+    margin: 0;
+    padding: 0;
 }
 
-.spec-item {
-    background: rgba(22, 25, 28, 0.95);
-    border: 1px solid rgba(99, 196, 196, 0.3);
-    border-radius: 20px;
-    padding: 8px 16px;
+.hero-badge-pill,
+.hero-bottom-badges .spec-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+    flex-shrink: 0;
+    height: 42px;
+    min-height: 42px;
+    padding: 10px 18px;
+    background: rgba(18, 20, 23, 0.92);
+    border: 1px solid var(--primary-turquoise);
+    box-shadow: 0 0 15px rgba(99, 196, 196, 0.3), 0 8px 20px rgba(0, 0, 0, 0.45);
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     font-size: 0.82rem;
     font-weight: 600;
     color: var(--white);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0;
+    position: static;
+    left: auto;
+    right: auto;
+    bottom: auto;
+}
+
+.hero-badge-pill i,
+.hero-bottom-badges .spec-item i {
+    color: var(--primary-turquoise);
+    font-size: 0.95rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.hero-badge-pill span,
+.hero-bottom-badges .spec-item span {
+    white-space: nowrap;
+    overflow: visible;
+    line-height: 1;
+}
+
+.hero-badge-pill:hover,
+.hero-bottom-badges .spec-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(99, 196, 196, 0.5), 0 10px 24px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .hero-slideshow-dots {
+        bottom: 74px;
+    }
+
+    .hero-bottom-badges,
+    .hero-floating-specs {
+        bottom: -32px;
+        width: 100%;
+        max-width: 100%;
+        flex-wrap: wrap;
+        gap: 8px 10px;
+    }
+
+    .hero-badge-pill,
+    .hero-bottom-badges .spec-item {
+        padding: 8px 14px;
+        font-size: 13px;
+        height: 36px;
+        min-height: 36px;
+        gap: 6px;
+    }
+
+    .hero-badge-pill i,
+    .hero-bottom-badges .spec-item i {
+        font-size: 0.85rem;
+    }
+
+    .hero-image-wrapper {
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-slideshow-dots {
+        bottom: 70px;
+    }
+
+    .hero-bottom-badges,
+    .hero-floating-specs {
+        bottom: -28px;
+        gap: 6px 8px;
+    }
+
+    .hero-badge-pill,
+    .hero-bottom-badges .spec-item {
+        padding: 7px 11px;
+        font-size: 12px;
+        height: 34px;
+        min-height: 34px;
+        gap: 5px;
+    }
+
+    .hero-badge-pill i,
+    .hero-bottom-badges .spec-item i {
+        font-size: 0.8rem;
+    }
 }
 
 /* Marquee Header & Masking */
@@ -2906,7 +3012,7 @@ textarea.form-control {
 /* High Impact CTA Banner */
 .cta-banner-section {
     padding: 80px 0;
-    background: linear-gradient(180deg, var(--bg-dark) 0%, #101214 100%);
+    background-color: var(--dark-charcoal, #16181A);
 }
 
 .cta-glass-box {
@@ -3000,7 +3106,7 @@ textarea.form-control {
 }
 
 .home-brand-card {
-    background: rgba(255, 255, 255, 0.96);
+    background: transparent;
     border-radius: 12px;
     padding: 16px 12px;
     display: flex;
@@ -3088,7 +3194,7 @@ textarea.form-control {
 
 /* Staggered entrance initial state */
 .activity-brand-card {
-    background: rgba(255, 255, 255, 0.96);
+    background: transparent;
     border-radius: 16px;
     padding: 22px 16px 14px;
     display: flex;
@@ -3096,8 +3202,8 @@ textarea.form-control {
     align-items: center;
     justify-content: center;
     height: 130px;
-    border: 1px solid rgba(99, 196, 196, 0.25);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(99, 196, 196, 0.2);
+    box-shadow: none;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
     position: relative;
     overflow: hidden;
@@ -5193,16 +5299,16 @@ textarea.form-control {
 .modal-brand-card,
 .brand-logo-card,
 .activity-brand-pill {
-    background: #ffffff !important;
-    border: 1px solid rgba(99, 196, 196, 0.35) !important;
-    border-radius: 12px !important;
-    height: 75px !important;
-    padding: 12px 18px !important;
+    background: transparent !important;
+    border: 1px solid rgba(99, 196, 196, 0.2) !important;
+    border-radius: 8px !important;
+    height: 60px !important;
+    padding: 8px 14px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: none !important;
     opacity: 0;
     animation: fadeInUpStagger 0.45s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
@@ -5210,19 +5316,19 @@ textarea.form-control {
 .modal-brand-card:hover,
 .brand-logo-card:hover,
 .activity-brand-pill:hover {
-    transform: translateY(-5px) scale(1.03) !important;
+    transform: translateY(-3px) scale(1.03) !important;
     border-color: var(--primary-turquoise, #63C4C4) !important;
-    box-shadow: 0 10px 25px rgba(99, 196, 196, 0.35), 0 0 15px rgba(99, 196, 196, 0.2) !important;
-    background: #ffffff !important;
+    box-shadow: 0 6px 18px rgba(99, 196, 196, 0.25) !important;
+    background: rgba(99, 196, 196, 0.06) !important;
 }
 
 .modal-brand-card img,
 .brand-logo-card img,
 .activity-brand-pill img {
-    max-height: 48px !important;
+    max-height: 42px !important;
     max-width: 88% !important;
     object-fit: contain !important;
-    filter: none !important;
+    filter: brightness(1.04) contrast(1.02) !important;
     transition: transform 0.3s ease !important;
 }
 
@@ -5263,57 +5369,184 @@ textarea.form-control {
 
 
 /* ==========================================================================
-   DIRECT LOGOS ON DARK BACKGROUND (SANS CARTES BLANCHES)
+   OFFICIAL PARTNER BRANDS CONTINUOUS MARQUEE (PRESTIGE GREEN PILL BANNER)
+   Harmonized with Excellence Système Visual Identity (#63C4C4 / Charcoal)
    ========================================================================== */
 
-.modal-brand-card,
-.brand-logo-card,
-.activity-brand-pill {
-    background: #191c20 !important;
-    background: rgba(25, 28, 32, 0.8) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 12px !important;
-    height: 75px !important;
-    padding: 12px 18px !important;
+.single-marquee-section {
+    padding: 38px 0 30px !important;
+    background-color: var(--dark-charcoal, #16181A);
+    position: relative;
+    overflow: hidden;
+    border-top: none !important;
+    border-bottom: 1px solid rgba(99, 196, 196, 0.12);
+}
+
+.activity-brands-section {
+    padding: 38px 0 30px !important;
+    position: relative;
+    overflow: hidden;
+    border-top: none !important;
+    background-color: var(--dark-charcoal, #16181A) !important;
+}
+
+/* Slim Elegant Pill Container - Deep Brand Green / Turquoise Harmony */
+.activity-pill-marquee-container,
+.single-marquee-wrapper {
+    background: linear-gradient(135deg, 
+        rgba(99, 196, 196, 0.10) 0%, 
+        rgba(17, 26, 28, 0.94) 42%, 
+        rgba(14, 21, 23, 0.94) 58%, 
+        rgba(99, 196, 196, 0.08) 100%
+    ), #0e1c1e !important;
+    border-radius: 9999px !important;
+    border: 1px solid rgba(99, 196, 196, 0.26) !important;
+    padding: 10px 42px !important;
+    min-height: 84px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    position: relative !important;
+    width: 95% !important;
+    max-width: 1450px !important;
+    margin: 0 auto !important;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.45), 
+        inset 0 0 25px rgba(99, 196, 196, 0.06),
+        0 0 16px rgba(99, 196, 196, 0.08) !important;
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    transition: all 0.35s ease !important;
+}
+
+.activity-pill-marquee-container:hover,
+.single-marquee-wrapper:hover {
+    background: linear-gradient(135deg, 
+        rgba(99, 196, 196, 0.15) 0%, 
+        rgba(20, 32, 35, 0.97) 42%, 
+        rgba(16, 26, 28, 0.97) 58%, 
+        rgba(99, 196, 196, 0.12) 100%
+    ), #112326 !important;
+    border-color: rgba(99, 196, 196, 0.45) !important;
+    box-shadow: 
+        0 14px 38px rgba(0, 0, 0, 0.55), 
+        inset 0 0 30px rgba(99, 196, 196, 0.10),
+        0 0 22px rgba(99, 196, 196, 0.16) !important;
+}
+
+/* Continuous Infinite Track with Generous Breathing Space */
+.activity-pill-marquee-track,
+.single-marquee-track {
+    display: flex !important;
+    align-items: center !important;
+    gap: 75px !important;
+    width: max-content !important;
+    animation: activityMarqueeScroll 45s linear infinite !important;
+    will-change: transform;
+}
+
+.activity-pill-marquee-container:hover .activity-pill-marquee-track,
+.single-marquee-wrapper:hover .single-marquee-track {
+    animation-play-state: paused !important;
+}
+
+@keyframes activityMarqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Single line marquee fallback keyframe */
+@keyframes marqueeSingleLine {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Logo Item Box: Directly integrated in the bandeau, NO individual cards or rectangles */
+.activity-pill-logo,
+.marquee-logo-item {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    flex-shrink: 0 !important;
+    height: 60px !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
     box-shadow: none !important;
-    opacity: 0;
-    animation: fadeInUpStagger 0.45s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    outline: none !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    transition: transform 0.3s ease !important;
 }
 
-.modal-brand-card:hover,
-.brand-logo-card:hover,
-.activity-brand-pill:hover {
-    transform: translateY(-4px) !important;
-    border-color: rgba(99, 196, 196, 0.45) !important;
-    background: #20242a !important;
-    box-shadow: 0 8px 24px rgba(99, 196, 196, 0.15) !important;
-}
-
-.modal-brand-card img,
-.brand-logo-card img,
-.activity-brand-pill img {
-    max-height: 50px !important;
-    max-width: 85% !important;
+.activity-pill-logo img,
+.marquee-logo-item img {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
     object-fit: contain !important;
-    filter: brightness(1.05) contrast(1.05) !important;
-    transition: transform 0.3s ease, filter 0.3s ease !important;
+    filter: brightness(1.04) contrast(1.02) !important;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease !important;
+    transform-origin: center center !important;
 }
 
-.modal-brand-card:hover img,
-.brand-logo-card:hover img,
-.activity-brand-pill:hover img {
+.activity-pill-logo:hover img,
+.marquee-logo-item:hover img {
     transform: scale(1.08) !important;
-    filter: brightness(1.2) contrast(1.1) !important;
+    filter: brightness(1.18) contrast(1.05) drop-shadow(0 0 10px rgba(99, 196, 196, 0.55)) !important;
 }
 
-.solution-modal-brands-grid,
-.brand-logo-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)) !important;
-    gap: 16px !important;
-    margin-top: 20px !important;
+/* Responsive adjustments for slimmer bandeau */
+@media (max-width: 992px) {
+    .activity-pill-marquee-container,
+    .single-marquee-wrapper {
+        min-height: 76px !important;
+        padding: 8px 30px !important;
+    }
+    .activity-pill-marquee-track,
+    .single-marquee-track {
+        gap: 55px !important;
+    }
+    .activity-pill-logo,
+    .marquee-logo-item {
+        height: 52px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .single-marquee-section {
+        padding: 35px 0 25px;
+    }
+    .activity-brands-section {
+        padding: 30px 0 20px;
+    }
+    .activity-pill-marquee-container,
+    .single-marquee-wrapper {
+        width: 96% !important;
+        border-radius: 9999px !important;
+        padding: 6px 18px !important;
+        min-height: 68px !important;
+    }
+    .activity-pill-marquee-track,
+    .single-marquee-track {
+        gap: 40px !important;
+    }
+    .activity-pill-logo,
+    .marquee-logo-item {
+        height: 46px !important;
+    }
 }
