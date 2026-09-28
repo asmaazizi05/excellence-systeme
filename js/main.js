@@ -386,7 +386,7 @@ const translations = {
         srvAdmin: "<i class='fa-solid fa-landmark'></i> Administrations & Industrie",
 
         heroTag: "EXPERT EN COURANT FAIBLE & SÉCURITÉ ÉLECTRONIQUE",
-        heroTitle: "Votre partenaire de confiance en <span class='highlight'>courant faible et sécurité électronique</span>",
+        heroTitle: "Intégrer des solutions IT à vos projets<br><span class='highlight'>Apporter de l'innovation à vos clients</span>",
         heroDesc: "Plus de 11 ans d'expérience dans le conseil, la fourniture, l'intégration et la maintenance de solutions de sécurité électronique, réseaux informatiques et domotique au Maroc.",
         btnDiscover: "Découvrir nos activités <i class='fa-solid fa-arrow-right'></i>",
         stat1Label: "Projets & Solutions Déployés",
@@ -481,7 +481,7 @@ const translations = {
         srvAdmin: "<i class='fa-solid fa-landmark'></i> Public & Industry",
 
         heroTag: "LOW CURRENT & ELECTRONIC SECURITY EXPERT",
-        heroTitle: "Your trusted partner in <span class='highlight'>low current & electronic security</span>",
+        heroTitle: "Integrate IT solutions into your projects<br><span class='highlight'>Bring innovation to your clients</span>",
         heroDesc: "Over 11 years of experience in consulting, supply, integration, and maintenance of electronic security, IT networking, and smart home solutions in Morocco.",
         btnDiscover: "Explore Our Activities <i class='fa-solid fa-arrow-right'></i>",
         stat1Label: "Deployed Projects",

@@ -4306,6 +4306,7 @@ textarea.form-control {
         opacity: 0;
         transform: translateY(20px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -4353,6 +4354,7 @@ textarea.form-control {
 }
 
 @media (max-width: 992px) {
+
     .activities-visual-grid,
     .solutions-grid-top3 {
         grid-template-columns: repeat(2, 1fr);
@@ -4360,6 +4362,7 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
+
     .activities-visual-grid,
     .solutions-grid-top3 {
         grid-template-columns: 1fr;
@@ -4432,6 +4435,7 @@ textarea.form-control {
 }
 
 @media (max-width: 992px) {
+
     .solutions-grid-remaining,
     .solutions-grid-icons {
         grid-template-columns: repeat(2, 1fr);
@@ -4439,6 +4443,7 @@ textarea.form-control {
 }
 
 @media (max-width: 640px) {
+
     .solutions-grid-remaining,
     .solutions-grid-icons {
         grid-template-columns: 1fr;
@@ -4616,7 +4621,7 @@ textarea.form-control {
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 30px rgba(99,196,196,0.18);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(99, 196, 196, 0.18);
     transform: translateY(20px) scale(0.95);
     transition: all 0.3s ease;
 }
@@ -4632,8 +4637,8 @@ textarea.form-control {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: rgba(0,0,0,0.65);
-    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     color: #fff;
     font-size: 1.1rem;
     display: flex;
@@ -5192,6 +5197,7 @@ textarea.form-control {
         opacity: 0;
         transform: translateY(20px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -5243,6 +5249,7 @@ textarea.form-control {
     .activities-top3-grid {
         grid-template-columns: repeat(2, 1fr) !important;
     }
+
     .activities-top3-grid .card-v2-container:nth-child(3) {
         grid-column: span 2 !important;
         max-width: 580px;
@@ -5255,6 +5262,7 @@ textarea.form-control {
     .activities-top3-grid {
         grid-template-columns: 1fr !important;
     }
+
     .activities-top3-grid .card-v2-container:nth-child(3) {
         grid-column: span 1 !important;
         max-width: 100%;
@@ -5265,7 +5273,9 @@ textarea.form-control {
 .card-v2-container::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, rgba(99, 196, 196, 0.6), transparent);
     opacity: 0;
@@ -5393,12 +5403,11 @@ textarea.form-control {
 /* Slim Elegant Pill Container - Deep Brand Green / Turquoise Harmony */
 .activity-pill-marquee-container,
 .single-marquee-wrapper {
-    background: linear-gradient(135deg, 
-        rgba(99, 196, 196, 0.10) 0%, 
-        rgba(17, 26, 28, 0.94) 42%, 
-        rgba(14, 21, 23, 0.94) 58%, 
-        rgba(99, 196, 196, 0.08) 100%
-    ), #0e1c1e !important;
+    background: linear-gradient(135deg,
+            rgba(99, 196, 196, 0.10) 0%,
+            rgba(17, 26, 28, 0.94) 42%,
+            rgba(14, 21, 23, 0.94) 58%,
+            rgba(99, 196, 196, 0.08) 100%), #0e1c1e !important;
     border-radius: 9999px !important;
     border: 1px solid rgba(99, 196, 196, 0.26) !important;
     padding: 10px 42px !important;
@@ -5411,8 +5420,8 @@ textarea.form-control {
     width: 95% !important;
     max-width: 1450px !important;
     margin: 0 auto !important;
-    box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.45), 
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.45),
         inset 0 0 25px rgba(99, 196, 196, 0.06),
         0 0 16px rgba(99, 196, 196, 0.08) !important;
     mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
@@ -5422,15 +5431,14 @@ textarea.form-control {
 
 .activity-pill-marquee-container:hover,
 .single-marquee-wrapper:hover {
-    background: linear-gradient(135deg, 
-        rgba(99, 196, 196, 0.15) 0%, 
-        rgba(20, 32, 35, 0.97) 42%, 
-        rgba(16, 26, 28, 0.97) 58%, 
-        rgba(99, 196, 196, 0.12) 100%
-    ), #112326 !important;
+    background: linear-gradient(135deg,
+            rgba(99, 196, 196, 0.15) 0%,
+            rgba(20, 32, 35, 0.97) 42%,
+            rgba(16, 26, 28, 0.97) 58%,
+            rgba(99, 196, 196, 0.12) 100%), #112326 !important;
     border-color: rgba(99, 196, 196, 0.45) !important;
-    box-shadow: 
-        0 14px 38px rgba(0, 0, 0, 0.55), 
+    box-shadow:
+        0 14px 38px rgba(0, 0, 0, 0.55),
         inset 0 0 30px rgba(99, 196, 196, 0.10),
         0 0 22px rgba(99, 196, 196, 0.16) !important;
 }
@@ -5455,6 +5463,7 @@ textarea.form-control {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -5465,6 +5474,7 @@ textarea.form-control {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -5512,15 +5522,18 @@ textarea.form-control {
 
 /* Responsive adjustments for slimmer bandeau */
 @media (max-width: 992px) {
+
     .activity-pill-marquee-container,
     .single-marquee-wrapper {
         min-height: 76px !important;
         padding: 8px 30px !important;
     }
+
     .activity-pill-marquee-track,
     .single-marquee-track {
         gap: 55px !important;
     }
+
     .activity-pill-logo,
     .marquee-logo-item {
         height: 52px !important;
@@ -5531,9 +5544,11 @@ textarea.form-control {
     .single-marquee-section {
         padding: 35px 0 25px;
     }
+
     .activity-brands-section {
         padding: 30px 0 20px;
     }
+
     .activity-pill-marquee-container,
     .single-marquee-wrapper {
         width: 96% !important;
@@ -5541,10 +5556,12 @@ textarea.form-control {
         padding: 6px 18px !important;
         min-height: 68px !important;
     }
+
     .activity-pill-marquee-track,
     .single-marquee-track {
         gap: 40px !important;
     }
+
     .activity-pill-logo,
     .marquee-logo-item {
         height: 46px !important;
