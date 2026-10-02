@@ -7,11 +7,235 @@
     <meta name="description" content="Politique relative aux cookies et traceurs numériques du site officiel Excellence Système au Maroc. Informations et paramétrage du consentement.">
     
     <link rel="icon" type="image/png" href="assets/logo-3d.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="css/styles.css?v=2.2">
+
+    <!-- Embedded styles ensuring 100% instant rendering immune to CDN/cache latency -->
+    <style>
+        .legal-page-section {
+            padding: 50px 0 90px;
+            background: #16181A;
+            color: #CBD5E1;
+        }
+        .legal-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 36px;
+            align-items: flex-start;
+        }
+        .legal-sidebar {
+            position: sticky;
+            top: 105px;
+            background: #1F2327;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        }
+        .legal-sidebar-heading {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .legal-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .legal-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: 8px;
+            color: #94A3B8;
+            font-size: 0.88rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-left: 2px solid transparent;
+        }
+        .legal-nav-link:hover, .legal-nav-link.active {
+            color: #FFFFFF;
+            background: rgba(99, 196, 196, 0.12);
+            border-left-color: #63C4C4;
+        }
+        .legal-nav-link .svg-icon {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+        .legal-sidebar-support {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .legal-sidebar-support h5 {
+            font-size: 0.88rem;
+            color: #FFFFFF;
+            margin-bottom: 6px;
+        }
+        .legal-sidebar-support p {
+            font-size: 0.8rem;
+            color: #94A3B8;
+            line-height: 1.45;
+            margin-bottom: 12px;
+        }
+        .legal-content-card {
+            background: #1F2327;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        .legal-meta-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding-bottom: 20px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .legal-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 196, 196, 0.12);
+            border: 1px solid rgba(99, 196, 196, 0.35);
+            color: #63C4C4;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+        .legal-update-date {
+            font-size: 0.85rem;
+            color: #94A3B8;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .legal-article-section {
+            margin-bottom: 44px;
+            scroll-margin-top: 120px;
+        }
+        .legal-article-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .legal-article-content {
+            color: #CBD5E1;
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+        .legal-article-content p {
+            margin-bottom: 14px;
+        }
+        .legal-article-content strong {
+            color: #FFFFFF;
+        }
+        .legal-article-content ul, .legal-article-content ol {
+            margin: 12px 0 18px 22px;
+            padding: 0;
+        }
+        .legal-article-content li {
+            margin-bottom: 8px;
+        }
+        .legal-callout-box {
+            background: rgba(99, 196, 196, 0.08);
+            border-left: 4px solid #63C4C4;
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 20px 0;
+            color: #E2E8F0;
+        }
+        .legal-table-wrapper {
+            overflow-x: auto;
+            margin: 22px 0;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .legal-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            text-align: left;
+        }
+        .legal-table th {
+            background: rgba(255, 255, 255, 0.05);
+            color: #FFFFFF;
+            padding: 12px 16px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .legal-table td {
+            padding: 12px 16px;
+            color: #CBD5E1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .legal-table tr:last-child td {
+            border-bottom: none;
+        }
+        .legal-toc-toggle-btn {
+            display: none;
+            width: 100%;
+            background: #2A2E33;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #FFFFFF;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        @media (max-width: 992px) {
+            .legal-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .legal-sidebar {
+                position: static;
+                padding: 16px;
+            }
+            .legal-toc-toggle-btn {
+                display: flex;
+            }
+            .legal-sidebar.is-collapsed .legal-nav-list,
+            .legal-sidebar.is-collapsed .legal-sidebar-support {
+                display: none;
+            }
+            .legal-content-card {
+                padding: 26px 18px;
+            }
+            .legal-article-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -50,7 +274,7 @@
                 <div class="nav-actions">
                     <div class="lang-selector">
                         <button type="button" class="lang-btn active" data-lang="fr">FR</button>
-                        <button type="button" class="lang-btn" data-lang="en">EN</button>
+                        <a href="cookie-policy.html" class="lang-btn" style="text-decoration:none;">EN</a>
                     </div>
 
                     <button type="button" class="btn btn-primary btn-sm" data-open-quote data-i18n="btnQuote">
@@ -72,7 +296,8 @@
                 <a href="index.html">Accueil</a> <i class="fa-solid fa-chevron-right" style="font-size:0.7rem;"></i> <span>Politique des Cookies</span>
             </div>
             <div class="hero-badge" style="margin-bottom: 14px;">
-                <i class="fa-solid fa-cookie-bite" style="color:var(--primary-turquoise);"></i> TRANSPARENCE & GESTION DES TRACEURS
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2.2" style="vertical-align:middle; margin-right:6px;"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="11.5" cy="15.5" r="1.5"/><circle cx="15.5" cy="11.5" r="1.5"/></svg>
+                TRANSPARENCE & GESTION DES TRACEURS
             </div>
             <h1 class="page-hero-title">Politique relative aux Cookies</h1>
             <p class="page-hero-subtitle">
@@ -86,30 +311,35 @@
         <div class="container">
             <div class="legal-grid">
 
-                <!-- Sticky Sidebar Navigation -->
-                <aside class="legal-sidebar">
+                <!-- Sidebar Navigation -->
+                <aside class="legal-sidebar is-collapsed" id="legalSidebar">
+                    <button type="button" class="legal-toc-toggle-btn" id="tocToggleBtn" aria-expanded="false">
+                        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2.2" style="vertical-align:middle; margin-right:6px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> Sommaire du Document</span>
+                        <span id="tocToggleIcon">▼</span>
+                    </button>
+
                     <div class="legal-sidebar-heading">
-                        <i class="fa-solid fa-list-check"></i> Sommaire
+                        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2.2" style="vertical-align:middle; margin-right:6px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> Sommaire</span>
                     </div>
                     <ul class="legal-nav-list">
-                        <li><a href="#section-definition" class="legal-nav-link active"><i class="fa-solid fa-cookie"></i> 1. Définition</a></li>
-                        <li><a href="#section-utilite" class="legal-nav-link"><i class="fa-solid fa-sliders"></i> 2. Utilisation</a></li>
-                        <li><a href="#section-categories" class="legal-nav-link"><i class="fa-solid fa-layer-group"></i> 3. Catégories</a></li>
-                        <li><a href="#section-tableau" class="legal-nav-link"><i class="fa-solid fa-table-list"></i> 4. Tableau des Cookies</a></li>
-                        <li><a href="#section-consentement" class="legal-nav-link"><i class="fa-solid fa-check-double"></i> 5. Consentement</a></li>
-                        <li><a href="#section-parametrage" class="legal-nav-link"><i class="fa-solid fa-gear"></i> 6. Paramétrage Navigateur</a></li>
-                        <li><a href="#section-impact" class="legal-nav-link"><i class="fa-solid fa-triangle-exclamation"></i> 7. Impact de la Désactivation</a></li>
-                        <li><a href="#section-contact" class="legal-nav-link"><i class="fa-solid fa-envelope"></i> 8. Contact & Questions</a></li>
+                        <li><a href="#section-definition" class="legal-nav-link active"><span class="svg-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="11.5" cy="15.5" r="1.5"/><circle cx="15.5" cy="11.5" r="1.5"/></svg></span> 1. Définition</a></li>
+                        <li><a href="#section-utilite" class="legal-nav-link"><span class="svg-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span> 2. Utilisation</a></li>
+                        <li><a href="#section-categories" class="legal-nav-link"><span class="svg-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span> 3. Catégories</a></li>
+                        <li><a href="#section-tableau" class="legal-nav-link"><span class="svg-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg></span> 4. Tableau des Cookies</a></li>
+                        <li><a href="#section-consentement" class="legal-nav-link"><span class="svg-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> 5. Consentement</a></li>
+                        <li><a href="#section-parametrage" class="legal-nav-link"><span class="svg-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> 6. Paramétrage Navigateur</a></li>
+                        <li><a href="#section-impact" class="legal-nav-link"><span class="svg-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> 7. Impact de la Désactivation</a></li>
+                        <li><a href="#section-contact" class="legal-nav-link"><span class="svg-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span> 8. Contact & Questions</a></li>
                     </ul>
 
                     <div class="legal-sidebar-support">
                         <h5>Gestion de la Vie Privée</h5>
                         <p>Vous avez le contrôle total sur les traceurs déposés lors de votre navigation.</p>
-                        <a href="mailto:Excellencesysteme@gmail.com" class="btn btn-outline btn-sm" style="width:100%; text-align:center; margin-bottom:8px;">
-                            <i class="fa-solid fa-envelope"></i> Poser une question
+                        <a href="mailto:Excellencesysteme@gmail.com" class="btn btn-outline btn-sm" style="width:100%; text-align:center; margin-bottom:8px; display:inline-block;">
+                            Poser une question
                         </a>
-                        <button type="button" onclick="window.print()" class="btn btn-outline btn-sm" style="width:100%; text-align:center; font-size:0.8rem; padding:8px 12px;">
-                            <i class="fa-solid fa-print"></i> Imprimer ce document
+                        <button type="button" onclick="window.print()" class="btn btn-outline btn-sm" style="width:100%; text-align:center; font-size:0.8rem; padding:8px 12px; cursor:pointer;">
+                            Imprimer ce document
                         </button>
                     </div>
                 </aside>
@@ -118,17 +348,20 @@
                 <main class="legal-content-card">
                     <div class="legal-meta-bar">
                         <span class="legal-badge-pill">
-                            <i class="fa-solid fa-shield-halved"></i> Protection de la Vie Privée (CNDP)
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            Protection de la Vie Privée (CNDP)
                         </span>
                         <span class="legal-update-date">
-                            <i class="fa-regular fa-calendar-check"></i> Dernière mise à jour : 2 Octobre 2026
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            Dernière mise à jour : 2 Octobre 2026
                         </span>
                     </div>
 
                     <!-- 1. Définition -->
                     <article id="section-definition" class="legal-article-section">
                         <h2 class="legal-article-title">
-                            <i class="fa-solid fa-cookie"></i> 1. Qu'est-ce qu'un Cookie ou Traceur ?
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="11.5" cy="15.5" r="1.5"/><circle cx="15.5" cy="11.5" r="1.5"/></svg>
+                            1. Qu'est-ce qu'un Cookie ou Traceur ?
                         </h2>
                         <div class="legal-article-content">
                             <p>
@@ -139,7 +372,7 @@
                             </p>
                             <div class="legal-callout-box">
                                 <p>
-                                    <strong><i class="fa-solid fa-circle-check"></i> Sécurité Garantie :</strong> Les cookies déposés par Excellence Système ne contiennent aucun virus, ne peuvent pas endommager votre terminal et ne lisent aucune information contenue dans vos fichiers personnels.
+                                    <strong>Sécurité Garantie :</strong> Les cookies déposés par Excellence Système ne contiennent aucun virus, ne peuvent pas endommager votre terminal et ne lisent aucune information contenue dans vos fichiers personnels.
                                 </p>
                             </div>
                         </div>
@@ -148,7 +381,8 @@
                     <!-- 2. Utilisation -->
                     <article id="section-utilite" class="legal-article-section">
                         <h2 class="legal-article-title">
-                            <i class="fa-solid fa-sliders"></i> 2. Pourquoi Utilisons-nous des Cookies ?
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                            2. Pourquoi Utilisons-nous des Cookies ?
                         </h2>
                         <div class="legal-article-content">
                             <p>
@@ -165,30 +399,21 @@
                     <!-- 3. Catégories -->
                     <article id="section-categories" class="legal-article-section">
                         <h2 class="legal-article-title">
-                            <i class="fa-solid fa-layer-group"></i> 3. Les Catégories de Cookies Déposés
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                            3. Les Catégories de Cookies Déposés
                         </h2>
                         <div class="legal-article-content">
-                            <h4>A. Cookies strictement nécessaires (Techniques)</h4>
-                            <p>
-                                Ces traceurs sont indispensables au fonctionnement normal du site web. Ils permettent d'activer des fonctionnalités de base telles que la navigation entre les pages, l'affichage responsive et l'accès aux formulaires sécurisés. Le site ne peut pas fonctionner correctement sans ces cookies.
-                            </p>
-
-                            <h4>B. Cookies de fonctionnalités & de préférences</h4>
-                            <p>
-                                Ces cookies permettent au site de retenir les choix que vous avez faits (par exemple, la langue d'affichage sélectionnée ou la fermeture d'un bandeau d'alerte) afin de vous offrir une expérience fluide et personnalisée.
-                            </p>
-
-                            <h4>C. Cookies de mesure d'audience & statistiques</h4>
-                            <p>
-                                Ces cookies collectent des informations de façon totalement agrégée et anonymisée sur la façon dont les visiteurs interagissent avec le site (pages les plus consultées, temps moyen de lecture, provenance géographique générale). Ils servent exclusivement à nos analyses statistiques internes.
-                            </p>
+                            <p><strong>A. Cookies strictement nécessaires (Techniques) :</strong> Ces traceurs sont indispensables au fonctionnement normal du site web. Ils permettent d'activer des fonctionnalités de base telles que la navigation entre les pages, l'affichage responsive et l'accès aux formulaires sécurisés. Le site ne peut pas fonctionner correctement sans ces cookies.</p>
+                            <p><strong>B. Cookies de fonctionnalités & de préférences :</strong> Ces cookies permettent au site de retenir les choix que vous avez faits (par exemple, la langue d'affichage sélectionnée ou la fermeture d'un bandeau d'alerte) afin de vous offrir une expérience fluide et personnalisée.</p>
+                            <p><strong>C. Cookies de mesure d'audience & statistiques :</strong> Ces cookies collectent des informations de façon totalement agrégée et anonymisée sur la façon dont les visiteurs interagissent avec le site (pages les plus consultées, temps moyen de lecture, provenance géographique générale). Ils servent exclusivement à nos analyses statistiques internes.</p>
                         </div>
                     </article>
 
                     <!-- 4. Tableau des Cookies -->
                     <article id="section-tableau" class="legal-article-section">
                         <h2 class="legal-article-title">
-                            <i class="fa-solid fa-table-list"></i> 4. Tableau Récapitulatif des Cookies Déposés
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+                            4. Tableau Récapitulatif des Cookies Déposés
                         </h2>
                         <div class="legal-article-content">
                             <p>
@@ -227,13 +452,6 @@
                                             <td>Fonctionnel</td>
                                             <td>Session</td>
                                         </tr>
-                                        <tr>
-                                            <td><strong>_ga / _gid (le cas échéant)</strong></td>
-                                            <td>Mesure d'audience anonyme</td>
-                                            <td>Statistiques de visites avec anonymisation IP stricte</td>
-                                            <td>Statistique</td>
-                                            <td>13 mois max</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -243,7 +461,8 @@
                     <!-- 5. Consentement -->
                     <article id="section-consentement" class="legal-article-section">
                         <h2 class="legal-article-title">
-                            <i class="fa-solid fa-check-double"></i> 5. Consentement et Base Légale
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            5. Consentement et Base Légale
                         </h2>
                         <div class="legal-article-content">
                             <p>
@@ -259,7 +478,8 @@
                     <!-- 6. Paramétrage Navigateur -->
                     <article id="section-parametrage" class="legal-article-section">
                         <h2 class="legal-article-title">
-                            <i class="fa-solid fa-gear"></i> 6. Comment Configurer Votre Navigateur ?
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            6. Comment Configurer Votre Navigateur ?
                         </h2>
                         <div class="legal-article-content">
                             <p>
@@ -271,18 +491,14 @@
                                 <li><strong>Apple Safari :</strong> Menu <code>Réglages / Préférences</code> &gt; onglet <code>Confidentialité</code> &gt; cocher <code>Bloquer tous les cookies</code> ou gérer les données.</li>
                                 <li><strong>Microsoft Edge :</strong> Menu <code>Paramètres</code> &gt; <code>Cookies et autorisations de site</code> &gt; <code>Gérer et supprimer les cookies</code>.</li>
                             </ul>
-                            <div class="legal-callout-box">
-                                <p>
-                                    <strong><i class="fa-solid fa-mobile-screen"></i> Sur smartphone (iOS / Android) :</strong> Vous pouvez également gérer ou effacer vos cookies dans les paramètres de Safari mobile ou Chrome mobile sous la rubrique Confidentialité.
-                                </p>
-                            </div>
                         </div>
                     </article>
 
                     <!-- 7. Impact de la Désactivation -->
                     <article id="section-impact" class="legal-article-section">
                         <h2 class="legal-article-title">
-                            <i class="fa-solid fa-triangle-exclamation"></i> 7. Conséquences de la Désactivation
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            7. Conséquences de la Désactivation
                         </h2>
                         <div class="legal-article-content">
                             <p>
@@ -294,16 +510,17 @@
                     <!-- 8. Contact & Questions -->
                     <article id="section-contact" class="legal-article-section">
                         <h2 class="legal-article-title">
-                            <i class="fa-solid fa-envelope"></i> 8. Questions relatives aux Cookies
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#63C4C4" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            8. Questions relatives aux Cookies
                         </h2>
                         <div class="legal-article-content">
                             <p>
                                 Pour toute information complémentaire relative à cette politique ou au paramétrage des traceurs, vous pouvez nous écrire :
                             </p>
                             <ul>
-                                <li><strong>Email :</strong> <a href="mailto:Excellencesysteme@gmail.com" style="color:var(--primary-turquoise);">Excellencesysteme@gmail.com</a></li>
+                                <li><strong>Email :</strong> <a href="mailto:Excellencesysteme@gmail.com" style="color:#63C4C4;">Excellencesysteme@gmail.com</a></li>
                                 <li><strong>Téléphone :</strong> +212 5 25 32 42 88 / +212 6 68 76 42 71</li>
-                                <li><strong>Politique de confidentialité :</strong> <a href="politique-confidentialite.html" style="color:var(--primary-turquoise); text-decoration:underline;">Consulter notre Politique de Confidentialité</a></li>
+                                <li><strong>Politique de confidentialité :</strong> <a href="politique-confidentialite.html" style="color:#63C4C4; text-decoration:underline;">Consulter notre Politique de Confidentialité</a></li>
                             </ul>
                         </div>
                     </article>
@@ -430,5 +647,17 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script>
+        const tocBtn = document.getElementById('tocToggleBtn');
+        const sidebar = document.getElementById('legalSidebar');
+        const tocIcon = document.getElementById('tocToggleIcon');
+        if (tocBtn && sidebar) {
+            tocBtn.addEventListener('click', () => {
+                const isCollapsed = sidebar.classList.toggle('is-collapsed');
+                tocIcon.textContent = isCollapsed ? '▼' : '▲';
+                tocBtn.setAttribute('aria-expanded', !isCollapsed);
+            });
+        }
+    </script>
 </body>
 </html>

@@ -12,7 +12,234 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=2.2">
+
+    <!-- Embedded styles ensuring 100% instant rendering immune to CDN/cache latency -->
+    <style>
+        .legal-page-section {
+            padding: 50px 0 90px;
+            background: #16181A;
+            color: #CBD5E1;
+        }
+        .legal-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 36px;
+            align-items: flex-start;
+        }
+        .legal-sidebar {
+            position: sticky;
+            top: 105px;
+            background: #1F2327;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        }
+        .legal-sidebar-heading {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .legal-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .legal-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: 8px;
+            color: #94A3B8;
+            font-size: 0.88rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-left: 2px solid transparent;
+        }
+        .legal-nav-link:hover, .legal-nav-link.active {
+            color: #FFFFFF;
+            background: rgba(99, 196, 196, 0.12);
+            border-left-color: #63C4C4;
+        }
+        .legal-nav-link .svg-icon {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+        .legal-sidebar-support {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .legal-sidebar-support h5 {
+            font-size: 0.88rem;
+            color: #FFFFFF;
+            margin-bottom: 6px;
+        }
+        .legal-sidebar-support p {
+            font-size: 0.8rem;
+            color: #94A3B8;
+            line-height: 1.45;
+            margin-bottom: 12px;
+        }
+        .legal-content-card {
+            background: #1F2327;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        .legal-meta-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding-bottom: 20px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .legal-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 196, 196, 0.12);
+            border: 1px solid rgba(99, 196, 196, 0.35);
+            color: #63C4C4;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+        .legal-update-date {
+            font-size: 0.85rem;
+            color: #94A3B8;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .legal-article-section {
+            margin-bottom: 44px;
+            scroll-margin-top: 120px;
+        }
+        .legal-article-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .legal-article-content {
+            color: #CBD5E1;
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+        .legal-article-content p {
+            margin-bottom: 14px;
+        }
+        .legal-article-content strong {
+            color: #FFFFFF;
+        }
+        .legal-article-content ul, .legal-article-content ol {
+            margin: 12px 0 18px 22px;
+            padding: 0;
+        }
+        .legal-article-content li {
+            margin-bottom: 8px;
+        }
+        .legal-callout-box {
+            background: rgba(99, 196, 196, 0.08);
+            border-left: 4px solid #63C4C4;
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 20px 0;
+            color: #E2E8F0;
+        }
+        .legal-contact-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .legal-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .legal-contact-item h6 {
+            color: #FFFFFF;
+            font-size: 0.88rem;
+            margin: 0 0 4px;
+        }
+        .legal-contact-item p, .legal-contact-item a {
+            color: #94A3B8;
+            font-size: 0.85rem;
+            margin: 0;
+            text-decoration: none;
+            line-height: 1.45;
+        }
+        .legal-contact-item a:hover {
+            color: #63C4C4;
+        }
+        .legal-toc-toggle-btn {
+            display: none;
+            width: 100%;
+            background: #2A2E33;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #FFFFFF;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        @media (max-width: 992px) {
+            .legal-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .legal-sidebar {
+                position: static;
+                padding: 16px;
+            }
+            .legal-toc-toggle-btn {
+                display: flex;
+            }
+            .legal-sidebar.is-collapsed .legal-nav-list,
+            .legal-sidebar.is-collapsed .legal-sidebar-support {
+                display: none;
+            }
+            .legal-content-card {
+                padding: 26px 18px;
+            }
+            .legal-article-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -88,7 +315,11 @@
             <div class="legal-grid">
 
                 <!-- Sticky Sidebar Navigation -->
-                <aside class="legal-sidebar">
+                <button type="button" class="legal-toc-toggle-btn" id="tocToggleBtn" aria-expanded="false">
+                    <span>Table of Contents</span>
+                    <span id="tocToggleIcon">▼</span>
+                </button>
+                <aside class="legal-sidebar" id="legalSidebar">
                     <div class="legal-sidebar-heading">
                         <i class="fa-solid fa-list-check"></i> Contents
                     </div>
@@ -408,5 +639,18 @@
     </div>
 
     <script src="js/main.js"></script>
+
+    <script>
+        const tocBtn = document.getElementById('tocToggleBtn');
+        const sidebar = document.getElementById('legalSidebar');
+        const tocIcon = document.getElementById('tocToggleIcon');
+        if (tocBtn && sidebar) {
+            tocBtn.addEventListener('click', () => {
+                const isCollapsed = sidebar.classList.toggle('is-collapsed');
+                tocIcon.textContent = isCollapsed ? '▼' : '▲';
+                tocBtn.setAttribute('aria-expanded', !isCollapsed);
+            });
+        }
+    </script>
 </body>
 </html>
