@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAboutTabbedVisual();
     initActivityBrandsTilt();
     initReviewSystem();
+    initLegalScrollspy();
 });
 
 /* 0. Highlight Active Navigation Link based on current page URL */
@@ -451,7 +452,11 @@ const translations = {
         ctaBannerTag: "PROJET COURANT FAIBLE OU SÉCURITÉ ?",
         ctaBannerTitle: "Prêt à sécuriser & automatiser vos infrastructures ?",
         ctaBannerSub: "Nos experts réalisent une étude de vos plans et un devis sur-mesure sous 24h.",
-        btnFreeQuote: "<i class='fa-solid fa-paper-plane'></i> Demander un Devis Gratuit"
+        btnFreeQuote: "<i class='fa-solid fa-paper-plane'></i> Demander un Devis Gratuit",
+
+        footerPrivacy: "Politique de Confidentialité",
+        footerTerms: "Conditions d'Utilisation",
+        footerCookies: "Politique des Cookies"
     },
     en: {
         navHome: "Home",
@@ -546,7 +551,11 @@ const translations = {
         ctaBannerTag: "LOW CURRENT OR SECURITY PROJECT?",
         ctaBannerTitle: "Ready to secure & automate your premises?",
         ctaBannerSub: "Our experts audit your blueprints and deliver a custom quote within 24h.",
-        btnFreeQuote: "<i class='fa-solid fa-paper-plane'></i> Request a Free Quote"
+        btnFreeQuote: "<i class='fa-solid fa-paper-plane'></i> Request a Free Quote",
+
+        footerPrivacy: "Privacy Policy",
+        footerTerms: "Terms of Use",
+        footerCookies: "Cookie Policy"
     }
 };
 
@@ -1258,3 +1267,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+/* 16. Legal Pages Smooth Scroll & Active State Scrollspy */
+function initLegalScrollspy() {
+    const navLinks = document.querySelectorAll('.legal-nav-link');
+    const sections = document.querySelectorAll('.legal-article-section');
+    if (navLinks.length === 0 || sections.length === 0) return;
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollPosition = window.scrollY + 160;
+
+        sections.forEach(sec => {
+            const top = sec.offsetTop;
+            const height = sec.offsetHeight;
+            if (scrollPosition >= top && scrollPosition < top + height) {
+                current = sec.getAttribute('id');
+            }
+        });
+
+        if (!current && window.scrollY < 200) {
+            current = sections[0].getAttribute('id');
+        }
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+}
