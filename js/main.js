@@ -53,19 +53,92 @@ function initHeaderScroll() {
     });
 }
 
-/* 2. Mobile Navigation Drawer */
+/* 2. Mobile Navigation Drawer & Dropdown Accordions */
 function initMobileNav() {
     const toggleBtn = document.querySelector('.mobile-toggle');
     const navMenu = document.querySelector('.nav-menu');
 
     if (!toggleBtn || !navMenu) return;
 
-    toggleBtn.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+    function openNav() {
+        navMenu.classList.add('active');
+        document.body.classList.add('menu-open');
+        toggleBtn.setAttribute('aria-expanded', 'true');
         const icon = toggleBtn.querySelector('i');
         if (icon) {
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-xmark');
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-xmark');
+        }
+    }
+
+    function closeNav() {
+        navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        const icon = toggleBtn.querySelector('i');
+        if (icon) {
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+        // Close any open mobile submenus
+        document.querySelectorAll('.nav-item.has-dropdown.dropdown-open').forEach(item => {
+            item.classList.remove('dropdown-open');
+        });
+    }
+
+    function toggleNav(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        if (navMenu.classList.contains('active')) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    }
+
+    toggleBtn.addEventListener('click', toggleNav);
+
+    // Mobile dropdown accordion toggles
+    const dropdownItems = navMenu.querySelectorAll('.nav-item.has-dropdown');
+    dropdownItems.forEach(item => {
+        const trigger = item.querySelector(':scope > a');
+        if (trigger) {
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const wasOpen = item.classList.contains('dropdown-open');
+                    // Close sibling dropdowns for clean accordion behavior
+                    dropdownItems.forEach(sibling => {
+                        if (sibling !== item) sibling.classList.remove('dropdown-open');
+                    });
+                    item.classList.toggle('dropdown-open', !wasOpen);
+                }
+            });
+        }
+    });
+
+    // Close menu when clicking any direct link (not a dropdown trigger) or dropdown item
+    const navLinks = navMenu.querySelectorAll('a:not(.nav-item.has-dropdown > a)');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 992) {
+                closeNav();
+            }
+        });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeNav();
+    });
+
+    // Close if resized to desktop layout
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 992 && navMenu.classList.contains('active')) {
+            closeNav();
         }
     });
 }

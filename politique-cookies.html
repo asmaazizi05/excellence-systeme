@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="css/styles.css?v=2.2">
+    <link rel="stylesheet" href="css/styles.css?v=2.3">
 
     <!-- Embedded styles ensuring 100% instant rendering immune to CDN/cache latency -->
     <style>
@@ -233,6 +233,91 @@
             }
             .legal-article-title {
                 font-size: 1.2rem;
+            }
+        }
+    
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body.menu-open {
+            overflow: hidden !important;
+            touch-action: none !important;
+        }
+        .legal-grid,
+        .legal-content-card,
+        .legal-article-section,
+        .legal-article-content {
+            min-width: 0 !important;
+            max-width: 100% !important;
+        }
+        .legal-table-wrapper {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            display: block !important;
+            margin: 20px 0 !important;
+            border-radius: 8px !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+        .legal-table {
+            width: 100% !important;
+            min-width: 520px !important;
+            border-collapse: collapse !important;
+            font-size: 0.88rem !important;
+        }
+        .legal-table th {
+            background: rgba(255, 255, 255, 0.05);
+            color: #FFFFFF;
+            padding: 12px 14px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .legal-table td {
+            padding: 12px 14px;
+            color: #CBD5E1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        @media (max-width: 992px) {
+            .legal-grid {
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
+            }
+            .legal-sidebar {
+                position: static !important;
+                margin-bottom: 24px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .legal-toc-toggle-btn {
+                display: flex !important;
+            }
+            .legal-sidebar.is-collapsed .legal-nav-list,
+            .legal-sidebar.is-collapsed .legal-sidebar-support {
+                display: none !important;
+            }
+        }
+        @media (max-width: 768px) {
+            .legal-content-card {
+                padding: 24px 16px !important;
+            }
+            .legal-contact-card {
+                grid-template-columns: 1fr !important;
+                gap: 14px !important;
+                padding: 16px !important;
+            }
+            .legal-article-title {
+                font-size: 1.15rem !important;
+                gap: 8px !important;
+            }
+            .legal-meta-bar {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 10px !important;
             }
         }
     </style>
@@ -646,7 +731,7 @@
         </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=2.3"></script>
     <script>
         const tocBtn = document.getElementById('tocToggleBtn');
         const sidebar = document.getElementById('legalSidebar');
