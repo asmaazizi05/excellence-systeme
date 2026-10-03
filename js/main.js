@@ -54,11 +54,121 @@ function initHeaderScroll() {
 }
 
 /* 2. Mobile Navigation Drawer & Dropdown Accordions */
+function ensureNavIcons() {
+    const navMenu = document.querySelector('.nav-menu');
+    if (!navMenu) return;
+
+    navMenu.querySelectorAll(':scope > li:not(.drawer-header-item):not(.drawer-footer-item) > a.nav-link').forEach(link => {
+        if (link.querySelector('.nav-icon')) return;
+        const text = link.textContent.trim().toLowerCase();
+        let iconClass = '';
+        if (text.includes('accueil') || text.includes('home')) {
+            iconClass = 'fa-solid fa-house';
+        } else if (text.includes('propos') || text.includes('about')) {
+            iconClass = 'fa-solid fa-circle-info';
+        } else if (text.includes('solution') || text.includes('activit')) {
+            iconClass = 'fa-solid fa-microchip';
+        } else if (text.includes('réalisation') || text.includes('project')) {
+            iconClass = 'fa-solid fa-trophy';
+        } else if (text.includes('marque') || text.includes('brand')) {
+            iconClass = 'fa-solid fa-award';
+        } else if (text.includes('contact')) {
+            iconClass = 'fa-solid fa-envelope';
+        }
+        if (iconClass) {
+            const icon = document.createElement('i');
+            icon.className = iconClass + ' nav-icon';
+            link.prepend(icon);
+        }
+    });
+}
+
 function initMobileNav() {
     const toggleBtn = document.querySelector('.mobile-toggle');
     const navMenu = document.querySelector('.nav-menu');
 
     if (!toggleBtn || !navMenu) return;
+
+    // 1. Ensure Backdrop exists in DOM
+    let backdrop = document.querySelector('.nav-backdrop');
+    if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.className = 'nav-backdrop';
+        document.body.appendChild(backdrop);
+    }
+
+    // 2. Ensure Drawer Header exists in nav-menu
+    if (!navMenu.querySelector('.drawer-header-item')) {
+        const headerItem = document.createElement('li');
+        headerItem.className = 'drawer-header-item';
+        headerItem.innerHTML = `
+            <div class="drawer-header">
+                <a href="index.html" class="drawer-brand">
+                    <img src="assets/logo-3d.png" alt="Excellence Système" class="drawer-logo" onerror="this.src='../assets/logo-3d.png'">
+                    <div class="drawer-brand-text">
+                        <span class="drawer-brand-title">EXCELLENCE</span>
+                        <span class="drawer-brand-sub">SYSTÈME</span>
+                    </div>
+                </a>
+                <button type="button" class="drawer-close-btn" aria-label="Fermer le menu">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        `;
+        navMenu.prepend(headerItem);
+    }
+
+    // 3. Ensure Drawer Footer exists in nav-menu
+    if (!navMenu.querySelector('.drawer-footer-item')) {
+        const footerItem = document.createElement('li');
+        footerItem.className = 'drawer-footer-item';
+        const isDocEn = document.documentElement.getAttribute('lang') === 'en';
+        footerItem.innerHTML = `
+            <div class="drawer-footer">
+                <button type="button" class="btn btn-primary btn-drawer-quote" data-open-quote>
+                    <i class="fa-solid fa-paper-plane"></i> <span data-i18n="btnQuote">${isDocEn ? 'Request a Quote' : 'Demander un devis'}</span>
+                </button>
+                <div class="drawer-contacts-grid">
+                    <a href="https://wa.me/212668764271" target="_blank" rel="noopener" class="drawer-contact-card wa">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="tel:+212525324288" class="drawer-contact-card phone">
+                        <i class="fa-solid fa-phone"></i>
+                        <span data-i18n="drawerCall">${isDocEn ? 'Call Us' : 'Appeler'}</span>
+                    </a>
+                </div>
+                <div class="drawer-lang-row">
+                    <span class="drawer-lang-tag"><i class="fa-solid fa-globe"></i> <span data-i18n="drawerLangLabel">${isDocEn ? 'Language:' : 'Langue :'}</span></span>
+                    <div class="drawer-lang-buttons">
+                        <button type="button" class="drawer-lang-btn ${!isDocEn ? 'active' : ''}" data-lang="fr">FR</button>
+                        <span class="drawer-lang-divider">|</span>
+                        <button type="button" class="drawer-lang-btn ${isDocEn ? 'active' : ''}" data-lang="en">EN</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        navMenu.appendChild(footerItem);
+
+        // Bind Quote Button in drawer
+        const drawerQuoteBtn = footerItem.querySelector('.btn-drawer-quote');
+        if (drawerQuoteBtn) {
+            drawerQuoteBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeNav();
+                const quoteModal = document.getElementById('quoteModal');
+                if (quoteModal) {
+                    quoteModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    window.location.href = 'contact.html#quote';
+                }
+            });
+        }
+    }
+
+    // 4. Prepend icons to top-level navigation links
+    ensureNavIcons();
 
     function openNav() {
         navMenu.classList.add('active');
@@ -100,6 +210,18 @@ function initMobileNav() {
 
     toggleBtn.addEventListener('click', toggleNav);
 
+    // Backdrop click closes drawer
+    backdrop.addEventListener('click', closeNav);
+
+    // Drawer close button click
+    const drawerCloseBtn = navMenu.querySelector('.drawer-close-btn');
+    if (drawerCloseBtn) {
+        drawerCloseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeNav();
+        });
+    }
+
     // Mobile dropdown accordion toggles
     const dropdownItems = navMenu.querySelectorAll('.nav-item.has-dropdown');
     dropdownItems.forEach(item => {
@@ -120,9 +242,9 @@ function initMobileNav() {
         }
     });
 
-    // Close menu when clicking any direct link (not a dropdown trigger) or dropdown item
-    const navLinks = navMenu.querySelectorAll('a:not(.nav-item.has-dropdown > a)');
-    navLinks.forEach(link => {
+    // Close menu when clicking any direct link (not a dropdown trigger) or dropdown sub-item
+    const directLinks = navMenu.querySelectorAll('a:not(.nav-item.has-dropdown > a)');
+    directLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (window.innerWidth <= 992) {
                 closeNav();
@@ -132,7 +254,7 @@ function initMobileNav() {
 
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeNav();
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) closeNav();
     });
 
     // Close if resized to desktop layout
@@ -430,17 +552,31 @@ function showToast(message) {
     }, 4500);
 }
 
-/* 10. Multi-Page Language Switcher (FR / EN / AR) */
+/* 10. Multi-Page Language Switcher (FR / EN) */
 const translations = {
     fr: {
         navHome: "Accueil",
         navAbout: "À propos",
+        navSolutions: "Solutions IT <i class='fa-solid fa-chevron-down' style='font-size:0.75rem; margin-left:4px;'></i>",
         navActivities: "Nos activités <i class='fa-solid fa-chevron-down' style='font-size:0.75rem; margin-left:4px;'></i>",
         navServices: "Nos services <i class='fa-solid fa-chevron-down' style='font-size:0.75rem; margin-left:4px;'></i>",
-        navRealizations: "Nos réalisations",
+        navRealizations: "Nos réalisations <i class='fa-solid fa-chevron-down' style='font-size:0.75rem; margin-left:4px;'></i>",
         navBrands: "Nos marques",
         navContact: "Contact",
         btnQuote: "Demander un devis",
+
+        solHotel: "<i class='fa-solid fa-hotel'></i> Solutions Hôtelière",
+        solVilla: "<i class='fa-solid fa-house-chimney'></i> Solutions Riad & Villa",
+        solInnov: "<i class='fa-solid fa-lightbulb'></i> Solutions Innovantes",
+
+        realHosp: "<i class='fa-solid fa-hospital'></i> Hôpitaux",
+        realFact: "<i class='fa-solid fa-industry'></i> Usines",
+        realAdmin: "<i class='fa-solid fa-landmark'></i> Administrations",
+        realUniv: "<i class='fa-solid fa-graduation-cap'></i> Universités",
+        realVilla: "<i class='fa-solid fa-house-chimney'></i> Riad & Villa",
+
+        drawerLangLabel: "Langue :",
+        drawerCall: "Appeler",
 
         actDetection: "<i class='fa-solid fa-fire-flame-curved'></i> Détection incendie",
         actIntrusion: "<i class='fa-solid fa-shield-cat'></i> Anti-intrusion",
@@ -534,12 +670,26 @@ const translations = {
     en: {
         navHome: "Home",
         navAbout: "About Us",
+        navSolutions: "IT Solutions <i class='fa-solid fa-chevron-down' style='font-size:0.75rem; margin-left:4px;'></i>",
         navActivities: "Our Activities <i class='fa-solid fa-chevron-down' style='font-size:0.75rem; margin-left:4px;'></i>",
         navServices: "Our Services <i class='fa-solid fa-chevron-down' style='font-size:0.75rem; margin-left:4px;'></i>",
-        navRealizations: "Projects",
+        navRealizations: "Our Projects <i class='fa-solid fa-chevron-down' style='font-size:0.75rem; margin-left:4px;'></i>",
         navBrands: "Our Brands",
         navContact: "Contact",
-        btnQuote: "Get a Quote",
+        btnQuote: "Request a Quote",
+
+        solHotel: "<i class='fa-solid fa-hotel'></i> Hotel Solutions",
+        solVilla: "<i class='fa-solid fa-house-chimney'></i> Riad & Villa Solutions",
+        solInnov: "<i class='fa-solid fa-lightbulb'></i> Innovative Solutions",
+
+        realHosp: "<i class='fa-solid fa-hospital'></i> Hospitals",
+        realFact: "<i class='fa-solid fa-industry'></i> Factories",
+        realAdmin: "<i class='fa-solid fa-landmark'></i> Administrations",
+        realUniv: "<i class='fa-solid fa-graduation-cap'></i> Universities",
+        realVilla: "<i class='fa-solid fa-house-chimney'></i> Riad & Villa",
+
+        drawerLangLabel: "Language:",
+        drawerCall: "Call Us",
 
         actDetection: "<i class='fa-solid fa-fire-flame-curved'></i> Fire Detection",
         actIntrusion: "<i class='fa-solid fa-shield-cat'></i> Intrusion Alarm",
@@ -633,18 +783,21 @@ const translations = {
 };
 
 function initLanguageSwitcher() {
-    const langBtns = document.querySelectorAll('.lang-btn');
+    const isDocEn = document.documentElement.getAttribute('lang') === 'en';
 
     function setLanguage(lang) {
+        if (!translations[lang]) return;
+
         document.documentElement.setAttribute('lang', lang);
         document.documentElement.setAttribute('dir', 'ltr');
 
-        langBtns.forEach(b => {
-            b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+        // Update all header & drawer language buttons
+        document.querySelectorAll('.lang-btn, .drawer-lang-btn').forEach(b => {
+            const btnLang = b.getAttribute('data-lang') || (b.textContent.trim().toLowerCase().includes('en') ? 'en' : 'fr');
+            b.classList.toggle('active', btnLang === lang);
         });
 
         const t = translations[lang];
-        if (!t) return;
 
         document.querySelectorAll('[data-i18n]').forEach(elem => {
             const key = elem.getAttribute('data-i18n');
@@ -652,24 +805,45 @@ function initLanguageSwitcher() {
                 elem.innerHTML = t[key];
             }
         });
+
+        // Ensure nav-links with nav-icon get their icons maintained
+        ensureNavIcons();
     }
 
-    langBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const lang = btn.getAttribute('data-lang');
-            setLanguage(lang);
+    // Attach click listeners to all language buttons and links
+    document.querySelectorAll('.lang-btn, .drawer-lang-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const lang = btn.getAttribute('data-lang') || (btn.textContent.trim().toLowerCase().includes('en') ? 'en' : 'fr');
             try {
                 localStorage.setItem('preferredLang', lang);
-            } catch (e) { }
+            } catch (err) { }
+
+            // If it's a link to another page (e.g. privacy-policy.html <-> politique-confidentialite.html), let browser navigate
+            if (btn.tagName.toLowerCase() === 'a') {
+                return;
+            }
+
+            e.preventDefault();
+            setLanguage(lang);
         });
     });
 
     try {
-        let savedLang = localStorage.getItem('preferredLang'); if (savedLang === 'ar') savedLang = 'fr';
-        if (savedLang) {
+        let savedLang = localStorage.getItem('preferredLang');
+        if (savedLang === 'ar') savedLang = 'fr';
+
+        if (isDocEn) {
+            // Dedicated English page: enforce English and save preference
+            setLanguage('en');
+            localStorage.setItem('preferredLang', 'en');
+        } else if (savedLang && translations[savedLang]) {
             setLanguage(savedLang);
+        } else {
+            setLanguage('fr');
         }
-    } catch (e) { }
+    } catch (e) {
+        setLanguage(isDocEn ? 'en' : 'fr');
+    }
 }
 
 /* 12. Brand Cards Staggered Reveal Animation & Filtering */
