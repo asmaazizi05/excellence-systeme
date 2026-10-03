@@ -515,27 +515,216 @@ function initModals() {
     }
 }
 
-/* 9. Contact Form & Submission Toast */
-function initContactForm() {
-    const forms = document.querySelectorAll('form');
+/* 9. Contact Form, Quote Request & Real Email Submission */
+const FORM_CONFIG = {
+    primaryEmail: 'Excellencesysteme@gmail.com',
+    ccEmail: 'commercial.exsys@gmail.com',
+    endpoint: 'https://formsubmit.co/ajax/Excellencesysteme@gmail.com',
+    web3formsKey: '', // Optionnel : collez ici votre clé Web3Forms si vous préférez Web3Forms
+    whatsappNumber: '212668764271'
+};
 
-    forms.forEach(form => {
-        form.addEventListener('submit', (e) => {
+function extractFormData(form) {
+    const data = {};
+    const formData = new FormData(form);
+    for (const [key, val] of formData.entries()) {
+        if (key && val) data[key] = val;
+    }
+
+    const inputs = form.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        let name = input.getAttribute('name');
+        if (!name) {
+            const type = (input.type || '').toLowerCase();
+            const tag = input.tagName.toLowerCase();
+            const placeholder = (input.placeholder || '').toLowerCase();
+            const formGroup = input.closest('.form-group');
+            const label = formGroup ? (formGroup.querySelector('label')?.textContent || '').toLowerCase() : '';
+
+            if (type === 'email' || placeholder.includes('email') || label.includes('email')) {
+                name = 'email';
+            } else if (type === 'tel' || placeholder.includes('tel') || label.includes('téléphone') || label.includes('phone')) {
+                name = 'telephone';
+            } else if (label.includes('nom') || placeholder.includes('nom') || label.includes('name')) {
+                name = 'nom';
+            } else if (label.includes('société') || label.includes('societe') || placeholder.includes('entreprise')) {
+                name = 'societe';
+            } else if (tag === 'select' || label.includes('activité') || label.includes('solution') || input.id === 'modalSolutionSelect') {
+                name = 'activite';
+            } else if (tag === 'textarea' || label.includes('message') || placeholder.includes('besoin')) {
+                name = 'message';
+            } else {
+                name = input.id || 'champ_' + Math.random().toString(36).substring(7);
+            }
+        }
+        if (!data[name] && input.value) {
+            data[name] = input.value;
+        }
+    });
+
+    return data;
+}
+
+function initContactForm() {
+    const quoteAndContactForms = document.querySelectorAll(
+        '#modalQuoteForm, #pageContactForm, .contact-interactive-form, form:not(#submitReviewForm):not(#inlineReviewForm)'
+    );
+
+    quoteAndContactForms.forEach(form => {
+        if (form.dataset.initializedSubmit) return;
+        form.dataset.initializedSubmit = 'true';
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            showToast('Votre demande a bien été transmise à Excellence Système. Notre équipe vous recontactera sous 24h.');
+            const isEn = (document.documentElement.lang || '').toLowerCase().startsWith('en');
+            const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
+            const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
 
-            form.reset();
+            const extractedData = extractFormData(form);
 
-            const modal = form.closest('.modal-overlay');
-            if (modal) {
-                modal.classList.remove('active');
+            // Validation de base
+            if (!extractedData.nom || !extractedData.telephone) {
+                showToast(isEn ? 'Please fill in your name and phone number.' : 'Veuillez renseigner votre nom et votre numéro de téléphone.', 'error');
+                return;
+            }
+
+            // Loading state on button
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.75';
+                submitBtn.style.cursor = 'wait';
+                submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>${isEn ? 'Sending...' : 'Envoi en cours...'}</span>`;
+            }
+
+            // Détection du mode de test local (fichier ouvert en file://)
+            const isLocalFile = window.location.protocol === 'file:';
+
+            if (isLocalFile) {
+                setTimeout(() => {
+                    const devMsg = isEn 
+                        ? `Local test mode: Form verified! In production, the quote is dispatched to ${FORM_CONFIG.primaryEmail} & ${FORM_CONFIG.ccEmail}.`
+                        : `Mode test local : Formulaire validé ! En ligne, l'email sera envoyé à ${FORM_CONFIG.primaryEmail} et ${FORM_CONFIG.ccEmail}.`;
+                    showToast(devMsg, 'success');
+
+                    form.reset();
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = '1';
+                        submitBtn.style.cursor = 'pointer';
+                        submitBtn.innerHTML = originalBtnHTML;
+                    }
+
+                    const modal = form.closest('.modal-overlay');
+                    if (modal) {
+                        setTimeout(() => modal.classList.remove('active'), 1200);
+                    }
+                }, 800);
+                return;
+            }
+
+            // Préparation des données pour l'envoi en ligne
+            let targetUrl = FORM_CONFIG.endpoint;
+            let payload = {};
+
+            if (FORM_CONFIG.web3formsKey) {
+                targetUrl = 'https://api.web3forms.com/submit';
+                payload = {
+                    access_key: FORM_CONFIG.web3formsKey,
+                    subject: isEn ? `New Quote Request - ${extractedData.nom}` : `Demande de devis - ${extractedData.nom}`,
+                    from_name: 'Excellence Système Website',
+                    name: extractedData.nom,
+                    email: extractedData.email || '',
+                    phone: extractedData.telephone,
+                    company: extractedData.societe || 'Non spécifié',
+                    activity: extractedData.activite || 'Demande générale',
+                    message: extractedData.message || 'Demande de devis',
+                    page_source: window.location.href
+                };
+            } else {
+                payload = {
+                    ...extractedData,
+                    _subject: isEn ? `Demande de Devis - ${extractedData.nom}` : `Demande de Devis - ${extractedData.nom}`,
+                    _cc: FORM_CONFIG.ccEmail,
+                    _replyto: extractedData.email || '',
+                    _template: 'table',
+                    _captcha: 'false',
+                    page_source: window.location.href,
+                    date_maroc: new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Casablanca' })
+                };
+            }
+
+            try {
+                const response = await fetch(targetUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json().catch(() => ({}));
+
+                if (response.ok || result.success === 'true' || result.success === true || (result.message && result.message.includes('Activation'))) {
+                    const successMsg = isEn 
+                        ? "Your quote request has been transmitted successfully! Our team will contact you within 24 hours."
+                        : "Votre demande a bien été transmise à Excellence Système. Notre équipe vous recontactera sous 24h.";
+                    showToast(successMsg, 'success');
+
+                    form.reset();
+
+                    const modal = form.closest('.modal-overlay');
+                    if (modal) {
+                        setTimeout(() => modal.classList.remove('active'), 1200);
+                    }
+
+                    const statusDiv = form.querySelector('.form-status-msg') || document.getElementById('contactFormStatus');
+                    if (statusDiv) {
+                        statusDiv.innerHTML = `
+                            <div style="background: rgba(99, 196, 196, 0.1); border: 1px solid rgba(99, 196, 196, 0.4); border-radius: 8px; padding: 12px; margin-top: 15px; color: #63C4C4; font-size: 0.9rem;">
+                                <i class="fa-solid fa-circle-check"></i> ${successMsg}
+                            </div>
+                        `;
+                    }
+                } else {
+                    throw new Error(result.message || 'Erreur lors de l\'envoi');
+                }
+            } catch (err) {
+                console.warn('Erreur envoi formulaire:', err);
+                const errorMsg = isEn 
+                    ? "Submission issue. You can reach us directly on WhatsApp or phone."
+                    : "Une erreur est survenue lors de l'envoi. Vous pouvez nous contacter directement sur WhatsApp.";
+                showToast(errorMsg, 'error');
+
+                const statusDiv = form.querySelector('.form-status-msg') || document.getElementById('contactFormStatus');
+                const waMessage = encodeURIComponent(
+                    `Bonjour Excellence Système,\nJe souhaite un devis pour : ${extractedData.activite || 'Courant faible / Sécurité'}\nNom: ${extractedData.nom}\nTéléphone: ${extractedData.telephone}\nEmail: ${extractedData.email || 'Non précisé'}\nMessage: ${extractedData.message || 'Demande de devis'}`
+                );
+
+                if (statusDiv) {
+                    statusDiv.innerHTML = `
+                        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 12px; margin-top: 15px; color: #fca5a5; font-size: 0.9rem;">
+                            <p style="margin-bottom: 8px;"><i class="fa-solid fa-triangle-exclamation"></i> ${errorMsg}</p>
+                            <a href="https://wa.me/${FORM_CONFIG.whatsappNumber}?text=${waMessage}" target="_blank" rel="noopener" style="display: inline-block; background: #25D366; color: #fff; padding: 8px 16px; border-radius: 6px; font-weight: 600; text-decoration: none; margin-top: 6px;">
+                                <i class="fa-brands fa-whatsapp"></i> Envoyer ma demande via WhatsApp
+                            </a>
+                        </div>
+                    `;
+                }
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                    submitBtn.innerHTML = originalBtnHTML;
+                }
             }
         });
     });
 }
 
-function showToast(message) {
+function showToast(message, type = 'success') {
     let toast = document.getElementById('toast-notification');
     if (!toast) {
         toast = document.createElement('div');
@@ -544,10 +733,18 @@ function showToast(message) {
         document.body.appendChild(toast);
     }
 
-    toast.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#63C4C4; font-size:1.2rem;"></i> <span>${message}</span>`;
+    toast.classList.remove('toast-error');
+    if (type === 'error') {
+        toast.classList.add('toast-error');
+        toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:#ef4444; font-size:1.2rem;"></i> <span>${message}</span>`;
+    } else {
+        toast.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#63C4C4; font-size:1.2rem;"></i> <span>${message}</span>`;
+    }
+
     toast.classList.add('show');
 
-    setTimeout(() => {
+    if (window._toastTimeout) clearTimeout(window._toastTimeout);
+    window._toastTimeout = setTimeout(() => {
         toast.classList.remove('show');
     }, 4500);
 }

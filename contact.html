@@ -219,30 +219,30 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label class="form-label">Nom & Prénom *</label>
-                                    <input type="text" class="form-control" placeholder="M. Mohammed Alami" required>
+                                    <input type="text" name="nom" class="form-control" placeholder="M. Mohammed Alami" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label">Email *</label>
-                                    <input type="email" class="form-control" placeholder="nom@entreprise.ma" required>
+                                    <input type="email" name="email" class="form-control" placeholder="nom@entreprise.ma" required>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
                                     <label class="form-label">Téléphone *</label>
-                                    <input type="tel" class="form-control" placeholder="+212 6 00 00 00 00" required>
+                                    <input type="tel" name="telephone" class="form-control" placeholder="+212 6 00 00 00 00" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label">Société (optionnel)</label>
-                                    <input type="text" class="form-control" placeholder="Nom de votre entreprise">
+                                    <input type="text" name="societe" class="form-control" placeholder="Nom de votre entreprise">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Domaine / Activité *</label>
-                                <select class="form-control" required>
+                                <select name="activite" class="form-control" required>
                                     <option value="">Sélectionnez votre activité...</option>
                                     <option value="Détection incendie">Détection incendie & SSI</option>
                                     <option value="Anti-intrusion">Système anti-intrusion & Alarme</option>
@@ -261,7 +261,7 @@
 
                             <div class="form-group">
                                 <label class="form-label">Détails du projet *</label>
-                                <textarea class="form-control" rows="3" placeholder="Décrivez brièvement votre besoin ou projet..." required></textarea>
+                                <textarea name="message" class="form-control" rows="3" placeholder="Décrivez brièvement votre besoin ou projet..." required></textarea>
                             </div>
 
                             <div class="form-submit-wrapper">
