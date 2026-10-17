@@ -802,16 +802,16 @@
             <form id="modalQuoteForm">
                 <div class="form-group">
                     <label class="form-label">Full Name *</label>
-                    <input type="text" class="form-control" placeholder="Your name" required>
+                    <input type="text" name="nom" class="form-control" placeholder="Votre nom et prénom" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">Email *</label>
-                        <input type="email" class="form-control" placeholder="your@email.com" required>
+                        <input type="email" name="email" class="form-control" placeholder="votre@email.com" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Phone *</label>
-                        <input type="tel" class="form-control" placeholder="+212 6..." required>
+                        <input type="tel" name="telephone" class="form-control" placeholder="+212 6 00 00 00 00" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -839,7 +839,7 @@
         </div>
     </div>
 
-    <script src="js/main.js?v=2.3"></script>
+    <script src="js/main.js?v=2.4"></script>
     <script>
         const tocBtn = document.getElementById('tocToggleBtn');
         const sidebar = document.getElementById('legalSidebar');

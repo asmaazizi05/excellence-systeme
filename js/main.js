@@ -520,7 +520,7 @@ const FORM_CONFIG = {
     primaryEmail: 'Excellencesysteme@gmail.com',
     ccEmail: 'commercial.exsys@gmail.com',
     endpoint: 'https://formsubmit.co/ajax/Excellencesysteme@gmail.com',
-    web3formsKey: '', // Optionnel : collez ici votre clé Web3Forms si vous préférez Web3Forms
+    web3formsKey: '', // Optionnel : collez ici votre clé Web3Forms (https://web3forms.com) si vous préférez Web3Forms
     whatsappNumber: '212668764271'
 };
 
@@ -528,7 +528,9 @@ function extractFormData(form) {
     const data = {};
     const formData = new FormData(form);
     for (const [key, val] of formData.entries()) {
-        if (key && val) data[key] = val;
+        if (key && typeof val === 'string' && val.trim()) {
+            data[key] = val.trim();
+        }
     }
 
     const inputs = form.querySelectorAll('input, select, textarea');
@@ -557,8 +559,8 @@ function extractFormData(form) {
                 name = input.id || 'champ_' + Math.random().toString(36).substring(7);
             }
         }
-        if (!data[name] && input.value) {
-            data[name] = input.value;
+        if (!data[name] && input.value && input.value.trim()) {
+            data[name] = input.value.trim();
         }
     });
 
@@ -583,13 +585,31 @@ function initContactForm() {
 
             const extractedData = extractFormData(form);
 
-            // Validation de base
-            if (!extractedData.nom || !extractedData.telephone) {
-                showToast(isEn ? 'Please fill in your name and phone number.' : 'Veuillez renseigner votre nom et votre numéro de téléphone.', 'error');
+            // 1. Validation stricte des données du formulaire
+            if (!extractedData.nom || extractedData.nom.trim().length < 2) {
+                showToast(isEn ? 'Please enter your full name.' : 'Veuillez saisir votre nom et prénom.', 'error');
+                const nameInput = form.querySelector('input[name="nom"], input[type="text"]');
+                if (nameInput) nameInput.focus();
                 return;
             }
 
-            // Loading state on button
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!extractedData.email || !emailRegex.test(extractedData.email.trim())) {
+                showToast(isEn ? 'Please enter a valid email address.' : 'Veuillez saisir une adresse e-mail valide (ex: contact@domaine.com).', 'error');
+                const emailInput = form.querySelector('input[type="email"], input[name="email"]');
+                if (emailInput) emailInput.focus();
+                return;
+            }
+
+            const phoneClean = (extractedData.telephone || '').replace(/[\s\-\.]/g, '');
+            if (!phoneClean || phoneClean.length < 8) {
+                showToast(isEn ? 'Please enter a valid phone number.' : 'Veuillez renseigner un numéro de téléphone valide.', 'error');
+                const telInput = form.querySelector('input[type="tel"], input[name="telephone"]');
+                if (telInput) telInput.focus();
+                return;
+            }
+
+            // 2. État de chargement du bouton
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.style.opacity = '0.75';
@@ -597,65 +617,61 @@ function initContactForm() {
                 submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>${isEn ? 'Sending...' : 'Envoi en cours...'}</span>`;
             }
 
-            // Détection du mode de test local (fichier ouvert en file://)
-            const isLocalFile = window.location.protocol === 'file:';
-
-            if (isLocalFile) {
-                setTimeout(() => {
-                    const devMsg = isEn 
-                        ? `Local test mode: Form verified! In production, the quote is dispatched to ${FORM_CONFIG.primaryEmail} & ${FORM_CONFIG.ccEmail}.`
-                        : `Mode test local : Formulaire validé ! En ligne, l'email sera envoyé à ${FORM_CONFIG.primaryEmail} et ${FORM_CONFIG.ccEmail}.`;
-                    showToast(devMsg, 'success');
-
-                    form.reset();
-                    if (submitBtn) {
-                        submitBtn.disabled = false;
-                        submitBtn.style.opacity = '1';
-                        submitBtn.style.cursor = 'pointer';
-                        submitBtn.innerHTML = originalBtnHTML;
-                    }
-
-                    const modal = form.closest('.modal-overlay');
-                    if (modal) {
-                        setTimeout(() => modal.classList.remove('active'), 1200);
-                    }
-                }, 800);
-                return;
-            }
-
-            // Préparation des données pour l'envoi en ligne
+            // 3. Préparation du payload et de la cible d'envoi
             let targetUrl = FORM_CONFIG.endpoint;
             let payload = {};
 
-            if (FORM_CONFIG.web3formsKey) {
+            if (FORM_CONFIG.web3formsKey && FORM_CONFIG.web3formsKey.trim().length > 10) {
                 targetUrl = 'https://api.web3forms.com/submit';
                 payload = {
-                    access_key: FORM_CONFIG.web3formsKey,
-                    subject: isEn ? `New Quote Request - ${extractedData.nom}` : `Demande de devis - ${extractedData.nom}`,
+                    access_key: FORM_CONFIG.web3formsKey.trim(),
+                    subject: isEn ? `New Quote Request - ${extractedData.nom}` : `Demande de Devis - ${extractedData.nom} (${extractedData.activite || 'Général'})`,
                     from_name: 'Excellence Système Website',
                     name: extractedData.nom,
-                    email: extractedData.email || '',
+                    email: extractedData.email,
                     phone: extractedData.telephone,
-                    company: extractedData.societe || 'Non spécifié',
-                    activity: extractedData.activite || 'Demande générale',
+                    company: extractedData.societe || 'Non spécifiée',
+                    activity: extractedData.activite || 'Général',
                     message: extractedData.message || 'Demande de devis',
-                    page_source: window.location.href
-                };
-            } else {
-                payload = {
-                    ...extractedData,
-                    _subject: isEn ? `Demande de Devis - ${extractedData.nom}` : `Demande de Devis - ${extractedData.nom}`,
-                    _cc: FORM_CONFIG.ccEmail,
-                    _replyto: extractedData.email || '',
-                    _template: 'table',
-                    _captcha: 'false',
                     page_source: window.location.href,
                     date_maroc: new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Casablanca' })
                 };
+            } else {
+                targetUrl = FORM_CONFIG.endpoint;
+                payload = {
+                    _subject: isEn ? `Demande de Devis - ${extractedData.nom}` : `Demande de Devis - ${extractedData.nom} (${extractedData.activite || 'Général'})`,
+                    _cc: FORM_CONFIG.ccEmail,
+                    _replyto: extractedData.email,
+                    _template: 'table',
+                    _captcha: 'false',
+                    "Nom & Prénom": extractedData.nom,
+                    "Email du client": extractedData.email,
+                    "Téléphone": extractedData.telephone,
+                    "Société": extractedData.societe || 'Non spécifiée',
+                    "Activité / Domaine": extractedData.activite || 'Général',
+                    "Message / Détails": extractedData.message || 'Demande de devis transmise via le site web',
+                    "Date de réception (Maroc)": new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Casablanca' }),
+                    "Page source": window.location.href
+                };
             }
 
+            console.info('[Excellence Système - Formulaire] 📤 Envoi des données vers le service :', {
+                endpoint: targetUrl,
+                destinataire: FORM_CONFIG.primaryEmail,
+                copie: FORM_CONFIG.ccEmail,
+                donnees: payload
+            });
+
+            const statusDiv = form.querySelector('.form-status-msg') || document.getElementById('contactFormStatus');
+            if (statusDiv) {
+                statusDiv.innerHTML = '';
+            }
+
+            let response = null;
+            let result = null;
+
             try {
-                const response = await fetch(targetUrl, {
+                response = await fetch(targetUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -664,51 +680,117 @@ function initContactForm() {
                     body: JSON.stringify(payload)
                 });
 
-                const result = await response.json().catch(() => ({}));
+                result = await response.json().catch(err => {
+                    console.warn('[Excellence Système - Formulaire] Impossible de parser la réponse JSON du serveur:', err);
+                    return {};
+                });
 
-                if (response.ok || result.success === 'true' || result.success === true || (result.message && result.message.includes('Activation'))) {
+                console.info('[Excellence Système - Formulaire] 📥 Réponse reçue du service email (HTTP ' + response.status + ') :', result);
+
+                const isActivationPending = Boolean(
+                    result && typeof result.message === 'string' && result.message.toLowerCase().includes('activation')
+                );
+
+                const isLocalServerWarning = Boolean(
+                    result && typeof result.message === 'string' && result.message.toLowerCase().includes('web server')
+                );
+
+                const isSuccess = Boolean(
+                    response.ok &&
+                    (result.success === true || result.success === 'true') &&
+                    !isActivationPending &&
+                    !isLocalServerWarning
+                );
+
+                if (isSuccess) {
+                    // SUCCÈS RÉEL ET CONFIRMÉ
+                    console.log('[Excellence Système - Formulaire] ✅ E-mail transmis avec succès !');
                     const successMsg = isEn 
-                        ? "Your quote request has been transmitted successfully! Our team will contact you within 24 hours."
-                        : "Votre demande a bien été transmise à Excellence Système. Notre équipe vous recontactera sous 24h.";
+                        ? `Your quote request has been transmitted successfully! A notification was sent to our team (${FORM_CONFIG.primaryEmail}). We will contact you within 24 hours.`
+                        : `Votre demande a bien été envoyée avec succès à notre équipe commerciale (${FORM_CONFIG.primaryEmail}) ! Nous vous recontacterons sous 24h.`;
                     showToast(successMsg, 'success');
 
                     form.reset();
 
                     const modal = form.closest('.modal-overlay');
                     if (modal) {
-                        setTimeout(() => modal.classList.remove('active'), 1200);
+                        setTimeout(() => modal.classList.remove('active'), 1500);
                     }
 
-                    const statusDiv = form.querySelector('.form-status-msg') || document.getElementById('contactFormStatus');
                     if (statusDiv) {
                         statusDiv.innerHTML = `
-                            <div style="background: rgba(99, 196, 196, 0.1); border: 1px solid rgba(99, 196, 196, 0.4); border-radius: 8px; padding: 12px; margin-top: 15px; color: #63C4C4; font-size: 0.9rem;">
-                                <i class="fa-solid fa-circle-check"></i> ${successMsg}
+                            <div style="background: rgba(99, 196, 196, 0.12); border: 1px solid rgba(99, 196, 196, 0.45); border-radius: 8px; padding: 14px; margin-top: 15px; color: #63C4C4; font-size: 0.95rem; line-height: 1.5;">
+                                <p style="margin:0; font-weight:600;"><i class="fa-solid fa-circle-check"></i> ${successMsg}</p>
+                            </div>
+                        `;
+                    }
+                } else if (isActivationPending) {
+                    // ERREUR SPÉCIFIQUE : ACTIVATION INITIALE DU COMPTE FORMSUBMIT REQUISE
+                    console.error('[Excellence Système - Formulaire] ❌ Blocage FormSubmit : L\'adresse e-mail destinataire (' + FORM_CONFIG.primaryEmail + ') doit être activée. Un e-mail d\'activation a été envoyé par FormSubmit.', result);
+                    
+                    const activationErr = isEn
+                        ? `Email dispatch is pending one-time activation on FormSubmit for ${FORM_CONFIG.primaryEmail}. Please contact us via WhatsApp or phone directly.`
+                        : `L'envoi automatique est en attente d'activation initiale par le destinataire (${FORM_CONFIG.primaryEmail}). FormSubmit a envoyé un e-mail avec un lien "Activate Form". En attendant, contactez-nous directement sur WhatsApp !`;
+                    showToast(activationErr, 'error');
+
+                    const waMessage = encodeURIComponent(
+                        `Bonjour Excellence Système,\nJe souhaite un devis pour : ${extractedData.activite || 'Courant faible / Sécurité'}\nNom: ${extractedData.nom}\nTéléphone: ${extractedData.telephone}\nEmail: ${extractedData.email}\nMessage: ${extractedData.message || 'Demande de devis'}`
+                    );
+
+                    if (statusDiv) {
+                        statusDiv.innerHTML = `
+                            <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 8px; padding: 14px; margin-top: 15px; color: #fca5a5; font-size: 0.9rem; line-height: 1.5;">
+                                <p style="margin-bottom: 8px; font-weight:600;"><i class="fa-solid fa-triangle-exclamation" style="color:#ef4444;"></i> Notification d'envoi :</p>
+                                <p style="margin-bottom: 10px; font-size: 0.88rem; color: #fecaca;">
+                                    Le service FormSubmit requiert une activation unique pour l'adresse <strong>${FORM_CONFIG.primaryEmail}</strong>. Un e-mail de confirmation avec un lien <em>"Activate Form"</em> a été transmis dans votre boîte Gmail. Dès validation, les réceptions seront 100% directes.
+                                </p>
+                                <p style="margin-bottom: 8px; font-weight:600; color:#fff;">Pour transmettre votre demande immédiatement sans attendre :</p>
+                                <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                                    <a href="https://wa.me/${FORM_CONFIG.whatsappNumber}?text=${waMessage}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #fff; padding: 8px 16px; border-radius: 6px; font-weight: 600; text-decoration: none;">
+                                        <i class="fa-brands fa-whatsapp"></i> Envoyer via WhatsApp
+                                    </a>
+                                    <a href="mailto:${FORM_CONFIG.primaryEmail}?cc=${FORM_CONFIG.ccEmail}&subject=${encodeURIComponent('Demande de devis - ' + extractedData.nom)}&body=${encodeURIComponent('Nom: ' + extractedData.nom + '\nEmail: ' + extractedData.email + '\nTéléphone: ' + extractedData.telephone + '\nActivité: ' + (extractedData.activite || '') + '\nMessage:\n' + (extractedData.message || ''))}" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.25); padding: 8px 16px; border-radius: 6px; font-weight: 600; text-decoration: none;">
+                                        <i class="fa-solid fa-envelope"></i> Envoyer par E-mail
+                                    </a>
+                                </div>
                             </div>
                         `;
                     }
                 } else {
-                    throw new Error(result.message || 'Erreur lors de l\'envoi');
+                    // AUTRE ERREUR DU SERVEUR / API
+                    const errorDetail = result.message || `Erreur serveur HTTP ${response.status}`;
+                    throw new Error(errorDetail);
                 }
             } catch (err) {
-                console.warn('Erreur envoi formulaire:', err);
+                console.error('[Excellence Système - Formulaire] ❌ Erreur critique lors de l\'envoi :', {
+                    erreur: err.message || err,
+                    statut: response ? response.status : 'Connexion impossible',
+                    reponse: result,
+                    donnees: payload
+                });
+
                 const errorMsg = isEn 
-                    ? "Submission issue. You can reach us directly on WhatsApp or phone."
-                    : "Une erreur est survenue lors de l'envoi. Vous pouvez nous contacter directement sur WhatsApp.";
+                    ? "Submission issue. Please reach us directly on WhatsApp or by email."
+                    : "Une erreur est survenue lors de l'envoi du formulaire. Vous pouvez nous joindre directement sur WhatsApp ou par email.";
                 showToast(errorMsg, 'error');
 
-                const statusDiv = form.querySelector('.form-status-msg') || document.getElementById('contactFormStatus');
                 const waMessage = encodeURIComponent(
-                    `Bonjour Excellence Système,\nJe souhaite un devis pour : ${extractedData.activite || 'Courant faible / Sécurité'}\nNom: ${extractedData.nom}\nTéléphone: ${extractedData.telephone}\nEmail: ${extractedData.email || 'Non précisé'}\nMessage: ${extractedData.message || 'Demande de devis'}`
+                    `Bonjour Excellence Système,\nJe souhaite un devis pour : ${extractedData.activite || 'Courant faible / Sécurité'}\nNom: ${extractedData.nom}\nTéléphone: ${extractedData.telephone}\nEmail: ${extractedData.email}\nMessage: ${extractedData.message || 'Demande de devis'}`
                 );
 
                 if (statusDiv) {
                     statusDiv.innerHTML = `
-                        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 12px; margin-top: 15px; color: #fca5a5; font-size: 0.9rem;">
-                            <p style="margin-bottom: 8px;"><i class="fa-solid fa-triangle-exclamation"></i> ${errorMsg}</p>
-                            <a href="https://wa.me/${FORM_CONFIG.whatsappNumber}?text=${waMessage}" target="_blank" rel="noopener" style="display: inline-block; background: #25D366; color: #fff; padding: 8px 16px; border-radius: 6px; font-weight: 600; text-decoration: none; margin-top: 6px;">
-                                <i class="fa-brands fa-whatsapp"></i> Envoyer ma demande via WhatsApp
-                            </a>
+                        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 8px; padding: 14px; margin-top: 15px; color: #fca5a5; font-size: 0.9rem; line-height: 1.5;">
+                            <p style="margin-bottom: 8px; font-weight:600;"><i class="fa-solid fa-triangle-exclamation" style="color:#ef4444;"></i> ${errorMsg}</p>
+                            <p style="margin-bottom: 10px; font-size: 0.85rem; color: #cbd5e1;">Détail technique : ${err.message || 'Erreur réseau ou réponse inattendue'}</p>
+                            <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                                <a href="https://wa.me/${FORM_CONFIG.whatsappNumber}?text=${waMessage}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #fff; padding: 8px 16px; border-radius: 6px; font-weight: 600; text-decoration: none;">
+                                    <i class="fa-brands fa-whatsapp"></i> Envoyer via WhatsApp
+                                </a>
+                                <a href="mailto:${FORM_CONFIG.primaryEmail}?cc=${FORM_CONFIG.ccEmail}&subject=${encodeURIComponent('Demande de devis - ' + extractedData.nom)}&body=${encodeURIComponent('Nom: ' + extractedData.nom + '\nEmail: ' + extractedData.email + '\nTéléphone: ' + extractedData.telephone + '\nActivité: ' + (extractedData.activite || '') + '\nMessage:\n' + (extractedData.message || ''))}" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.25); padding: 8px 16px; border-radius: 6px; font-weight: 600; text-decoration: none;">
+                                    <i class="fa-solid fa-envelope"></i> Envoyer par E-mail
+                                </a>
+                            </div>
                         </div>
                     `;
                 }
