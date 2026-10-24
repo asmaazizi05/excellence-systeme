@@ -138,21 +138,59 @@
             pointer-events: none;
         }
 
-        .admin-input-wrap .admin-input {
+        .admin-input {
             width: 100%;
-            padding: 12px 14px 12px 42px;
+            box-sizing: border-box;
+            padding: 12px 14px;
             background: var(--admin-card);
             border: 1px solid var(--admin-border);
             border-radius: 10px;
-            color: #fff;
+            color: #FFFFFF;
             font-size: 0.95rem;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             outline: none;
-            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
         }
 
-        .admin-input-wrap .admin-input:focus {
+        .admin-input::placeholder {
+            color: #6B7280;
+        }
+
+        .admin-input:focus {
             border-color: var(--admin-accent);
             box-shadow: 0 0 0 3px var(--admin-accent-glow);
+            background: #20252C;
+        }
+
+        .admin-input-wrap .admin-input {
+            padding-left: 42px;
+        }
+
+        select.admin-input {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: var(--admin-card);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2363C4C4' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+            padding-right: 42px;
+            cursor: pointer;
+            height: 46px;
+        }
+
+        select.admin-input option {
+            background-color: #15181C;
+            color: #FFFFFF;
+            padding: 10px 14px;
+        }
+
+        textarea.admin-input {
+            width: 100%;
+            min-height: 85px;
+            line-height: 1.5;
+            resize: vertical;
         }
 
         .admin-toggle-pwd {
@@ -730,7 +768,7 @@
             background: var(--admin-surface);
             border: 1px solid var(--admin-border);
             border-radius: 18px;
-            padding: 30px;
+            padding: 28px;
             max-width: 580px;
             width: 100%;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
@@ -738,6 +776,20 @@
             transition: transform 0.3s ease;
             max-height: 90vh;
             overflow-y: auto;
+        }
+
+        .admin-modal-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .admin-modal-box::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+        }
+
+        .admin-modal-box::-webkit-scrollbar-thumb {
+            background: rgba(99, 196, 196, 0.35);
+            border-radius: 8px;
         }
 
         .admin-modal-overlay.active .admin-modal-box {
@@ -778,11 +830,13 @@
 
         .admin-star-interactive {
             display: flex;
+            align-items: center;
+            height: 46px;
             gap: 8px;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: var(--admin-accent);
             cursor: pointer;
-            margin-top: 6px;
+            margin-top: 0;
         }
 
         .admin-star-interactive i {
