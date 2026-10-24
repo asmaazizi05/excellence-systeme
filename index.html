@@ -439,13 +439,8 @@
                     </p>
                 </div>
 
-                <!-- Horizontal Reviews Slider Wrapper with Navigation Arrows -->
+                <!-- Horizontal Reviews Slider Wrapper -->
                 <div class="reviews-slider-wrapper reviews-marquee-mode" id="reviewsSliderWrapper">
-                    <button type="button" class="reviews-nav-btn prev" id="reviewsPrevBtn" aria-label="Avis précédent"
-                        title="Avis précédent">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-
                     <div class="reviews-viewport" id="reviewsViewport">
                         <div class="reviews-track" id="reviewsCardContainer">
                             <div class="solution-card review-card-item">
@@ -562,7 +557,19 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <!-- Navigation Controls Under Reviews Slider -->
+                <div class="reviews-slider-controls">
+                    <button type="button" class="reviews-nav-btn prev" id="reviewsPrevBtn" aria-label="Avis précédent"
+                        title="Avis précédent">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="reviews-nav-dots" id="reviewsNavDots" aria-hidden="true">
+                        <span class="reviews-nav-dot active"></span>
+                        <span class="reviews-nav-dot"></span>
+                        <span class="reviews-nav-dot"></span>
+                    </div>
                     <button type="button" class="reviews-nav-btn next" id="reviewsNextBtn" aria-label="Avis suivant"
                         title="Avis suivant">
                         <i class="fa-solid fa-chevron-right"></i>

@@ -2470,6 +2470,7 @@ const ExSysReviewsManager = (function() {
 
                 const prevBtn = document.getElementById('reviewsPrevBtn');
                 const nextBtn = document.getElementById('reviewsNextBtn');
+                const dots = document.querySelectorAll('#reviewsNavDots .reviews-nav-dot');
 
                 if (prevBtn) {
                     prevBtn.onclick = () => {
@@ -2483,6 +2484,17 @@ const ExSysReviewsManager = (function() {
                         const cardWidth = 320 + 24;
                         viewport.scrollBy({ left: cardWidth, behavior: 'smooth' });
                     };
+                }
+
+                if (dots.length) {
+                    viewport.addEventListener('scroll', () => {
+                        const max = viewport.scrollWidth - viewport.clientWidth;
+                        if (max > 0) {
+                            const ratio = Math.max(0, Math.min(1, viewport.scrollLeft / max));
+                            const idx = Math.min(dots.length - 1, Math.floor(ratio * dots.length));
+                            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+                        }
+                    }, { passive: true });
                 }
             }
 
