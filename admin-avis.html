@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration des Avis Clients | Excellence Système</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo-3d.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Style Tokens -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        :root {
+            --admin-bg: #0E1114;
+            --admin-surface: #15181C;
+            --admin-card: #1B1F24;
+            --admin-border: rgba(255, 255, 255, 0.08);
+            --admin-accent: #63C4C4;
+            --admin-accent-glow: rgba(99, 196, 196, 0.25);
+            --admin-success: #10B981;
+            --admin-warning: #F59E0B;
+            --admin-danger: #EF4444;
+            --admin-text-main: #FFFFFF;
+            --admin-text-muted: #9CA3AF;
+        }
+
+        body.admin-body {
+            background-color: var(--admin-bg);
+            color: var(--admin-text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- AUTH LOGIN CARD --- */
+        .admin-login-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+            background: radial-gradient(circle at 50% 20%, rgba(99, 196, 196, 0.08) 0%, transparent 60%), var(--admin-bg);
+        }
+
+        .admin-login-card {
+            background: var(--admin-surface);
+            border: 1px solid var(--admin-border);
+            border-radius: 20px;
+            padding: 40px 36px;
+            max-width: 440px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(99, 196, 196, 0.08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--admin-accent), transparent);
+        }
+
+        .admin-brand-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(99, 196, 196, 0.12);
+            border: 1px solid rgba(99, 196, 196, 0.35);
+            color: var(--admin-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 0 24px rgba(99, 196, 196, 0.2);
+        }
+
+        .admin-login-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            color: #fff;
+        }
+
+        .admin-login-subtitle {
+            color: var(--admin-text-muted);
+            font-size: 0.92rem;
+            line-height: 1.5;
+            margin: 0 0 28px 0;
+        }
+
+        .admin-form-group {
+            text-align: left;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .admin-form-label {
+            display: block;
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: #E5E7EB;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .admin-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .admin-input-wrap i.prefix-icon {
+            position: absolute;
+            left: 14px;
+            color: var(--admin-text-muted);
+            font-size: 0.95rem;
+            pointer-events: none;
+        }
+
+        .admin-input-wrap .admin-input {
+            width: 100%;
+            padding: 12px 14px 12px 42px;
+            background: var(--admin-card);
+            border: 1px solid var(--admin-border);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .admin-input-wrap .admin-input:focus {
+            border-color: var(--admin-accent);
+            box-shadow: 0 0 0 3px var(--admin-accent-glow);
+        }
+
+        .admin-toggle-pwd {
+            position: absolute;
+            right: 14px;
+            background: none;
+            border: none;
+            color: var(--admin-text-muted);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .admin-toggle-pwd:hover {
+            color: var(--admin-accent);
+        }
+
+        .admin-btn-primary {
+            width: 100%;
+            padding: 14px 20px;
+            background: var(--admin-accent);
+            border: none;
+            border-radius: 10px;
+            color: #0E1114;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(99, 196, 196, 0.35);
+        }
+
+        .admin-btn-primary:hover {
+            background: #73D3D3;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 196, 196, 0.45);
+        }
+
+        .admin-btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .admin-login-hint {
+            margin-top: 24px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--admin-text-muted);
+            text-align: left;
+        }
+
+        /* --- DASHBOARD HEADER --- */
+        .admin-navbar {
+            background: var(--admin-surface);
+            border-bottom: 1px solid var(--admin-border);
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+
+        .admin-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .admin-nav-logo {
+            height: 38px;
+            width: auto;
+        }
+
+        .admin-nav-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .admin-nav-badge {
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: rgba(99, 196, 196, 0.15);
+            color: var(--admin-accent);
+            border: 1px solid rgba(99, 196, 196, 0.3);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .admin-nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-btn-sm {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+        }
+
+        .admin-btn-outline {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--admin-border);
+            color: #E5E7EB;
+        }
+
+        .admin-btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .admin-btn-danger-outline {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+            color: #F87171;
+        }
+
+        .admin-btn-danger-outline:hover {
+            background: var(--admin-danger);
+            color: #fff;
+        }
+
+        /* --- MAIN DASHBOARD CONTAINER --- */
+        .admin-main {
+            padding: 32px 28px 60px 28px;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            box-sizing: border-box;
+            flex: 1;
+        }
+
+        /* --- STATS KPI GRID --- */
+        .admin-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .admin-stat-card {
+            background: var(--admin-surface);
+            border: 1px solid var(--admin-border);
+            border-radius: 16px;
+            padding: 22px 20px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-stat-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(99, 196, 196, 0.4);
+        }
+
+        .admin-stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .admin-stat-info h4 {
+            margin: 0 0 4px 0;
+            font-size: 0.82rem;
+            color: var(--admin-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .admin-stat-info .stat-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .admin-stat-info .stat-sub {
+            font-size: 0.78rem;
+            color: var(--admin-text-muted);
+            margin-top: 4px;
+        }
+
+        /* --- TOOLBAR: TABS & FILTERS --- */
+        .admin-toolbar {
+            background: var(--admin-surface);
+            border: 1px solid var(--admin-border);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--admin-border);
+            color: #D1D5DB;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .admin-tab-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+
+        .admin-tab-btn.active {
+            background: var(--admin-accent);
+            color: #0E1114;
+            border-color: var(--admin-accent);
+            box-shadow: 0 4px 12px rgba(99, 196, 196, 0.3);
+        }
+
+        .admin-tab-badge {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .admin-filter-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .admin-search-box {
+            position: relative;
+            min-width: 240px;
+        }
+
+        .admin-search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--admin-text-muted);
+            font-size: 0.85rem;
+        }
+
+        .admin-search-box input {
+            width: 100%;
+            background: var(--admin-card);
+            border: 1px solid var(--admin-border);
+            padding: 8px 12px 8px 34px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.25s ease;
+            box-sizing: border-box;
+        }
+
+        .admin-search-box input:focus {
+            border-color: var(--admin-accent);
+        }
+
+        .admin-select {
+            background: var(--admin-card);
+            border: 1px solid var(--admin-border);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* --- REVIEWS CARD LIST --- */
+        .admin-reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .admin-review-card {
+            background: var(--admin-surface);
+            border: 1px solid var(--admin-border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: border-color 0.25s ease, transform 0.2s ease;
+            position: relative;
+        }
+
+        .admin-review-card:hover {
+            border-color: rgba(99, 196, 196, 0.35);
+        }
+
+        .admin-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .admin-author-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .admin-author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(99, 196, 196, 0.15);
+            border: 1px solid rgba(99, 196, 196, 0.3);
+            color: var(--admin-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .admin-author-details h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .admin-author-details .role {
+            font-size: 0.85rem;
+            color: var(--admin-text-muted);
+            margin-top: 2px;
+        }
+
+        .admin-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .status-approved {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34D399;
+            border: 1px solid rgba(16, 185, 129, 0.35);
+        }
+
+        .status-pending {
+            background: rgba(245, 158, 11, 0.15);
+            color: #FBBF24;
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            animation: pulse-border 2s infinite;
+        }
+
+        .status-rejected {
+            background: rgba(239, 68, 68, 0.15);
+            color: #F87171;
+            border: 1px solid rgba(239, 68, 68, 0.35);
+        }
+
+        @keyframes pulse-border {
+            0%, 100% { border-color: rgba(245, 158, 11, 0.35); }
+            50% { border-color: rgba(245, 158, 11, 0.8); }
+        }
+
+        .admin-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .admin-stars {
+            color: var(--admin-accent);
+            font-size: 0.95rem;
+        }
+
+        .admin-rating-num {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+
+        .admin-date-badge {
+            color: var(--admin-text-muted);
+            font-size: 0.82rem;
+            margin-left: auto;
+        }
+
+        .admin-review-body {
+            background: var(--admin-card);
+            border-left: 3px solid var(--admin-accent);
+            padding: 14px 18px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #F3F4F6;
+        }
+
+        .admin-traceability-log {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            font-size: 0.78rem;
+            color: #9CA3AF;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .admin-card-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .admin-btn-action {
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 0.84rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-approve {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34D399;
+            border-color: rgba(16, 185, 129, 0.35);
+        }
+
+        .btn-approve:hover {
+            background: var(--admin-success);
+            color: #fff;
+        }
+
+        .btn-reject {
+            background: rgba(245, 158, 11, 0.12);
+            color: #FBBF24;
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-reject:hover {
+            background: var(--admin-warning);
+            color: #0E1114;
+        }
+
+        .btn-edit {
+            background: rgba(99, 196, 196, 0.12);
+            color: var(--admin-accent);
+            border-color: rgba(99, 196, 196, 0.3);
+        }
+
+        .btn-edit:hover {
+            background: var(--admin-accent);
+            color: #0E1114;
+        }
+
+        .btn-delete {
+            background: rgba(239, 68, 68, 0.12);
+            color: #F87171;
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-delete:hover {
+            background: var(--admin-danger);
+            color: #fff;
+        }
+
+        .admin-empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--admin-surface);
+            border: 1px dashed var(--admin-border);
+            border-radius: 16px;
+            color: var(--admin-text-muted);
+        }
+
+        .admin-empty-icon {
+            font-size: 3rem;
+            color: var(--admin-accent);
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        /* --- MODALS --- */
+        .admin-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .admin-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .admin-modal-box {
+            background: var(--admin-surface);
+            border: 1px solid var(--admin-border);
+            border-radius: 18px;
+            padding: 30px;
+            max-width: 580px;
+            width: 100%;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .admin-modal-overlay.active .admin-modal-box {
+            transform: translateY(0);
+        }
+
+        .admin-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--admin-border);
+        }
+
+        .admin-modal-title {
+            margin: 0;
+            font-size: 1.25rem;
+            color: #fff;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-modal-close {
+            background: none;
+            border: none;
+            color: var(--admin-text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .admin-modal-close:hover {
+            color: #fff;
+        }
+
+        .admin-star-interactive {
+            display: flex;
+            gap: 8px;
+            font-size: 1.6rem;
+            color: var(--admin-accent);
+            cursor: pointer;
+            margin-top: 6px;
+        }
+
+        .admin-star-interactive i {
+            transition: transform 0.2s ease;
+        }
+
+        .admin-star-interactive i:hover {
+            transform: scale(1.2);
+        }
+
+        .admin-star-interactive i.inactive {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .admin-navbar {
+                padding: 12px 16px;
+                flex-direction: column;
+                gap: 12px;
+                align-items: stretch;
+            }
+
+            .admin-nav-actions {
+                justify-content: space-between;
+            }
+
+            .admin-main {
+                padding: 20px 16px 40px 16px;
+            }
+
+            .admin-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .admin-filter-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .admin-search-box {
+                width: 100%;
+            }
+
+            .admin-card-actions {
+                justify-content: stretch;
+            }
+
+            .admin-btn-action {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="admin-body">
+
+    <!-- 1. LOGIN SCREEN -->
+    <div id="adminLoginSection" class="admin-login-wrapper">
+        <div class="admin-login-card">
+            <div class="admin-brand-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h1 class="admin-login-title">Espace Administration</h1>
+            <p class="admin-login-subtitle">Gestion et modération sécurisée des avis clients Excellence Système.</p>
+
+            <div id="adminLoginAlert" style="display: none; padding: 12px; border-radius: 8px; font-size: 0.88rem; margin-bottom: 20px; text-align: left;"></div>
+
+            <form id="adminLoginForm">
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="adminLoginUser">Identifiant Administrateur</label>
+                    <div class="admin-input-wrap">
+                        <i class="fa-solid fa-user prefix-icon"></i>
+                        <input type="text" id="adminLoginUser" class="admin-input" placeholder="admin" required autocomplete="username">
+                    </div>
+                </div>
+
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="adminLoginPass">Mot de passe sécurisé</label>
+                    <div class="admin-input-wrap">
+                        <i class="fa-solid fa-lock prefix-icon"></i>
+                        <input type="password" id="adminLoginPass" class="admin-input" placeholder="••••••••••••" required autocomplete="current-password">
+                        <button type="button" class="admin-toggle-pwd" id="togglePasswordBtn" aria-label="Afficher le mot de passe">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="admin-btn-primary" id="btnAdminLogin">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <span>Accéder à l'administration</span>
+                </button>
+            </form>
+
+            <div class="admin-login-hint">
+                <div style="font-weight: 600; color:#E5E7EB; margin-bottom:4px;">
+                    <i class="fa-solid fa-key" style="color:var(--admin-accent); margin-right:4px;"></i> Identifiants d'accès par défaut :
+                </div>
+                <div>Identifiant : <code style="color:var(--admin-accent);">admin</code></div>
+                <div>Mot de passe : <code style="color:var(--admin-accent);">Excellence@2026!</code></div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <a href="index.html" style="color: var(--admin-text-muted); font-size: 0.85rem; text-decoration: none; transition: color 0.2s ease;">
+                    <i class="fa-solid fa-arrow-left"></i> Retour au site public
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2. DASHBOARD SCREEN (Visible when authenticated) -->
+    <div id="adminDashboardSection" style="display: none; flex-direction: column; min-height: 100vh;">
+        
+        <!-- Navigation Bar -->
+        <header class="admin-navbar">
+            <a href="index.html" class="admin-nav-brand">
+                <img src="assets/logo-3d.png" alt="Excellence Système" class="admin-nav-logo">
+                <div>
+                    <h2 class="admin-nav-title">Excellence Système</h2>
+                    <span class="admin-nav-badge">Portail Administrateur</span>
+                </div>
+            </a>
+
+            <div class="admin-nav-actions">
+                <a href="index.html#reviews-section" target="_blank" class="admin-btn-sm admin-btn-outline" title="Voir l'affichage public sur le site">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>Voir le site</span>
+                </a>
+                <button type="button" class="admin-btn-sm admin-btn-outline" id="btnRefreshAdmin" title="Recharger les avis">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <span>Actualiser</span>
+                </button>
+                <button type="button" class="admin-btn-sm admin-btn-danger-outline" id="btnAdminLogout" title="Déconnexion sécurisée">
+                    <i class="fa-solid fa-power-off"></i>
+                    <span>Déconnexion</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Content -->
+        <main class="admin-main">
+            
+            <!-- Welcome Header -->
+            <div style="margin-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+                <div>
+                    <h1 style="font-family:'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; margin: 0 0 6px 0; color:#fff;">
+                        Gestion des Avis Clients
+                    </h1>
+                    <p style="color: var(--admin-text-muted); margin: 0; font-size: 0.95rem;">
+                        Consultez, modérez, validez, modifiez ou supprimez les retours d'expérience affichés sur le site.
+                    </p>
+                </div>
+
+                <div>
+                    <button type="button" class="admin-btn-primary" id="btnOpenAddModal" style="width: auto; padding: 10px 20px; font-size: 0.92rem;">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Ajouter un avis vérifié</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- KPI Summary Cards -->
+            <div class="admin-stats-grid">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background: rgba(99, 196, 196, 0.12); color: var(--admin-accent);">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <div class="admin-stat-info">
+                        <h4>Total des avis</h4>
+                        <div class="stat-value" id="statTotalCount">0</div>
+                        <div class="stat-sub">Tous statuts confondus</div>
+                    </div>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background: rgba(16, 185, 129, 0.12); color: var(--admin-success);">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div class="admin-stat-info">
+                        <h4>Avis Publiés</h4>
+                        <div class="stat-value" id="statApprovedCount">0</div>
+                        <div class="stat-sub">Visibles sur le site public</div>
+                    </div>
+                </div>
+
+                <div class="admin-stat-card" style="border-color: rgba(245, 158, 11, 0.3);">
+                    <div class="admin-stat-icon" style="background: rgba(245, 158, 11, 0.12); color: var(--admin-warning);">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div class="admin-stat-info">
+                        <h4>En attente</h4>
+                        <div class="stat-value" id="statPendingCount" style="color: #FBBF24;">0</div>
+                        <div class="stat-sub">Nécessitent validation</div>
+                    </div>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background: rgba(239, 68, 68, 0.12); color: var(--admin-danger);">
+                        <i class="fa-solid fa-ban"></i>
+                    </div>
+                    <div class="admin-stat-info">
+                        <h4>Avis Refusés</h4>
+                        <div class="stat-value" id="statRejectedCount">0</div>
+                        <div class="stat-sub">Masqués du site</div>
+                    </div>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background: rgba(245, 158, 11, 0.12); color: #F59E0B;">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="admin-stat-info">
+                        <h4>Note moyenne</h4>
+                        <div class="stat-value" id="statAvgRating">5.0 / 5</div>
+                        <div class="stat-sub">Calculée sur les avis publiés</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toolbar: Tabs, Search, Rating Filter -->
+            <div class="admin-toolbar">
+                <div class="admin-tabs" id="adminFilterTabs">
+                    <button type="button" class="admin-tab-btn active" data-filter="all">
+                        <span>Tous les avis</span>
+                        <span class="admin-tab-badge" id="tabBadgeAll">0</span>
+                    </button>
+                    <button type="button" class="admin-tab-btn" data-filter="pending">
+                        <i class="fa-solid fa-clock" style="font-size:0.8rem;"></i>
+                        <span>En attente</span>
+                        <span class="admin-tab-badge" id="tabBadgePending" style="background: rgba(245, 158, 11, 0.4); color:#fff;">0</span>
+                    </button>
+                    <button type="button" class="admin-tab-btn" data-filter="approved">
+                        <i class="fa-solid fa-check" style="font-size:0.8rem;"></i>
+                        <span>Publiés</span>
+                        <span class="admin-tab-badge" id="tabBadgeApproved">0</span>
+                    </button>
+                    <button type="button" class="admin-tab-btn" data-filter="rejected">
+                        <i class="fa-solid fa-xmark" style="font-size:0.8rem;"></i>
+                        <span>Refusés</span>
+                        <span class="admin-tab-badge" id="tabBadgeRejected">0</span>
+                    </button>
+                </div>
+
+                <div class="admin-filter-controls">
+                    <div class="admin-search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="adminSearchInput" placeholder="Rechercher (nom, ville, avis)...">
+                    </div>
+
+                    <select id="adminRatingSelect" class="admin-select" aria-label="Filtrer par note">
+                        <option value="all">Toutes les notes</option>
+                        <option value="5">⭐⭐⭐⭐⭐ (5 étoiles)</option>
+                        <option value="4">⭐⭐⭐⭐ (4 étoiles)</option>
+                        <option value="3">⭐⭐⭐ (3 étoiles)</option>
+                        <option value="2">⭐⭐ (2 étoiles)</option>
+                        <option value="1">⭐ (1 étoile)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Dynamic Reviews List -->
+            <div id="adminReviewsList" class="admin-reviews-container">
+                <!-- Dynamically rendered via js/admin-reviews.js -->
+            </div>
+
+        </main>
+    </div>
+
+
+    <!-- 3. MODAL: MODIFIER UN AVIS -->
+    <div class="admin-modal-overlay" id="editReviewModal">
+        <div class="admin-modal-box">
+            <div class="admin-modal-header">
+                <h3 class="admin-modal-title">
+                    <i class="fa-solid fa-pen-to-square" style="color:var(--admin-accent);"></i>
+                    <span>Modifier l'avis client</span>
+                </h3>
+                <button type="button" class="admin-modal-close" data-close="editReviewModal">&times;</button>
+            </div>
+
+            <form id="formEditReview">
+                <input type="hidden" id="editReviewId">
+
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="editAuthorName">Nom et prénom du client *</label>
+                    <div class="admin-input-wrap">
+                        <i class="fa-solid fa-user prefix-icon"></i>
+                        <input type="text" id="editAuthorName" class="admin-input" required>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="admin-form-group">
+                        <label class="admin-form-label" for="editAuthorRole">Établissement / Rôle *</label>
+                        <div class="admin-input-wrap">
+                            <i class="fa-solid fa-building prefix-icon"></i>
+                            <input type="text" id="editAuthorRole" class="admin-input" required>
+                        </div>
+                    </div>
+                    <div class="admin-form-group">
+                        <label class="admin-form-label" for="editAuthorCity">Ville</label>
+                        <div class="admin-input-wrap">
+                            <i class="fa-solid fa-location-dot prefix-icon"></i>
+                            <input type="text" id="editAuthorCity" class="admin-input" placeholder="ex: Casablanca">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="admin-form-group">
+                        <label class="admin-form-label">Note attribuée *</label>
+                        <div class="admin-star-interactive" id="editStarPicker">
+                            <i class="fa-solid fa-star" data-val="1"></i>
+                            <i class="fa-solid fa-star" data-val="2"></i>
+                            <i class="fa-solid fa-star" data-val="3"></i>
+                            <i class="fa-solid fa-star" data-val="4"></i>
+                            <i class="fa-solid fa-star" data-val="5"></i>
+                        </div>
+                        <input type="hidden" id="editRatingValue" value="5">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label class="admin-form-label" for="editReviewStatus">Statut de publication</label>
+                        <select id="editReviewStatus" class="admin-input" style="padding-left:14px; cursor:pointer;">
+                            <option value="approved">🟢 Publié (sur le site)</option>
+                            <option value="pending">🟡 En attente de validation</option>
+                            <option value="rejected">🔴 Refusé (masqué)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="editCommentText">Commentaire (Français) *</label>
+                    <textarea id="editCommentText" rows="4" class="admin-input" style="padding-left:14px; resize:vertical;" required></textarea>
+                </div>
+
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="editCommentTextEn">Traduction anglaise (Optionnelle)</label>
+                    <textarea id="editCommentTextEn" rows="3" class="admin-input" style="padding-left:14px; resize:vertical;" placeholder="English translation (auto-fallback if empty)"></textarea>
+                </div>
+
+                <div style="display:flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+                    <button type="button" class="admin-btn-sm admin-btn-outline" data-close="editReviewModal">Annuler</button>
+                    <button type="submit" class="admin-btn-primary" style="width: auto; padding: 10px 22px;">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Enregistrer les modifications</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- 4. MODAL: CONFIRMATION DE SUPPRESSION -->
+    <div class="admin-modal-overlay" id="deleteReviewModal">
+        <div class="admin-modal-box" style="max-width: 480px; text-align: center;">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(239, 68, 68, 0.15); color: var(--admin-danger); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 16px auto;">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <h3 style="font-family:'Outfit', sans-serif; font-size: 1.35rem; color:#fff; margin: 0 0 10px 0;">
+                Supprimer cet avis ?
+            </h3>
+            
+            <p style="color: var(--admin-text-muted); font-size: 0.95rem; line-height: 1.5; margin: 0 0 20px 0;">
+                Êtes-vous sûr de vouloir supprimer définitivement l'avis de <strong id="deleteAuthorName" style="color:#fff;"></strong> ? Cette action est irréversible et retirera immédiatement l'avis du site public.
+            </p>
+
+            <div id="deleteQuotePreview" style="background: var(--admin-card); border-left: 3px solid var(--admin-danger); padding: 12px 14px; border-radius: 0 8px 8px 0; font-size: 0.88rem; color: #E5E7EB; text-align: left; margin-bottom: 24px; max-height: 100px; overflow-y: auto;">
+            </div>
+
+            <input type="hidden" id="deleteTargetId">
+
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button type="button" class="admin-btn-sm admin-btn-outline" data-close="deleteReviewModal" style="padding: 10px 20px;">
+                    Annuler
+                </button>
+                <button type="button" class="admin-btn-sm" id="btnConfirmDeleteReview" style="background: var(--admin-danger); color: #fff; border:none; padding: 10px 22px; font-weight:700;">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span>Supprimer définitivement</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 5. MODAL: AJOUTER UN AVIS ADMINISTRATEUR -->
+    <div class="admin-modal-overlay" id="addReviewModal">
+        <div class="admin-modal-box">
+            <div class="admin-modal-header">
+                <h3 class="admin-modal-title">
+                    <i class="fa-solid fa-plus-circle" style="color:var(--admin-accent);"></i>
+                    <span>Ajouter un avis vérifié</span>
+                </h3>
+                <button type="button" class="admin-modal-close" data-close="addReviewModal">&times;</button>
+            </div>
+
+            <form id="formAddReviewAdmin">
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="addAuthorName">Nom complet du client / dirigeant *</label>
+                    <div class="admin-input-wrap">
+                        <i class="fa-solid fa-user prefix-icon"></i>
+                        <input type="text" id="addAuthorName" class="admin-input" placeholder="ex: M. Karim Benali" required>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="admin-form-group">
+                        <label class="admin-form-label" for="addAuthorRole">Établissement / Rôle *</label>
+                        <div class="admin-input-wrap">
+                            <i class="fa-solid fa-building prefix-icon"></i>
+                            <input type="text" id="addAuthorRole" class="admin-input" placeholder="ex: Hôtel & Spa (Marrakech)" required>
+                        </div>
+                    </div>
+                    <div class="admin-form-group">
+                        <label class="admin-form-label" for="addAuthorCity">Ville</label>
+                        <div class="admin-input-wrap">
+                            <i class="fa-solid fa-location-dot prefix-icon"></i>
+                            <input type="text" id="addAuthorCity" class="admin-input" placeholder="Marrakech">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="admin-form-group">
+                        <label class="admin-form-label">Note attribuée *</label>
+                        <div class="admin-star-interactive" id="addStarPicker">
+                            <i class="fa-solid fa-star" data-val="1"></i>
+                            <i class="fa-solid fa-star" data-val="2"></i>
+                            <i class="fa-solid fa-star" data-val="3"></i>
+                            <i class="fa-solid fa-star" data-val="4"></i>
+                            <i class="fa-solid fa-star" data-val="5"></i>
+                        </div>
+                        <input type="hidden" id="addRatingValue" value="5">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label class="admin-form-label" for="addReviewStatus">Statut initial</label>
+                        <select id="addReviewStatus" class="admin-input" style="padding-left:14px; cursor:pointer;">
+                            <option value="approved">🟢 Publier immédiatement sur le site</option>
+                            <option value="pending">🟡 Enregistrer en attente</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="addCommentText">Avis & retour d'expérience (Français) *</label>
+                    <textarea id="addCommentText" rows="4" class="admin-input" style="padding-left:14px; resize:vertical;" placeholder="Détaillez le projet réalisé, les équipements déployés et la satisfaction du client..." required></textarea>
+                </div>
+
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="addCommentTextEn">Version anglaise (Optionnelle)</label>
+                    <textarea id="addCommentTextEn" rows="3" class="admin-input" style="padding-left:14px; resize:vertical;" placeholder="Optional English translation for international visitors..."></textarea>
+                </div>
+
+                <div style="display:flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+                    <button type="button" class="admin-btn-sm admin-btn-outline" data-close="addReviewModal">Annuler</button>
+                    <button type="submit" class="admin-btn-primary" style="width: auto; padding: 10px 22px;">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Ajouter l'avis</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/admin-reviews.js"></script>
+</body>
+</html>

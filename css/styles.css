@@ -81,9 +81,7 @@ body.menu-open {
     touch-action: none;
 }
 
-[dir="rtl"] body {
-    font-family: 'Noto Sans Arabic', 'Plus Jakarta Sans', sans-serif;
-}
+
 
 a {
     text-decoration: none;
@@ -3636,18 +3634,28 @@ body.menu-open .nav-backdrop {
 .sector-image {
     position: relative;
     height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(99, 196, 196, 0.08) 0%, rgba(26, 31, 35, 0.92) 65%, rgba(18, 21, 24, 0.98) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     overflow: hidden;
+    padding: 18px 24px;
 }
 
 .sector-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+    max-width: 80%;
+    max-height: 135px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
 .sector-card:hover .sector-image img {
     transform: scale(1.08);
+    filter: drop-shadow(0 0 16px rgba(99, 196, 196, 0.45));
 }
 
 .sector-tag-badge {
@@ -5031,6 +5039,318 @@ body.menu-open .nav-backdrop {
     transform: scale(1.2);
 }
 
+/* ==========================================================================
+   HORIZONTAL REVIEWS SLIDER & MARQUEE ANIMATION SYSTEM
+   ========================================================================== */
+.reviews-slider-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.reviews-viewport {
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.reviews-viewport::-webkit-scrollbar {
+    display: none;
+}
+
+.reviews-track {
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+    width: max-content;
+    will-change: transform;
+}
+
+/* Grid Mode: When <= 4 reviews */
+.reviews-slider-wrapper.reviews-grid-mode {
+    padding: 0;
+}
+
+.reviews-slider-wrapper.reviews-grid-mode .reviews-nav-btn {
+    display: none !important;
+}
+
+.reviews-slider-wrapper.reviews-grid-mode .reviews-viewport {
+    overflow: visible;
+}
+
+.reviews-slider-wrapper.reviews-grid-mode .reviews-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    width: 100%;
+}
+
+/* Marquee / Carousel Mode: When > 4 reviews */
+.reviews-slider-wrapper.reviews-marquee-mode {
+    padding: 0 46px;
+}
+
+.reviews-slider-wrapper.reviews-marquee-mode .reviews-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    position: relative;
+    width: 100%;
+    cursor: grab;
+    padding: 12px 0 16px 0;
+}
+
+.reviews-slider-wrapper.reviews-marquee-mode .reviews-viewport::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.reviews-slider-wrapper.reviews-marquee-mode .reviews-viewport:active {
+    cursor: grabbing;
+}
+
+.reviews-slider-wrapper.reviews-marquee-mode .reviews-track {
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+    width: max-content;
+    will-change: transform;
+}
+
+/* Single Review Card in Track - Identical Uniform Height */
+.review-card-item {
+    background: var(--bg-card, #1B1E22);
+    border: 1px solid var(--border-light, rgba(255, 255, 255, 0.08));
+    border-radius: var(--radius-lg, 16px);
+    padding: 28px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    align-self: stretch;
+    height: 100%;
+    min-height: 420px;
+}
+
+.reviews-slider-wrapper.reviews-marquee-mode .review-card-item {
+    width: 320px;
+    flex: 0 0 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 420px;
+}
+
+.review-card-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-turquoise, #63C4C4), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.review-card-item:hover {
+    transform: translateY(-6px);
+    border-color: rgba(99, 196, 196, 0.45);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 20px rgba(99, 196, 196, 0.15);
+    background: #22262C;
+}
+
+.review-card-item:hover::before {
+    opacity: 1;
+}
+
+.review-card-icon {
+    margin: 0 auto 16px auto;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: rgba(99, 196, 196, 0.12);
+    border: 1px solid rgba(99, 196, 196, 0.3);
+    color: var(--primary-turquoise, #63C4C4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.review-card-item:hover .review-card-icon {
+    transform: scale(1.08) rotate(-4deg);
+    background: rgba(99, 196, 196, 0.22);
+}
+
+.review-card-stars {
+    color: var(--primary-turquoise, #63C4C4);
+    font-size: 0.92rem;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
+.review-card-author {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white, #ffffff);
+    margin-bottom: 4px;
+    letter-spacing: 0.2px;
+}
+
+.review-card-role {
+    color: var(--primary-turquoise, #63C4C4);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+}
+
+.review-card-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-light, #d1d5db);
+    font-style: italic;
+    margin-bottom: 18px;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-card-footer {
+    font-size: 0.78rem;
+    color: var(--text-muted, #9ca3af);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 12px;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.review-badge-new-pill {
+    background: rgba(99, 196, 196, 0.18);
+    color: var(--primary-turquoise, #63C4C4);
+    border: 1px solid rgba(99, 196, 196, 0.4);
+    border-radius: 9999px;
+    padding: 2px 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Navigation Buttons for Reviews Slider */
+.reviews-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(18, 22, 26, 0.88);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(99, 196, 196, 0.4);
+    color: var(--primary-turquoise, #63C4C4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.reviews-nav-btn:hover {
+    background: var(--primary-turquoise, #63C4C4);
+    color: #12161A;
+    border-color: var(--primary-turquoise, #63C4C4);
+    transform: translateY(-50%) scale(1.12);
+    box-shadow: 0 10px 28px rgba(99, 196, 196, 0.35);
+}
+
+.reviews-nav-btn:active {
+    transform: translateY(-50%) scale(0.96);
+}
+
+.reviews-nav-btn.prev {
+    left: -6px;
+}
+
+.reviews-nav-btn.next {
+    right: -6px;
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 768px) {
+    .reviews-slider-wrapper.reviews-marquee-mode {
+        padding: 0 38px;
+    }
+    
+    .reviews-slider-wrapper.reviews-marquee-mode .review-card-item {
+        width: 285px;
+        flex: 0 0 285px;
+        padding: 24px 20px;
+    }
+    
+    .reviews-nav-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 0.88rem;
+    }
+    
+    .reviews-nav-btn.prev {
+        left: -4px;
+    }
+    
+    .reviews-nav-btn.next {
+        right: -4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .reviews-slider-wrapper.reviews-marquee-mode {
+        padding: 0 32px;
+    }
+    
+    .reviews-slider-wrapper.reviews-marquee-mode .review-card-item {
+        width: calc(82vw - 20px);
+        flex: 0 0 calc(82vw - 20px);
+        max-width: 300px;
+        padding: 20px 16px;
+    }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .reviews-slider-wrapper.reviews-marquee-mode .reviews-viewport {
+        scroll-behavior: auto !important;
+    }
+    .review-card-item {
+        transition: none !important;
+    }
+}
+
 
 /* ==========================================================================
    2-TIER SOLUTION CARDS & BRAND LOGOS SYSTEM
@@ -5349,9 +5669,12 @@ body.menu-open .nav-backdrop {
 .solution-modal-img {
     width: 100%;
     height: 250px;
-    object-fit: cover;
+    object-fit: contain;
+    background: radial-gradient(circle at center, rgba(99, 196, 196, 0.08) 0%, rgba(26, 31, 35, 0.95) 70%, rgba(20, 23, 26, 0.98) 100%);
+    padding: 24px;
     border-top-left-radius: 17px;
     border-top-right-radius: 17px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .solution-modal-body {
@@ -5480,19 +5803,29 @@ body.menu-open .nav-backdrop {
 .card-v2-img-wrap {
     position: relative;
     width: 100%;
-    height: 220px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(99, 196, 196, 0.08) 0%, rgba(26, 31, 35, 0.92) 65%, rgba(18, 21, 24, 0.98) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     overflow: hidden;
+    padding: 20px 24px;
 }
 
 .card-v2-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+    max-width: 80%;
+    max-height: 135px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
 .card-v2-container:hover .card-v2-img-wrap img {
     transform: scale(1.08);
+    filter: drop-shadow(0 0 16px rgba(99, 196, 196, 0.45));
 }
 
 .card-tag-principale {
@@ -5729,19 +6062,29 @@ body.menu-open .nav-backdrop {
 .card-v2-img-wrap {
     position: relative;
     width: 100%;
-    height: 220px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(99, 196, 196, 0.08) 0%, rgba(26, 31, 35, 0.92) 65%, rgba(18, 21, 24, 0.98) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     overflow: hidden;
+    padding: 20px 24px;
 }
 
 .card-v2-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+    max-width: 80%;
+    max-height: 135px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
 .card-v2-container:hover .card-v2-img-wrap img {
     transform: scale(1.08);
+    filter: drop-shadow(0 0 16px rgba(99, 196, 196, 0.45));
 }
 
 .card-v2-body {
@@ -6260,6 +6603,249 @@ body.menu-open .nav-backdrop {
     }
 }
 
+/* ==========================================================================
+   MULTI-ROW CONTINUOUS BRAND LOGOS MARQUEE (ACCUEIL)
+   Alternating Left-to-Right & Right-to-Left Infinite Scrolling
+   Zero white cards, authentic official brand colors, pristine dark aesthetic
+   ========================================================================== */
+
+.brands-multitrack-section {
+    position: relative;
+    padding: 38px 0 34px;
+    background: var(--dark-charcoal, #16181A);
+    border-top: none;
+    overflow: hidden;
+}
+
+.brands-multitrack-header {
+    margin-bottom: 24px;
+}
+
+.brands-individual-bands-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    align-items: center;
+}
+
+/* CHAQUE LIGNE POSSÈDE SA PROPRE BANDE VERTE / PILULE TURQUOISE */
+.activity-pill-marquee-container.brand-pill-band {
+    background: linear-gradient(135deg,
+            rgba(99, 196, 196, 0.10) 0%,
+            rgba(17, 26, 28, 0.94) 42%,
+            rgba(14, 21, 23, 0.94) 58%,
+            rgba(99, 196, 196, 0.08) 100%), #0e1c1e !important;
+    border-radius: 9999px !important;
+    border: 1px solid rgba(99, 196, 196, 0.26) !important;
+    padding: 10px 42px !important;
+    min-height: 82px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    position: relative !important;
+    width: 95% !important;
+    max-width: 1450px !important;
+    margin: 0 auto !important;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.45),
+        inset 0 0 25px rgba(99, 196, 196, 0.06),
+        0 0 16px rgba(99, 196, 196, 0.08) !important;
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    transition: all 0.35s ease !important;
+    user-select: none;
+}
+
+.activity-pill-marquee-container.brand-pill-band:hover {
+    background: linear-gradient(135deg,
+            rgba(99, 196, 196, 0.16) 0%,
+            rgba(20, 32, 35, 0.97) 42%,
+            rgba(16, 26, 28, 0.97) 58%,
+            rgba(99, 196, 196, 0.13) 100%), #112326 !important;
+    border-color: rgba(99, 196, 196, 0.48) !important;
+    box-shadow:
+        0 14px 38px rgba(0, 0, 0, 0.55),
+        inset 0 0 32px rgba(99, 196, 196, 0.10),
+        0 0 22px rgba(99, 196, 196, 0.16) !important;
+}
+
+.activity-pill-marquee-container.brand-pill-band:hover .brands-marquee-track {
+    animation-play-state: paused !important;
+}
+
+.brands-marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    align-items: center;
+}
+
+/* Pause smoothly when user hovers any row */
+.brands-marquee-track:hover {
+    animation-play-state: paused !important;
+}
+
+/* Row 1: Défilement de Gauche vers la Droite (Left to Right) */
+.brand-pill-band.row-ltr-1 .brands-marquee-track,
+.brands-marquee-row.row-ltr-1 .brands-marquee-track {
+    animation: brandMarqueeLTR 48s linear infinite;
+}
+
+/* Row 2: Défilement de Droite vers la Gauche (Right to Left) */
+.brand-pill-band.row-rtl-2 .brands-marquee-track,
+.brands-marquee-row.row-rtl-2 .brands-marquee-track {
+    animation: brandMarqueeRTL 52s linear infinite;
+}
+
+/* Row 3: Défilement de Gauche vers la Droite (Left to Right) */
+.brand-pill-band.row-ltr-3 .brands-marquee-track,
+.brands-marquee-row.row-ltr-3 .brands-marquee-track {
+    animation: brandMarqueeLTR 46s linear infinite;
+}
+
+/* Group containing the sequence of logos */
+.brands-group {
+    display: flex;
+    align-items: center;
+    gap: 52px;
+    padding-right: 52px; /* Guarantees seamless gap between original set and cloned set */
+    flex-shrink: 0;
+}
+
+/* Single Logo Container - strictly transparent, NO cards, NO white background */
+.brand-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    height: 52px;
+    min-width: 90px;
+    max-width: 155px;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Logo image - natural aspect ratio, official colors, subtle upscale & glow on hover */
+.brand-item img {
+    max-height: 42px;
+    max-width: 135px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    filter: brightness(0.98) contrast(1.02);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.3s ease;
+    transform-origin: center center;
+    display: block;
+}
+
+.brand-item:hover img {
+    transform: scale(1.12);
+    filter: brightness(1.2) contrast(1.06) drop-shadow(0 0 12px rgba(99, 196, 196, 0.55));
+}
+
+/* Seamless infinite keyframes (translate3d for GPU hardware acceleration) */
+@keyframes brandMarqueeRTL {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+@keyframes brandMarqueeLTR {
+    0% {
+        transform: translate3d(-50%, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .brands-multitrack-section {
+        padding: 38px 0 30px;
+    }
+    .brands-multitrack-header {
+        margin-bottom: 20px;
+    }
+    .brands-individual-bands-container {
+        gap: 14px;
+    }
+    .activity-pill-marquee-container.brand-pill-band {
+        min-height: 72px !important;
+        padding: 8px 30px !important;
+    }
+    .brands-group {
+        gap: 38px;
+        padding-right: 38px;
+    }
+    .brand-item {
+        height: 44px;
+        max-width: 125px;
+    }
+    .brand-item img {
+        max-height: 34px;
+        max-width: 110px;
+    }
+}
+
+@media (max-width: 767px) {
+    .brands-multitrack-section {
+        padding: 30px 0 22px;
+    }
+    .brands-multitrack-header {
+        margin-bottom: 16px;
+    }
+    .brands-individual-bands-container {
+        gap: 12px;
+    }
+    .activity-pill-marquee-container.brand-pill-band {
+        min-height: 62px !important;
+        padding: 6px 18px !important;
+        width: 96% !important;
+    }
+    /* Sur mobile, adaptation automatique du nombre de rangées (2 rangées au lieu de 3) */
+    .brand-pill-band.row-mobile-hide,
+    .brands-marquee-row.row-mobile-hide {
+        display: none !important;
+    }
+    .brands-group {
+        gap: 26px;
+        padding-right: 26px;
+    }
+    .brand-item {
+        height: 36px;
+        min-width: 70px;
+        max-width: 95px;
+    }
+    .brand-item img {
+        max-height: 28px;
+        max-width: 85px;
+    }
+    .brand-pill-band.row-ltr-1 .brands-marquee-track {
+        animation-duration: 36s;
+    }
+    .brand-pill-band.row-rtl-2 .brands-marquee-track {
+        animation-duration: 38s;
+    }
+}
+
 /* ==========================================
    LEGAL PAGES (PRIVACY, TERMS, COOKIES)
    ========================================== */
@@ -6606,5 +7192,181 @@ body.menu-open .nav-backdrop {
         flex-direction: column !important;
         align-items: flex-start !important;
         gap: 10px !important;
+    }
+}
+
+/* ==========================================================================
+   CATALOGUE DES SOLUTIONS & ÉQUIPEMENTS - COMPACT ICON CARDS
+   ========================================================================== */
+.activities-top3-grid,
+.activities-visual-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 28px !important;
+    align-items: stretch !important;
+    margin-bottom: 40px !important;
+}
+
+.solution-compact-card {
+    background: linear-gradient(150deg, #22262a 0%, #171a1d 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    padding: 26px 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    min-height: auto !important;
+    position: relative !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+    transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    cursor: pointer !important;
+    overflow: hidden !important;
+    text-decoration: none !important;
+}
+
+.solution-compact-card:hover {
+    transform: translateY(-7px) !important;
+    border-color: rgba(99, 196, 196, 0.45) !important;
+    box-shadow: 0 16px 40px rgba(99, 196, 196, 0.18), 0 0 25px rgba(99, 196, 196, 0.1) !important;
+    background: linear-gradient(150deg, #262c31 0%, #1a1e22 100%) !important;
+}
+
+.solution-compact-card .card-top-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 20px !important;
+    width: 100% !important;
+}
+
+.solution-compact-card .card-icon-box {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    border-radius: 14px !important;
+    background: rgba(99, 196, 196, 0.12) !important;
+    border: 1px solid rgba(99, 196, 196, 0.3) !important;
+    color: var(--primary-turquoise, #63C4C4) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.4rem !important;
+    transition: all 0.35s ease !important;
+    box-shadow: 0 0 15px rgba(99, 196, 196, 0.1) !important;
+}
+
+.solution-compact-card:hover .card-icon-box {
+    background: var(--primary-turquoise, #63C4C4) !important;
+    color: #121416 !important;
+    box-shadow: 0 0 22px rgba(99, 196, 196, 0.45) !important;
+    transform: scale(1.06) !important;
+}
+
+.solution-compact-card .card-badge {
+    background: rgba(99, 196, 196, 0.14) !important;
+    border: 1px solid rgba(99, 196, 196, 0.35) !important;
+    color: var(--primary-turquoise, #63C4C4) !important;
+    padding: 5px 12px !important;
+    border-radius: 20px !important;
+    font-size: 0.74rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin-bottom: 0 !important;
+    position: static !important;
+}
+
+.solution-compact-card .card-title {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin: 0 0 12px 0 !important;
+    line-height: 1.35 !important;
+}
+
+.solution-compact-card .card-desc {
+    color: var(--text-muted, #a0aec0) !important;
+    font-size: 0.91rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 18px !important;
+    flex-grow: 1 !important;
+}
+
+.solution-compact-card .card-features {
+    display: flex !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 20px !important;
+}
+
+.solution-compact-card .card-features span {
+    font-size: 0.76rem !important;
+    color: #e2e8f0 !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 5px 10px !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.solution-compact-card .card-features span i {
+    color: var(--primary-turquoise, #63C4C4) !important;
+    font-size: 0.72rem !important;
+}
+
+.solution-compact-card .card-action-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    color: var(--primary-turquoise, #63C4C4) !important;
+    text-decoration: none !important;
+    padding-top: 14px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    width: 100% !important;
+    margin-top: auto !important;
+    transition: gap 0.3s ease, color 0.3s ease !important;
+}
+
+.solution-compact-card:hover .card-action-btn {
+    color: #ffffff !important;
+    gap: 12px !important;
+}
+
+@media (max-width: 992px) {
+    .activities-top3-grid,
+    .activities-visual-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 22px !important;
+    }
+
+    .activities-top3-grid .solution-compact-card:nth-child(3),
+    .activities-visual-grid .solution-compact-card:nth-child(3) {
+        grid-column: span 2 !important;
+        max-width: 580px !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .activities-top3-grid,
+    .activities-visual-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .activities-top3-grid .solution-compact-card:nth-child(3),
+    .activities-visual-grid .solution-compact-card:nth-child(3) {
+        grid-column: span 1 !important;
+        max-width: 100% !important;
+        margin: 0 !important;
     }
 }
